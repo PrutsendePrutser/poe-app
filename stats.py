@@ -15,8 +15,8 @@ class items(object):
          'maxlightningdmg': 0,
          'mincolddmg': 0,
          'maxcolddmg': 0,
-         'mincolddmg': 0,
-         'maxcolddmg': 0,
+         'minfiredmg': 0,
+         'maxfiredmg': 0,
          'minchaosdmg': 0,
          'maxchaosdmg': 0,
          'addedatkspeed': 0,
@@ -79,7 +79,73 @@ class items(object):
                     elif explicit_mod.endswith('Fire Resistance'):
                         fireres = int(explicit_mod.split('%')[0].lstrip('+'))
                         self.itemstats['addedfireres'] += fireres
-                         
+                        
+                    # Add resist for all elemental resistances
+                    elif explicit_mod.endswith('Elemental Resistances'):
+                        
+                        # Retrieve the amount of elemental resistances added by the item
+                        eleres = int(explicit_mod.split('%')[0].lstrip('+'))
+                        
+                        # Add the resistance bonus to all elemental resistances
+                        self.itemstats['addedcoldres'] += eleres
+                        self.itemstats['addedfireres'] += eleres
+                        self.itemstats['addedlightningres'] += eleres
+                    
+                    # Add the added lightning damage
+                    elif explicit_mod.endswith('Lightning Damage'):
+                        
+                        # Get the minimum added lightning damage
+                        minlightningdamage = int(explicit_mod.split('-')[0].split(' ')[1])
+                        
+                        # Get the maximum added lightning damage
+                        maxlightningdamage = int(explicit_mod.split('-')[1].split(' ')[0])
+                        
+                        # Add the lightning damage
+                        self.itemstats['minlightningdmg'] += minlightningdamage
+                        self.itemstats['maxlightningdmg'] += maxlightningdamage
+                    
+                    # Add the added cold damage
+                    elif explicit_mod.endswith('Cold Damage'):
+                        
+                        # Get the minimum added cold damage
+                        mincolddamage = int(explicit_mod.split('-')[0].split(' ')[1])
+                        
+                        # Get the maximum added cold damage
+                        maxcolddamage = int(explicit_mod.split('-')[1].split(' ')[0])
+                        
+                        # Add the cold damage
+                        self.itemstats['mincolddmg'] += mincolddamage
+                        self.itemstats['maxcolddmg'] += maxcolddamage
+                        
+                    # Add the added fire damage
+                    elif explicit_mod.endswith('Fire Damage'):
+                        
+                        # Get the minimum added fire damage
+                        minfiredamage = int(explicit_mod.split('-')[0].split(' ')[1])
+                        
+                        # Get the maximum added fire damage
+                        maxfiredamage = int(explicit_mod.split('-')[1].split(' ')[0])
+                        
+                        # Add the fire damage
+                        self.itemstats['minfiredmg'] += minfiredamage
+                        self.itemstats['maxfiredmg'] += maxfiredamage
+                        
+                    # Add the added life from gear
+                    elif explicit_mod.endswith('maximum Life'):
+                        
+                        # Retrieve the life and add it to the added life parameter
+                        self.itemstats['addedlife'] += int(explicit_mod.split(' to')[0].lstrip('+'))
+                        
+                    # Add attack speed mods
+                    elif explicit_mod.endswith('Attack Speed'):
+                        print 'Attack Speed: ' + explicit_mod
+                        
+                        # Add added attack speed, except from weapon
+                        if not equipped_item == 'Weapon' and not equipped_item == 'Weapon2':
+                            
+                            # Retrieve the attack speed and add it
+                            self.itemstats['addedatkspeed'] += int(explicit_mod.split('%')[0])
+                    
                     # Print the mod
                     print "Explicit Mod: " + explicit_mod
         
