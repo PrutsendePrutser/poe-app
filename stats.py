@@ -7,19 +7,6 @@ class items(object):
     
     def __init__(self):
         
-        # Dictionary that contains the complete inventory including equipped gear
-        self.inventory = self.importItems()["items"]
-        
-        # List that contains the itemslots
-        self.itemslots = ['Weapon', 'Amulet', 'Weapon2', 'Gloves', 'Ring2', 'Boots', 'Belt', 'Helm', 'Ring', 'Offhand', 'BodyArmour']
-        
-        # Dictionary that contains the items that are actually equipped
-        self.equipped_items_dict = self.createItemDict()
-        print self.equipped_items_dict
-        
-        # Extract damage increases from gear
-        self.extractdamageincreases()
-        
         # Dictionary to store item stats
         self.itemstats = \
         {'minphysdmg': 0,
@@ -39,6 +26,21 @@ class items(object):
          'addedcoldres': 0,
          'addedfireres': 0,
          'addedlightningres': 0}
+        
+        # Dictionary that contains the complete inventory including equipped gear
+        self.inventory = self.importItems()["items"]
+        
+        # List that contains the itemslots
+        self.itemslots = ['Weapon', 'Amulet', 'Weapon2', 'Gloves', 'Ring2', 'Boots', 'Belt', 'Helm', 'Ring', 'Offhand', 'BodyArmour']
+        
+        # Dictionary that contains the items that are actually equipped
+        self.equipped_items_dict = self.createItemDict()
+        print self.equipped_items_dict
+        
+        # Extract damage increases from gear
+        self.extractdamageincreases()
+
+        print self.itemstats
         
     def extractdamageincreases(self):
         """This function extracts mods that increase the damage from an attack from items"""
@@ -63,6 +65,21 @@ class items(object):
                 # Loop over the explicit mods
                 for explicit_mod in self.equipped_items_dict[equipped_item]['explicitMods']:
                     
+                    # Add lightning resistance
+                    if explicit_mod.endswith('Lightning Resistance'):
+                        lightningres = int(explicit_mod.split('%')[0].lstrip('+'))
+                        self.itemstats['addedlightningres'] += lightningres
+                        
+                    # Add cold resistance
+                    elif explicit_mod.endswith('Cold Resistance'):
+                        coldres = int(explicit_mod.split('%')[0].lstrip('+'))
+                        self.itemstats['addedcoldres'] += coldres
+                    
+                    # Add fire resistance
+                    elif explicit_mod.endswith('Fire Resistance'):
+                        fireres = int(explicit_mod.split('%')[0].lstrip('+'))
+                        self.itemstats['addedfireres'] += fireres
+                         
                     # Print the mod
                     print "Explicit Mod: " + explicit_mod
         
