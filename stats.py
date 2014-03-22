@@ -20,29 +20,25 @@ class items(object):
         # Extract damage increases from gear
         self.extractdamageincreases()
         
-        # Total added physical damage from gear for the current character
-        self.addedphysicaldamage = 0
-        
-        # Total added lightning damage from gear for the current character
-        self.addedlightningdamage = 0
-        
-        # Total added cold damage from gear for the current character
-        self.addedcolddamage = 0
-        
-        # Total added fire damage from gear for the current character
-        self.addedfiredamage = 0
-        
-        # Total added chaos damage from gear
-        self.addedchaosdamage = 0
-        
-        # Total added attack speed from gear
-        self.addedatkspeed = 0
-        
-        # Total added critical strike chance from gear
-        self.addedcritchance = 0
-        
-        # Total added critical strike multiplier from gear
-        self.addedcritmulti = 0
+        # Dictionary to store item stats
+        self.itemstats = \
+        {'minphysdmg': 0,
+         'maxphysdmg': 0,
+         'minlightningdmg': 0,
+         'maxlightningdmg': 0,
+         'mincolddmg': 0,
+         'maxcolddmg': 0,
+         'mincolddmg': 0,
+         'maxcolddmg': 0,
+         'minchaosdmg': 0,
+         'maxchaosdmg': 0,
+         'addedatkspeed': 0,
+         'addedcritchance': 0,
+         'addedcritmulti': 0,
+         'addedlife': 0,
+         'addedcoldres': 0,
+         'addedfireres': 0,
+         'addedlightningres': 0}
         
     def extractdamageincreases(self):
         """This function extracts mods that increase the damage from an attack from items"""
