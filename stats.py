@@ -6,8 +6,16 @@ class items(object):
     """This class contains functions related to equipment"""
     
     def __init__(self):
+        
+        # Dictionary that contains the complete inventory including equipped gear
+        self.inventory = self.importItems()["items"]
+        
         # List that contains the itemslots
-        self.itemslots = []
+        self.itemslots = ['Weapon', 'Amulet', 'Weapon2', 'Gloves', 'Ring2', 'Boots', 'Belt', 'Helm', 'Ring', 'Offhand', 'BodyArmour']
+        
+        # Dictionary that contains the items that are actually equipped
+        self.equipped_items_dict = self.createItemDict()
+        print self.equipped_items_dict
         
         # Total added physical damage from gear for the current character
         self.addedphysicaldamage = 0
@@ -32,6 +40,23 @@ class items(object):
         
         # Total added critical strike multiplier from gear
         self.addedcritmulti = 0
+        
+    def createItemDict(self):
+        """This function creates a dictionary of equipped items with their implicit and explicit mods
+        
+        @return: Dictionary that contains the equipped items with separately the explicit and implicit mods
+        @rtype: dict
+        """
+        # Dictionary to stoe the items in
+        item_dict = {}
+        
+        # Loop over the itemslots
+        for slot in self.itemslots:
+            
+            # Retrieve the mods for each equipped item
+            item_dict[slot] = self.getitemstats(slot)
+            
+        return item_dict
 
     def importItems(self):
         """The importItems function loads a file that contains equipment/inventory of a character.
@@ -43,3 +68,31 @@ class items(object):
         
         with open('items.txt', 'r') as itemsfile:
             return json.loads(itemsfile.read())
+    
+    def getitemstats(self, slot):
+        """This function retrieves the explicit and implict mods of an item
+        
+        @return: a dictionary that contains a list of implicit mods and a list of explicit mods of an item
+        @rtype: dict"""
+        
+        # Loop through the inventory items
+        for item in self.inventory:
+            
+            # Create lists to store explicit and implicit properties
+            implicitproperties = []
+            explicitproperties = []
+            
+            # If we have the data from the current slot
+            if item['inventoryId'] == slot:
+                
+                # Retrieve the explicit and implicit mods separately
+                if "explicitMods" in item.keys():
+                    explicitproperties = item['explicitMods']
+                if "implicitMods" in item.keys():
+                    implicitproperties = item["implicitMods"]
+                
+                # Return a dictionary containing the explicit and implicit mods
+                return {'explicitmods': explicitproperties,
+                        'implicitmods': implicitproperties}
+
+items()
