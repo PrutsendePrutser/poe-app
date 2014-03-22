@@ -17,6 +17,9 @@ class items(object):
         self.equipped_items_dict = self.createItemDict()
         print self.equipped_items_dict
         
+        # Extract damage increases from gear
+        self.extractdamageincreases()
+        
         # Total added physical damage from gear for the current character
         self.addedphysicaldamage = 0
         
@@ -40,6 +43,32 @@ class items(object):
         
         # Total added critical strike multiplier from gear
         self.addedcritmulti = 0
+        
+    def extractdamageincreases(self):
+        """This function extracts mods that increase the damage from an attack from items"""
+        
+        # Loop over the equipped items
+        for equipped_item in self.equipped_items_dict.keys():
+            
+            # Print the itemslot
+            print '\n\n{}\n'.format(equipped_item)
+            
+            # If there are any implicit mods on this item
+            if 'implicitMods' in self.equipped_items_dict[equipped_item].keys():
+                # Loop over the implicit mods
+                for implicit_mod in self.equipped_items_dict[equipped_item]['implicitMods']:
+                    
+                    # Print the mod
+                    print "Implicit Mod: " + implicit_mod
+            
+            # If there are any explicit mods on the item
+            if 'explicitMods' in self.equipped_items_dict[equipped_item].keys():
+                
+                # Loop over the explicit mods
+                for explicit_mod in self.equipped_items_dict[equipped_item]['explicitMods']:
+                    
+                    # Print the mod
+                    print "Explicit Mod: " + explicit_mod
         
     def createItemDict(self):
         """This function creates a dictionary of equipped items with their implicit and explicit mods
@@ -92,7 +121,7 @@ class items(object):
                     implicitproperties = item["implicitMods"]
                 
                 # Return a dictionary containing the explicit and implicit mods
-                return {'explicitmods': explicitproperties,
-                        'implicitmods': implicitproperties}
+                return {'explicitMods': explicitproperties,
+                        'implicitMods': implicitproperties}
 
 items()
