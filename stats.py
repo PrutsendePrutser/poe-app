@@ -31,16 +31,13 @@ class items(object):
         self.inventory = self.importItems()["items"]
         
         # List that contains the itemslots
-        self.itemslots = ['Weapon', 'Amulet', 'Weapon2', 'Gloves', 'Ring2', 'Boots', 'Belt', 'Helm', 'Ring', 'Offhand', 'BodyArmour']
+        self.itemslots = ['Weapon', 'Amulet', 'Gloves', 'Ring2', 'Boots', 'Belt', 'Helm', 'Ring', 'Offhand', 'BodyArmour']
         
         # Dictionary that contains the items that are actually equipped
         self.equipped_items_dict = self.createItemDict()
-        print self.equipped_items_dict
-        
+
         # Extract damage increases from gear
         self.extractdamageincreases()
-
-        print self.itemstats
         
     def extractdamageincreases(self):
         """This function extracts mods that increase the damage from an attack from items"""
@@ -48,17 +45,11 @@ class items(object):
         # Loop over the equipped items
         for equipped_item in self.equipped_items_dict.keys():
             
-            # Print the itemslot
-            print '\n\n{}\n'.format(equipped_item)
-            
             # If there are any implicit mods on this item
             if 'implicitMods' in self.equipped_items_dict[equipped_item].keys():
                 # Loop over the implicit mods
                 for implicit_mod in self.equipped_items_dict[equipped_item]['implicitMods']:
-                    
-                    # Print the mod
-                    print "Implicit Mod: " + implicit_mod
-            
+                    pass
             # If there are any explicit mods on the item
             if 'explicitMods' in self.equipped_items_dict[equipped_item].keys():
                 
@@ -136,18 +127,47 @@ class items(object):
                         # Retrieve the life and add it to the added life parameter
                         self.itemstats['addedlife'] += int(explicit_mod.split(' to')[0].lstrip('+'))
                         
-                    # Add attack speed mods
-                    elif explicit_mod.endswith('Attack Speed'):
-                        print 'Attack Speed: ' + explicit_mod
+                    # Add global crit multiplier
+                    elif explicit_mod.endswith('Global Critical Strike Multiplier'):
                         
-                        # Add added attack speed, except from weapon
-                        if not equipped_item == 'Weapon' and not equipped_item == 'Weapon2':
+                        # Extract the value
+                        critmulti = explicit_mod.split('%')[0].strip()
+                        
+                        # Add the crit multiplier
+                        self.itemstats['addedcritmulti'] += int(critmulti)
+                    
+                    # Add global crit chance
+                    elif explicit_mod.endswith('GLobal Critical Strike Chance'):
+                        
+                        # Extract the value
+                        critchance = explicit_mod.split('%')[0].strip()
+                        
+                        # Add the crit chance
+                        self.itemstats['addedcritchance'] += int(critchance)
+                        
+                    
+                    # Add added the following stats only when they're not on the weapon
+                    if not equipped_item == 'Weapon' and not equipped_item == 'Weapon2':
+                    
+                        # Add attack speed mods
+                        if explicit_mod.endswith('Attack Speed'):
                             
                             # Retrieve the attack speed and add it
                             self.itemstats['addedatkspeed'] += int(explicit_mod.split('%')[0])
-                    
+                        
+                        # Add added phys damage
+                        elif explicit_mod.endswith('Physical Damage'):
+                            
+                            # Extract values
+                            minphysdmg = explicit_mod.split('-')[0].split(' ')[1]
+                            maxphysdmg = explicit_mod.split('-')[1].split(' ')[0]
+                            
+                            # Add the values
+                            self.itemstats['minphysdmg'] = int(minphysdmg)
+                            self.itemstats['maxphysdmg'] = int(maxphysdmg)
+                        
                     # Print the mod
-                    print "Explicit Mod: " + explicit_mod
+             #       print "Explicit Mod: " + explicit_mod
         
     def createItemDict(self):
         """This function creates a dictionary of equipped items with their implicit and explicit mods
@@ -185,6 +205,16 @@ class items(object):
         
         # Loop through the inventory items
         for item in self.inventory:
+            print item['sockets']
+            for k in item:
+                #print k + '\t' + str(item[k])
+                if k == 'socketedItems':
+                    #print item[k]
+                    for l in item[k]:
+                        print str(l['properties'])
+                        print str(l['additionalProperties'])
+                        print str(l['typeLine'])
+                        print str(l['socket'])
             
             # Create lists to store explicit and implicit properties
             implicitproperties = []

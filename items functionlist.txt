@@ -1,0 +1,131 @@
+Functions items.py:
+
+- Function to load item data in JSON-format
+	- User needs to be able to manually select a file
+	- Should be parsable with the json lib
+	- Should return a dictionary
+- Function to retrieve the equipped items
+	- Should retrieve all the equipped items
+	- requires a list of itemslots (secondary weapon slot added later)
+	- Should return a dictionary/class object that contains all the itemslots
+- Function to retrieve requirements of an equipped item
+	- Should return the required level of an item together with the required stats
+	- Return value should be a dictionary
+- Function to retrieve socket groups of an item (links + colors)
+	- Should return a dictionary of socketgroups, with in each group socket color. 
+	- Order of sockets should
+	be preserved to be able to correctly determine linked support gems
+- Function to retrieve the socketed gems of an item
+	- Should link the socketed gems to sockets in the socket group, in the same order as placed in gear. 
+- Function to retrieve the attributes of the socketed gems
+	- Should retrieve stat requirements
+	- Should retrieve required level
+	- Should retrieve gem level
+	- Should retrieve socket location of gem
+	- Should retrieve mana multiplier
+	- Should retrieve mana cost (if this applies)
+	- Should retrieve tags of gem, for damage calculations
+	- Should retrieve crit chance of gem (applies to spells)
+	- Should return either a class object per item, or a dictionary
+- Function to determine the linked skill gems
+	- Should link socketed skillgems to socket link groups
+- Function to retrieve items automatically from PoE site on login
+	- Work in progress, need to check if it's possible to login to the PoE website from a python app
+	- If able to login, should probably use urllib2 to retrieve data from page.
+	- Check Procurement source on how to logon to PoE site.
+
+Functions calculate.py:
+- Function to calculate mana cost of skill
+	- Should return a float (probably)
+	- Params: flat cost of gem, list of mana multipliers
+- Function to calculate total damage per hit of skill
+	- Base damage of gem + passives/gear bonuses + supports
+- Function to calculate damage per second of skill
+	- Damage per hit of skill * APS
+	- Should return a floating-point number
+- Function to calculate damage per second per element/phys of skill
+	- For attacks this can be calculated by multiplying damage per hit of each element by attack speed
+- Function to calculate crit chance of skill
+	- For spells: base crit of spell * (increased crit chance / 100)
+	- For attacks: Weapon crit chance * increased global crit from gear/passives
+	- Should return a floating point number
+- Function to calculate crit multiplier of skill
+	- Base crit multi * increased global crit multi from passives/gear
+	- Should return a floating point number
+- Function to calculate elemental/chaos resitances per difficulty with current gear/passives
+	- Should return the values for each difficulty
+	- -0 for normal, -20 for cruel, -60 for merciless
+	- Should return a dictionary that contains the elemental resistances per difficulty, both cap and overcap
+- Function to calculate maximum life with current gear and passives
+	- Should return an integer
+	- Calculate life from level
+	- Add life from gear
+	- Multiply by the increased max life multiplier
+
+Function skills.py:
+- Class for passive skillgems with attributes, as listed on gems
+- Class for active skillgems with attributes as listed on gems
+- Function that retrieves the stats of equipped skill gems based on level/quality of skill gem
+	- Params: skillgem name, level, quality
+	- Return a dictionary or list that contains damage/damage ratio, damage effectiveness, crit chance, stat requirements	
+- Function to swap skill gem/support gem
+	- Should simulate swapping an active skill or support skill that is selected for a new skill
+
+Functions passives.py:
+- Function to read input from a file as output by passive skill tree calculator
+	- Let user select file manually, and have option to paste data
+	- Strip of carriage returns
+- Function to parse input from passive skill tree calculator
+	- Make template file that contains all possible mods for testing
+	- Should extract the values from passive tree calculator input
+	- Store variables in a class specific for passive tree (might use this to compare builds
+- Functions to parse input from passive tree builders online
+	- Check online build sites and add functions to parse their output
+- Function to parse build URL and extract passive bonuses from link
+	- Work in progess: This one will probably be tricky and is something for a later stage
+
+Functions gui.py:
+- Interface to enter build URL and autoload passive bonuses
+	- Should be a text field, with a load button
+	- Pass input to passives.py
+- Interface to select items file so user can choose the name for the file
+	- Filechooser which lets the user search for a file on disk and select that to load the items
+	- When this can be done automatically, this might be removed. Pass the itemsfile location to items module
+- Interface to select different active gems
+	- Dropdown menu with available active skills
+	- Pass new gem combinations to calculate module etcetera
+	- Possibly show a warning if a certain support gem does not work on a given active skill
+- Interface to select different support gems
+	- Drop down menus per socket slot
+	- Show linked sockets as group
+	- Possibly make a main dropdown menu per item slot
+	- Dynamically update sockets and links per item switch
+- Interface to update item stats, dynamically let user add mods
+	- Two dropdown menus for magic items
+	- Six dropdown menus for rare items
+	- Dropdown menu for unique items per slot
+- Interface to enter the accuracy (can this be calculated from dex and gear?, and then calculate percentage)en 
+
+Functions uniques.py:
+- Class that contains unique items with all the mods on it
+
+Functions export.py:
+- Function to collect/receive all the gathered data
+- Function to parse itemdata, stats etc
+- Function to parse skill gem data
+- Function to parse damage/dps data
+- Function to create Excel output file (format to be decided
+
+Functions main.py:
+- Function to init GUI
+- Functions to init loading of files and creating class instances
+- Handlers for GUI buttons (how does this work with tkinter?)
+
+TODO:
+
+- Status ailments
+- Damage/resist curve
+- Cast on crit damage
+- Add list of all base items, so user only needs to enter mods
+- Add support for divine orb optimalization
+- Add all possible mods per slot, with ranges
