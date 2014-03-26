@@ -8,6 +8,8 @@ import math
 
 class Calculations(object):
     """This class contains the functions to do the required calculations for the PoE related stuff"""
+    def __init__(self):
+        pass
     
     def calculate_mana_cost(self, base_manacost, mana_multipliers):
         """This function calculates the mana cost for a spell or attack, based on the mana multipliers of the attached
@@ -22,7 +24,18 @@ class Calculations(object):
         @return: The mana cost of the active skill with the selected support gems linked
         @rtype: integer"""
         
-        pass
+        # Set the manacost to the base manacost of the skill before doing calculations with the support gems
+        manacost = int(base_manacost)
+        
+        # Loop through the multipliers
+        for multiplier in mana_multipliers:
+            
+            # Multiply the currency manacost by the multiplier / 100, to use the value multiplier
+            # Use 100.0 to get a floating-point number as result from the calculation
+            manacost *= (multiplier / 100.0)
+        
+        # Round the decimal value up and return the value
+        return math.ceil(manacost)
     
     def calculate_damage_per_hit(self, active_skill, weapon_phys_dmg, weapon_ele_dmg, added_gear_damage, passive_bonuses, *support_gems):
         """This function calculates the damage per hit of a given skill, with the selected equipment, support gems and passive bonuses etcetera
@@ -63,3 +76,5 @@ class Calculations(object):
     
     def calculate_maximum_life(self, class_, level, life_on_gear, life_from_passives, increased_max_life):
         pass
+
+print Calculations().calculate_mana_cost(10, [150, 150, 150])
