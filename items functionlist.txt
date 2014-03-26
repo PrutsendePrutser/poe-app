@@ -129,3 +129,6 @@ TODO:
 - Add list of all base items, so user only needs to enter mods
 - Add support for divine orb optimalization
 - Add all possible mods per slot, with ranges
+- FLOATING POINT VALUES ARE ROUNDED DOWN TO TWO DECIMALS
+- DPS IS ROUNDED DOWN TO ONE DECIMAL
+- Build in support for bandit rewards

@@ -35,7 +35,7 @@ class Calculations(object):
             manacost *= (multiplier / 100.0)
         
         # Round the decimal value up and return the value
-        return math.ceil(manacost)
+        return math.floor(manacost)
     
     def calculate_damage_per_hit(self, active_skill, weapon_phys_dmg, weapon_ele_dmg, added_gear_damage, passive_bonuses, *support_gems):
         """This function calculates the damage per hit of a given skill, with the selected equipment, support gems and passive bonuses etcetera
@@ -63,10 +63,17 @@ class Calculations(object):
         pass
     
     def calculate_damage_per_second(self, damage_per_hit, weapon_atk_speed=None, inc_atk_speed=None, base_cast_time=None, increased_cast_speed=None):
-        pass
+        # If it's not a spell
+        if not base_cast_time:
+            print (float(weapon_atk_speed) * math.floor(float(1 + (inc_atk_speed / 100.0))))
+            # Return the damage per second
+            return damage_per_hit * (math.floor(float(weapon_atk_speed) * float(1 + (inc_atk_speed / 100.0)) * 100) / 100)
     
-    def calculate_crit_chance(self, base_crit_chance, increased_critical_strike_chance, weapon_crit_chance):
-        pass
+    def calculate_crit_chance(self, increased_critical_strike_chance, weapon_crit_chance, base_crit_chance=None):
+        if base_crit_chance:
+            return base_crit_chance * (1 + (increased_critical_strike_chance / 100.0))
+        else:
+            return weapon_crit_chance * (1 + (increased_critical_strike_chance / 100.0))
     
     def calculate_crit_multiplier(self, base_crit_multiplier, increased_crit_multiplier):
         pass
@@ -77,4 +84,9 @@ class Calculations(object):
     def calculate_maximum_life(self, class_, level, life_on_gear, life_from_passives, increased_max_life):
         pass
 
-print Calculations().calculate_mana_cost(10, [150, 150, 150])
+calc = Calculations()
+print calc.calculate_mana_cost(11, [205, 150, 130, 150])
+print calc.calculate_damage_per_second(351, 1.89, 47)
+print calc.calculate_crit_chance(575, 9.1)
+print "Bram z'n char"
+print calc.calculate_damage_per_second(100, 1.2, 16)
