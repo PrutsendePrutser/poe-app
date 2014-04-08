@@ -60,43 +60,43 @@ Split Arrow	Attack	Bow
 Temporal Chains	Curse	Spell	AoE	Duration		
 Viper Strike	Chaos	Attack	Duration	Melee		
 Whirling Blades	Movement	Attack	Melee			
-Arc						
-Arctic Breath						
-Bone Offering						
-Clarity						
-Cold Snap						
-Conductivity						
-Conversion Trap						
-Critical Weakness						
-Discharge						
-Discipline						
-Elemental Weakness						
-Enfeeble						
-Fireball						
-Firestorm						
-Flameblast						
-Flammability						
-Flesh Offering						
-Freezing Pulse						
-Frost Wall						
-Frostbite						
-Glacial Cascade						
-Ice Nova						
-Ice Spear						
-Incinerate						
-Lightning Trap						
-Lightning Warp						
-Power Siphon						
-Purity of Elements						
-Purity of Lightning						
-Raise Spectre						
-Raise Zombie						
-Righteous Fire						
-Shock Nova						
-Spark						
-Storm Call						
-Summon Raging Spirits						
-Summon Skeletons						
-Tempest Shield						
-Vulnerability						
-Wrath						
+Arc	Lightning	Spell	Chaining			
+Arctic Breath	Cold	Projectile	Spell	Duration	AoE	
+Bone Offering	Minion	Spell	Duration			
+Clarity	Aura	Spell	AoE			
+Cold Snap	Cold	Spell	AoE			
+Conductivity	Lightning	Curse	Spell	AoE	Duration	
+Conversion Trap	Trap	Spell	Duration			
+Critical Weakness	Curse	Spell	AoE	Duration		
+Discharge	Fire	Cold	Lightning	Spell	AoE	
+Discipline	Aura	Spell	AoE			
+Elemental Weakness	Curse	Spell	AoE	Duration		
+Enfeeble	Curse	Spell	AoE	Duration		
+Fireball	Fire	Projectile	Spell	AoE		
+Firestorm	Fire	Spell	AoE	Duration		
+Flameblast	Fire	Spell	AoE			
+Flammability	Fire	Curse	Spell	AoE	Duration	
+Flesh Offering	Minion	Spell	Duration			
+Freezing Pulse	Cold	Projectile	Spell			
+Frost Wall	Cold	Spell	Duration			
+Frostbite	Cold	Curse	Spell	AoE	Duration	
+Glacial Cascade	Cold	Spell	AoE			
+Ice Nova	Cold	Spell	AoE			
+Ice Spear	Cold	Projectile	Spell			
+Incinerate	Fire	Projectile	Spell			
+Lightning Trap	Lightning	Projectile	Trap	Spell	Duration	
+Lightning Warp	Lightning	Spell	AoE	Duration	Movement	
+Power Siphon	Attack	Projectile				
+Purity of Elements	Aura	Spell	AoE			
+Purity of Lightning	Aura	Spell	AoE	Lightning		
+Raise Spectre	Spell	Minion				
+Raise Zombie	Spell	Minion				
+Righteous Fire	Fire	Spell	AoE			
+Shock Nova	Lightning	Spell	AoE			
+Spark	Lightning	Projectile	Spell	Duration		
+Storm Call	Lightning	Spell	AoE	Duration		
+Summon Raging Spirits	Fire	Spell	Minion	Duration		
+Summon Skeletons	Spell	Minion	Duration			
+Tempest Shield	Lightning	Spell				
+Vulnerability	Curse	Spell	AoE	Duration		
+Wrath	Aura	Lightning	Spell	AoE		
