@@ -132,3 +132,6 @@ TODO:
 - FLOATING POINT VALUES ARE ROUNDED DOWN TO TWO DECIMALS
 - DPS IS ROUNDED DOWN TO ONE DECIMAL
 - Build in support for bandit rewards
+
+USEFUL STUFF:
+- PoE rounds all values down, use math.floor((val * 100) / 100) to round down correctly
