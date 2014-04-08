@@ -1,102 +1,102 @@
-Skill name	Tags				
-Anger	Aura	Fire	Spell	AoE	
-Animate Guardian	Spell	Minion			
-Cleave	Attack	AoE	Melee		
-Decoy Totem	Totem	Spell	Duration	AoE	
-Determination	Aura	Spell	AoE		
-Devouring Totem	Totem	Spell	Duration		
-Dominating Blow	Attack	Minion	Duration	Melee	
-Enduring Cry	Spell	AoE			
-Flame Totem	Fire	Projectile	Totem	Spell	Duration
-Glacial Hammer	Cold	Attack	Melee		
-Ground Slam	Attack	AoE	Melee		
-Heavy Strike	Attack	Melee			
-Immortal Call	Spell	Duration			
-Infernal Blow	Fire	Attack	AoE	Melee	
-Leap Slam	Movement	Attack	AoE	Melee	
-Lightning Strike	Lightning	Projectile	Attack	Melee	
-Molten Shell	Fire	Spell	Duration	AoE	
-Punishment	Curse	Spell	AoE	Duration	
-Purity of Fire	Aura	Spell	AoE	Fire	
-Rejuvenation Totem	Totem	Aura	Spell	AoE	Duration
-Searing Bond	Totem	Fire	Spell	Duration	
-Shield Charge	Movement	Attack	Melee		
-Shockwave Totem	Totem	Spell	AoE	Duration	
-Sweep	Attack	AoE	Melee		
-Vitality	Aura	Spell	AoE		
-Warlord's Mark	Curse	Spell	AoE	Duration	
-Animate Weapon					
-Arctic Armour					
-Barrage					
-Bear Trap					
-Blood Rage					
-Burning Arrow					
-Cyclone					
-Desecrate					
-Detonate Dead					
-Double Strike					
-Dual strike					
-Elemental Hit					
-Ethereal Knives					
-Explosive Arrow					
-Fire Trap					
-Flicker Strike					
-Freeze Mine					
-Frenzy					
-Grace					
-Haste					
-Hatred					
-Ice Shot					
-Lightning Arrow					
-Poison Arrow					
-Projectile Weakness					
-Puncture					
-Purity of Ice					
-Rain of Arrows					
-Reave					
-Smoke Mine					
-Spectral Throw					
-Split Arrow					
-Temporal Chains					
-Viper Strike					
-Whirling Blades					
-Arc					
-Arctic Breath					
-Bone Offering					
-Clarity					
-Cold Snap					
-Conductivity					
-Conversion Trap					
-Critical Weakness					
-Discharge					
-Discipline					
-Elemental Weakness					
-Enfeeble					
-Fireball					
-Firestorm					
-Flameblast					
-Flammability					
-Flesh Offering					
-Freezing Pulse					
-Frost Wall					
-Frostbite					
-Glacial Cascade					
-Ice Nova					
-Ice Spear					
-Incinerate					
-Lightning Trap					
-Lightning Warp					
-Power Siphon					
-Purity of Elements					
-Purity of Lightning					
-Raise Spectre					
-Raise Zombie					
-Righteous Fire					
-Shock Nova					
-Spark					
-Storm Call					
-Summon Raging Spirits					
-Summon Skeletons					
-Tempest Shield					
-Vulnerability					
-Wrath					
+Skill name	Keyword					
+Anger	Aura	Fire	Spell	AoE		
+Animate Guardian	Spell	Minion				
+Cleave	Attack	AoE	Melee			
+Decoy Totem	Totem	Spell	Duration	AoE		
+Determination	Aura	Spell	AoE			
+Devouring Totem	Totem	Spell	Duration			
+Dominating Blow	Attack	Minion	Duration	Melee		
+Enduring Cry	Spell	AoE				
+Flame Totem	Fire	Projectile	Totem	Spell	Duration	
+Glacial Hammer	Cold	Attack	Melee			
+Ground Slam	Attack	AoE	Melee			
+Heavy Strike	Attack	Melee				
+Immortal Call	Spell	Duration				
+Infernal Blow	Fire	Attack	AoE	Melee		
+Leap Slam	Movement	Attack	AoE	Melee		
+Lightning Strike	Lightning	Projectile	Attack	Melee		
+Molten Shell	Fire	Spell	Duration	AoE		
+Punishment	Curse	Spell	AoE	Duration		
+Purity of Fire	Aura	Spell	AoE	Fire		
+Rejuvenation Totem	Totem	Aura	Spell	AoE	Duration	
+Searing Bond	Totem	Fire	Spell	Duration		
+Shield Charge	Movement	Attack	Melee			
+Shockwave Totem	Totem	Spell	AoE	Duration		
+Sweep	Attack	AoE	Melee			
+Vitality	Aura	Spell	AoE			
+Warlord's Mark	Curse	Spell	AoE	Duration		
+Animate Weapon	Minion	Spell	Duration			
+Arctic Armour	Cold	Spell	Duration			
+Barrage	Attack	Bow				
+Bear Trap	Trap	Duration	Cast			
+Blood Rage	Chaos	Spell	Duration			
+Burning Arrow	Fire	Attack	Bow			
+Cyclone	Movement	Attack	AoE	Melee		
+Desecrate	Chaos	Spell	AoE	Duration		
+Detonate Dead	Fire	Cast	AoE			
+Double Strike	Attack	Melee				
+Dual strike	Attack	Melee				
+Elemental Hit	Fire	Cold	Lightning	Attack	Melee	Bow
+Ethereal Knives	Projectile	Spell				
+Explosive Arrow	Fire	Attack	AoE	Duration	Bow	
+Fire Trap	Fire	Trap	Spell	Duration	AoE	
+Flicker Strike	Movement	Attack	Melee			
+Freeze Mine	Cold	Mine	Spell	Duration	AoE	
+Frenzy	Attack	Melee	Bow			
+Grace	Aura	Spell	AoE			
+Haste	Aura	Spell	AoE			
+Hatred	Aura	Cold	Spell	AoE		
+Ice Shot	Cold	Attack	AoE	Duration	Bow	
+Lightning Arrow	Lightning	Attack	AoE	Bow		
+Poison Arrow	Chaos	Attack	AoE	Duration	Bow	
+Projectile Weakness	Curse	Spell	AoE	Duration		
+Puncture	Attack	Duration	Melee	Bow		
+Purity of Ice	Aura	Spell	AoE	Cold		
+Rain of Arrows	Attack	AoE	Bow			
+Reave	Attack	AoE	Melee			
+Smoke Mine	Mine	Movement	Spell	AoE	Duration	
+Spectral Throw	Projectile	Attack				
+Split Arrow	Attack	Bow				
+Temporal Chains	Curse	Spell	AoE	Duration		
+Viper Strike	Chaos	Attack	Duration	Melee		
+Whirling Blades	Movement	Attack	Melee			
+Arc						
+Arctic Breath						
+Bone Offering						
+Clarity						
+Cold Snap						
+Conductivity						
+Conversion Trap						
+Critical Weakness						
+Discharge						
+Discipline						
+Elemental Weakness						
+Enfeeble						
+Fireball						
+Firestorm						
+Flameblast						
+Flammability						
+Flesh Offering						
+Freezing Pulse						
+Frost Wall						
+Frostbite						
+Glacial Cascade						
+Ice Nova						
+Ice Spear						
+Incinerate						
+Lightning Trap						
+Lightning Warp						
+Power Siphon						
+Purity of Elements						
+Purity of Lightning						
+Raise Spectre						
+Raise Zombie						
+Righteous Fire						
+Shock Nova						
+Spark						
+Storm Call						
+Summon Raging Spirits						
+Summon Skeletons						
+Tempest Shield						
+Vulnerability						
+Wrath						
