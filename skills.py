@@ -13,28 +13,28 @@ class Skillgems(object):
     def __init__(self):
         self.active_skills = {}
         self.support_skills = {}
-        self.skilldata = {}
+        self.skilldata = {"notfound":[]}
         self.counter = 0
         
     def readskillpage(self, skillname, activeskillfile):
         parser = MyHTMLParser()
+        parser.unescape('&ndash; &#8211;')
         skillname = "/{}".format(skillname.replace(" ", "_"))
         conn = httplib.HTTPConnection("pathofexile.gamepedia.com")
         print "http://pathofexile.gamepedia.com%s" % skillname
         conn.request("GET", skillname)
         response = conn.getresponse()
+        data = response.read()
         if response.status == 200:
-            parser.feed(response.read())
-            print parser.d
+            parser.feed(data)
             skilln = skillname.replace('/', '').replace('_', ' ')
-            print skilln, self.skilldata.keys()
             self.skilldata[skilln] = [l for l in parser.d.split('\n') if l.strip()]
         else:
-            print response.status, response.reason
-        print self.counter
+            self.skilldata['notfound'].append(skillname)
+            return
         self.counter += 1
         conn.close()
-        time.sleep(30)
+        time.sleep(1)
         self.writeskillfile(skilln, activeskillfile)
     
     def writeskillfile(self, skill, activeskillfile):
@@ -79,7 +79,7 @@ class MyHTMLParser(HTMLParser.HTMLParser):
                     self.d += "Intelligence\t"
     def handle_data(self, data):
         if self.inskilltable:
-            val = data.replace('\n','').replace('\r','').replace('\t','').replace('<br />','').strip()
+            val = data.replace('\n','').replace('\r','').replace('\t','').replace('<br />','').replace('&#8211;', '-').strip()
             if val:
                 self.d += val.strip() + '\t'
 
@@ -93,3 +93,5 @@ for f in skillfiles:
     with open('active_skill_levels.csv', 'a') as activeskillfile:
         for skill in skilllist:
             gems.readskillpage(skill, activeskillfile)
+#gems.readskillpage("Arc", "f")
+print gems.skilldata['notfound']
