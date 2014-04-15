@@ -32,7 +32,6 @@ class PassiveCalculator(object):
             # Combine the two characters, and decode them using utf-16 decoding
             # Cast to an ord so we have the 16 bit int value
             # Add to the node_ids list
-            print ((i-6) / 2), (build[i+1] + build[i+0])
                 
             try:
                 c = (build[i+1] + build[i+0]).decode("utf-16")
@@ -56,8 +55,16 @@ class PassiveCalculator(object):
                 split = line.split('\t')
                 nodeid = split[0]
                 name = split[1]
-                desc = split[-1]
+                desc = [d.replace(';', '').strip() for d in split[2].split(';') if d.strip()]
                 node_dict[nodeid] = {'name': name,
                                      'desc': desc}
             return node_dict
 
+    def get_bonus_for_selected_nodes(self):
+        for idx, n in enumerate(sorted(self.selected_node_ids)):
+            node_name = self.node_data[str(n)]['name']
+            node_desc = self.node_data[str(n)]['desc']
+            print idx, node_name, node_desc
+            
+calc = PassiveCalculator('http://www.pathofexile.com/passive-skill-tree/AAAAAgEAxthYYz38jM_2SF8_8wbBBOOfoLRBdCcv-6p2K-8O5FH3TbyfgIqkrCSb8i8B51RJqBinMDboah4UcRQgZKOvoliv0iEOPN-_UEcaVRDwRmn3vlcNn8sYkWEhkc6E77vtm4N07fcyU99673KpWNusr2BLfNmE2QUtbmllTUCgvqdHfiFgnrnSTavFdPHBB8APGNvUUtd-W68G7jQ1TirdDZdwKaWQCvzFYxdW-megzme3F-4Oh3YPODiWGtsj9kp918vv8LfTWkg94kjuG61yu7nNoW0=')
+calc.get_bonus_for_selected_nodes()
