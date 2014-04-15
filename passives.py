@@ -50,7 +50,7 @@ class PassiveCalculator(object):
         return node_ids
     
     def load_nodes_data(self):
-        with open("skillnodes.txt", "r") as sfile:
+        with open("skillnodes.csv", "r") as sfile:
             lines = sfile.readlines()
             node_dict = {}
             for line in lines:
