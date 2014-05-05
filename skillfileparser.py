@@ -10,12 +10,12 @@ class SkillFileParser(object):
     '''
 
 
-    def __init__(self, fpath):
+    def __init__(self):
         '''
         Constructor
         '''
         # Set filepath
-        self.fpath = fpath
+        self.fpath = "active_skill_levels.csv"
         # Set dictionary to store all the skills in the skillfile
         self.skills = {}
         # Parse the file
@@ -42,19 +42,23 @@ class SkillFileParser(object):
             # Add a nested dictionary for the current skill
             self.skills[header[0]] = {}
         # Loop over the different header entries, add them to the nested dictionary and add an empty string as value
-        for head in header[1:]:
-            self.skills[header[0]][head] = ""
         # Loop over each level of the skill
         for entry in skill[1:]:
             # Split each line on tabs
             entry = entry.split('\t')
-            print entry
+            level = entry[1]
+            try:
+                lvl = int(level)
+            except:
+                print 'Entry: ', entry
+            self.skills[header[0]][level] = {}
             # Loop over each column of the header
-            for idx, head in enumerate(header[1:]):
-                print idx, head
-                # Add the data of the current column to the column entry for the current skill
-                # 1 is added to the index to make up for the first column of each level which is empty
-                self.skills[header[0]][head] = entry[idx+1]
+            for idx, head in enumerate(header[2:]):
+                if head.strip():
+                    # Add the data of the current column to the column entry for the current skill
+                    # 1 is added to the index to make up for the first column of each level which is empty
+                    self.skills[header[0]][level][head] = entry[idx+2]
                     
-parser = SkillFileParser('active_skill_levels.csv')
-print parser.skills
+parser = SkillFileParser()
+for skill in sorted(parser.skills):
+    print skill, parser.skills[skill]
