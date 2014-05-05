@@ -1,0 +1,102 @@
+Skill name	Quality bonus	Quality description	Keyword					
+Anger			Aura	Fire	Spell	AoE		
+Animate Guardian			Spell	Minion				
+Cleave			Attack	AoE	Melee			
+Decoy Totem			Totem	Spell	Duration	AoE		
+Determination			Aura	Spell	AoE			
+Devouring Totem			Totem	Spell	Duration			
+Dominating Blow			Attack	Minion	Duration	Melee		
+Enduring Cry			Spell	AoE				
+Flame Totem			Fire	Projectile	Totem	Spell	Duration	
+Glacial Hammer			Cold	Attack	Melee			
+Ground Slam			Attack	AoE	Melee			
+Heavy Strike			Attack	Melee				
+Immortal Call			Spell	Duration				
+Infernal Blow			Fire	Attack	AoE	Melee		
+Leap Slam			Movement	Attack	AoE	Melee		
+Lightning Strike			Lightning	Projectile	Attack	Melee		
+Molten Shell			Fire	Spell	Duration	AoE		
+Punishment			Curse	Spell	AoE	Duration		
+Purity of Fire			Aura	Spell	AoE	Fire		
+Rejuvenation Totem			Totem	Aura	Spell	AoE	Duration	
+Searing Bond			Totem	Fire	Spell	Duration		
+Shield Charge			Movement	Attack	Melee			
+Shockwave Totem			Totem	Spell	AoE	Duration		
+Sweep			Attack	AoE	Melee			
+Vitality			Aura	Spell	AoE			
+Warlord's Mark			Curse	Spell	AoE	Duration		
+Animate Weapon			Minion	Spell	Duration			
+Arctic Armour			Cold	Spell	Duration			
+Barrage			Attack	Bow				
+Bear Trap			Trap	Duration	Cast			
+Blood Rage			Chaos	Spell	Duration			
+Burning Arrow			Fire	Attack	Bow			
+Cyclone			Movement	Attack	AoE	Melee		
+Desecrate			Chaos	Spell	AoE	Duration		
+Detonate Dead			Fire	Cast	AoE			
+Double Strike			Attack	Melee				
+Dual strike			Attack	Melee				
+Elemental Hit			Fire	Cold	Lightning	Attack	Melee	Bow
+Ethereal Knives			Projectile	Spell				
+Explosive Arrow			Fire	Attack	AoE	Duration	Bow	
+Fire Trap			Fire	Trap	Spell	Duration	AoE	
+Flicker Strike			Movement	Attack	Melee			
+Freeze Mine			Cold	Mine	Spell	Duration	AoE	
+Frenzy			Attack	Melee	Bow			
+Grace			Aura	Spell	AoE			
+Haste			Aura	Spell	AoE			
+Hatred			Aura	Cold	Spell	AoE		
+Ice Shot			Cold	Attack	AoE	Duration	Bow	
+Lightning Arrow			Lightning	Attack	AoE	Bow		
+Poison Arrow			Chaos	Attack	AoE	Duration	Bow	
+Projectile Weakness			Curse	Spell	AoE	Duration		
+Puncture			Attack	Duration	Melee	Bow		
+Purity of Ice			Aura	Spell	AoE	Cold		
+Rain of Arrows			Attack	AoE	Bow			
+Reave			Attack	AoE	Melee			
+Smoke Mine			Mine	Movement	Spell	AoE	Duration	
+Spectral Throw			Projectile	Attack				
+Split Arrow			Attack	Bow				
+Temporal Chains			Curse	Spell	AoE	Duration		
+Viper Strike			Chaos	Attack	Duration	Melee		
+Whirling Blades			Movement	Attack	Melee			
+Arc			Lightning	Spell	Chaining			
+Arctic Breath			Cold	Projectile	Spell	Duration	AoE	
+Bone Offering			Minion	Spell	Duration			
+Clarity			Aura	Spell	AoE			
+Cold Snap			Cold	Spell	AoE			
+Conductivity			Lightning	Curse	Spell	AoE	Duration	
+Conversion Trap			Trap	Spell	Duration			
+Critical Weakness			Curse	Spell	AoE	Duration		
+Discharge			Fire	Cold	Lightning	Spell	AoE	
+Discipline			Aura	Spell	AoE			
+Elemental Weakness			Curse	Spell	AoE	Duration		
+Enfeeble			Curse	Spell	AoE	Duration		
+Fireball			Fire	Projectile	Spell	AoE		
+Firestorm			Fire	Spell	AoE	Duration		
+Flameblast			Fire	Spell	AoE			
+Flammability			Fire	Curse	Spell	AoE	Duration	
+Flesh Offering			Minion	Spell	Duration			
+Freezing Pulse			Cold	Projectile	Spell			
+Frost Wall			Cold	Spell	Duration			
+Frostbite			Cold	Curse	Spell	AoE	Duration	
+Glacial Cascade			Cold	Spell	AoE			
+Ice Nova			Cold	Spell	AoE			
+Ice Spear			Cold	Projectile	Spell			
+Incinerate			Fire	Projectile	Spell			
+Lightning Trap			Lightning	Projectile	Trap	Spell	Duration	
+Lightning Warp			Lightning	Spell	AoE	Duration	Movement	
+Power Siphon			Attack	Projectile				
+Purity of Elements			Aura	Spell	AoE			
+Purity of Lightning			Aura	Spell	AoE	Lightning		
+Raise Spectre			Spell	Minion				
+Raise Zombie			Spell	Minion				
+Righteous Fire			Fire	Spell	AoE			
+Shock Nova			Lightning	Spell	AoE			
+Spark			Lightning	Projectile	Spell	Duration		
+Storm Call			Lightning	Spell	AoE	Duration		
+Summon Raging Spirits			Fire	Spell	Minion	Duration		
+Summon Skeletons			Spell	Minion	Duration			
+Tempest Shield			Lightning	Spell				
+Vulnerability			Curse	Spell	AoE	Duration		
+Wrath			Aura	Lightning	Spell	AoE		

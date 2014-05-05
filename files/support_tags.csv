@@ -1,0 +1,26 @@
+Added Fire Damage	0.75	increased Fire Damage;increased Cold Damage	Support	Fire
+Blood Magic	0.75	increased Attack Speed when on Low Life	Support
+Cast on Melee Kill	0.5	Increased Damage per level	Support	Melee	Attack	Spell
+Cast when Damage Taken	0.5	increased Damage	Support	Spell
+Cold to Fire	0.5	increased Fire Damage;increased Cold Damage	Support	Cold	Fire
+Empower	5	this Gem gains increased Experience	Support
+Endurance Charge on Melee Stun	1	increased Stun Duration	Support	Attack	Melee
+Fire Penetration	0.5	increased Fire Damage	Support	Fire
+Increased Burning Damage	0.5	chance to Ignite the enemy on hit with Fire Damage	Support	Fire
+Increased Duration	0.5	increased Skill Effect Duration	Support	Duration
+Iron Grip	0.75	increased Projectile Damage	Support Projectile
+Iron Will	0.75	increased Spell damage	Support Spell
+Item Quantity	0.35	increased Quantity of Items Dropped by Slain enemies	Support
+Knockback	0.5	chance to Knock enemies Back on hit	Support
+Life Gain on Hit	0.5	Life gained for each enemy hit by your Attacks	Support	Attack
+Life Leech	1	increased Life Leech rate	Support
+Melee Damage on Full Life	0.5	increased Melee Physical Damage	Support	Melee
+Melee Physical Damage	0.5	increased Melee Physical Damage	Support	Melee
+Melee Splash	1	increased Area of Effect Radius	Support	Melee	Attack	AoE
+Multistrike	0.5	increased Melee Physical Damage	Support	Melee	Attack
+Ranged Attack Totem	1.5	increased Totem Duration	Support	Totem	Duration	Projectile	Bow
+Reduced Duration	0.5	Reduced Skill Effect Duration	Support	Duration
+Reduced Mana	0.5	reduced Mana Cost	Support
+Spell Totem	1.5	increased Totem Duration	Support	Totem	Duration
+Stun	1.5	increased Stun Duration on enemies	Support
+Weapon Elemental Damage	0.5	increased Elemental Damage with Weapons	Support
