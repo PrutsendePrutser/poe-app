@@ -206,7 +206,7 @@ class PoEGUI(QtGui.QWidget):
     def add_defensive_stats(self, grid):
         # Create header label and add it to the grid
         def_stats_lbl = QtGui.QLabel("Defensive stats")
-        grid.addWidget(def_stats_lbl, 5, 26, 1, 2)
+        grid.addWidget(def_stats_lbl, 4, 26, 1, 2)
         
         # Create a label and textbox for each defensive stat. The textboxes should be put into read-only mode
         # so that the user can't alter the value of the box. Add all the widgets to the grid.
@@ -214,72 +214,72 @@ class PoEGUI(QtGui.QWidget):
         life_box = QtGui.QLineEdit()
         life_box.setReadOnly(True)
         
-        grid.addWidget(life_lbl, 6, 26)
-        grid.addWidget(life_box, 6, 27)
+        grid.addWidget(life_lbl, 5, 26)
+        grid.addWidget(life_box, 5, 27)
         
         es_lbl = QtGui.QLabel("Energy Shield")
         es_box = QtGui.QLineEdit()
         es_box.setReadOnly(True)
         
-        grid.addWidget(es_lbl, 6, 28)
-        grid.addWidget(es_box, 6, 29)
+        grid.addWidget(es_lbl, 5, 28)
+        grid.addWidget(es_box, 5, 29)
         
         mana_lbl = QtGui.QLabel("Mana")
         mana_lbl.setAlignment(QtCore.Qt.AlignRight)
         mana_box = QtGui.QLineEdit()
         mana_box.setReadOnly(True)
         
-        grid.addWidget(mana_lbl, 6, 30)
-        grid.addWidget(mana_box, 6, 31)
+        grid.addWidget(mana_lbl, 5, 30)
+        grid.addWidget(mana_box, 5, 31)
         
         life_regen_lbl = QtGui.QLabel("Life regen")
         life_regen_box = QtGui.QLineEdit()
         life_regen_box.setReadOnly(True)
         
-        grid.addWidget(life_regen_lbl, 7, 26)
-        grid.addWidget(life_regen_box, 7, 27)
+        grid.addWidget(life_regen_lbl, 6, 26)
+        grid.addWidget(life_regen_box, 6, 27)
         
         mana_regen_lbl = QtGui.QLabel("Mana regen")
         mana_regen_box = QtGui.QLineEdit()
         mana_regen_box.setReadOnly(True)
         
-        grid.addWidget(mana_regen_lbl, 7, 28)
-        grid.addWidget(mana_regen_box, 7, 29)
+        grid.addWidget(mana_regen_lbl, 6, 28)
+        grid.addWidget(mana_regen_box, 6, 29)
         
         block_chance_lbl = QtGui.QLabel("Chance to block")
         block_chance_box = QtGui.QLineEdit()
         block_chance_box.setReadOnly(True)
         
-        grid.addWidget(block_chance_lbl, 7, 30)
-        grid.addWidget(block_chance_box, 7, 31)
+        grid.addWidget(block_chance_lbl, 6, 30)
+        grid.addWidget(block_chance_box, 6, 31)
         
         fire_res_lbl = QtGui.QLabel("Fire resistance")
         fire_res_box = QtGui.QLineEdit()
         fire_res_box.setReadOnly(True)
         
-        grid.addWidget(fire_res_lbl, 8, 26)
-        grid.addWidget(fire_res_box, 8, 27)
+        grid.addWidget(fire_res_lbl, 7, 26)
+        grid.addWidget(fire_res_box, 7, 27)
         
         cold_res_lbl = QtGui.QLabel("Cold resistance")
         cold_res_box = QtGui.QLineEdit()
         cold_res_box.setReadOnly(True)
         
-        grid.addWidget(cold_res_lbl, 8, 28)
-        grid.addWidget(cold_res_box, 8, 29)
+        grid.addWidget(cold_res_lbl, 7, 28)
+        grid.addWidget(cold_res_box, 7, 29)
         
         lightning_res_lbl = QtGui.QLabel("Lightning resistance")
         lightning_res_box = QtGui.QLineEdit()
         lightning_res_box.setReadOnly(True)
         
-        grid.addWidget(lightning_res_lbl, 8, 30)
-        grid.addWidget(lightning_res_box, 8, 31)
+        grid.addWidget(lightning_res_lbl, 7, 30)
+        grid.addWidget(lightning_res_box, 7, 31)
         
         chaos_res_lbl = QtGui.QLabel("Chaos resistance")
         chaos_res_box = QtGui.QLineEdit()
         chaos_res_box.setReadOnly(True)
         
-        grid.addWidget(chaos_res_lbl, 9, 26)
-        grid.addWidget(chaos_res_box, 9, 27)
+        grid.addWidget(chaos_res_lbl, 8, 26)
+        grid.addWidget(chaos_res_box, 8, 27)
     
     def add_item_customization(self, grid):
         # Starts on row 10
@@ -288,7 +288,7 @@ class PoEGUI(QtGui.QWidget):
         items_lbl = QtGui.QLabel("Item customization")
         
         # Add the items label
-        grid.addWidget(items_lbl, 10, 8)
+        grid.addWidget(items_lbl, 11, 26)
         
         # Add the helmet
         self.add_helmet_widgets(grid)
@@ -328,10 +328,10 @@ class PoEGUI(QtGui.QWidget):
         helm_customize_btn = QtGui.QPushButton("Create custom helmet")
         
         # Add the helmet widgets to the grid
-        grid.addWidget(helm_lbl, 11, 8)
-        grid.addWidget(helm_name_box, 11, 10, 1, 5)
-        grid.addWidget(helm_unique_btn, 11, 16)
-        grid.addWidget(helm_customize_btn, 11, 17)
+        grid.addWidget(helm_lbl, 12, 26)
+        grid.addWidget(helm_name_box, 12, 27, 1, 3)
+        grid.addWidget(helm_unique_btn, 12, 30)
+        grid.addWidget(helm_customize_btn, 12, 31)
      
     def add_amulet_widgets(self, grid):
         # Create amulet widgets
@@ -343,10 +343,10 @@ class PoEGUI(QtGui.QWidget):
         amulet_customize_btn = QtGui.QPushButton("Create custom amulet")
         
         # Add the amulet widgets to the grid
-        grid.addWidget(amulet_lbl, 12, 8)
-        grid.addWidget(amulet_name_box, 12, 10, 1, 5)
-        grid.addWidget(amulet_unique_btn, 12, 16)
-        grid.addWidget(amulet_customize_btn, 12, 17)
+        grid.addWidget(amulet_lbl, 13, 26)
+        grid.addWidget(amulet_name_box, 13, 27, 1, 3)
+        grid.addWidget(amulet_unique_btn, 13, 30)
+        grid.addWidget(amulet_customize_btn, 13, 31)
         
     def add_main_hand_widgets(self, grid):
         # Create main hand widgets
@@ -358,10 +358,10 @@ class PoEGUI(QtGui.QWidget):
         mh_customize_btn = QtGui.QPushButton("Create custom main-hand")
         
         # Add the main hand widgets to the grid
-        grid.addWidget(mh_lbl, 13, 8)
-        grid.addWidget(mh_name_box, 13, 10, 1, 5)
-        grid.addWidget(mh_unique_btn, 13, 16)
-        grid.addWidget(mh_customize_btn, 13, 17)
+        grid.addWidget(mh_lbl, 14, 26)
+        grid.addWidget(mh_name_box, 14, 27, 1, 3)
+        grid.addWidget(mh_unique_btn, 14, 30)
+        grid.addWidget(mh_customize_btn, 14, 31)
     
     def add_off_hand_widgets(self, grid):
         # Create main hand widgets
@@ -373,10 +373,10 @@ class PoEGUI(QtGui.QWidget):
         oh_customize_btn = QtGui.QPushButton("Create custom off-hand")
         
         # Add the main hand widgets to the grid
-        grid.addWidget(oh_lbl, 14, 8)
-        grid.addWidget(oh_name_box, 14, 10, 1, 5)
-        grid.addWidget(oh_unique_btn, 14, 16)
-        grid.addWidget(oh_customize_btn, 14, 17)
+        grid.addWidget(oh_lbl, 15, 26)
+        grid.addWidget(oh_name_box, 15, 27, 1, 3)
+        grid.addWidget(oh_unique_btn, 15, 30)
+        grid.addWidget(oh_customize_btn, 15, 31)
     
     def add_chest_widgets(self, grid):
         # Create helmet widgets
@@ -388,10 +388,10 @@ class PoEGUI(QtGui.QWidget):
         chest_customize_btn = QtGui.QPushButton("Create custom chest")
         
         # Add the helmet widgets to the grid
-        grid.addWidget(chest_lbl, 15, 8)
-        grid.addWidget(chest_name_box, 15, 10, 1, 5)
-        grid.addWidget(chest_unique_btn, 15, 16)
-        grid.addWidget(chest_customize_btn, 15, 17)
+        grid.addWidget(chest_lbl, 16, 26)
+        grid.addWidget(chest_name_box, 16, 27, 1, 3)
+        grid.addWidget(chest_unique_btn, 16, 30)
+        grid.addWidget(chest_customize_btn, 16, 31)
     
     def add_gloves_widgets(self, grid):
         # Create helmet widgets
@@ -403,10 +403,10 @@ class PoEGUI(QtGui.QWidget):
         gloves_customize_btn = QtGui.QPushButton("Create custom gloves")
         
         # Add the helmet widgets to the grid
-        grid.addWidget(gloves_lbl, 16, 8)
-        grid.addWidget(gloves_name_box, 16, 10, 1, 5)
-        grid.addWidget(gloves_unique_btn, 16, 16)
-        grid.addWidget(gloves_customize_btn, 16, 17)
+        grid.addWidget(gloves_lbl, 17, 26)
+        grid.addWidget(gloves_name_box, 17, 27, 1, 3)
+        grid.addWidget(gloves_unique_btn, 17, 30)
+        grid.addWidget(gloves_customize_btn, 17, 31)
         
     def add_ring_one_widgets(self, grid):
         # Create helmet widgets
@@ -418,10 +418,10 @@ class PoEGUI(QtGui.QWidget):
         ring_customize_btn = QtGui.QPushButton("Create custom ring")
         
         # Add the helmet widgets to the grid
-        grid.addWidget(ring_lbl, 17, 8)
-        grid.addWidget(ring_name_box, 17, 10, 1, 5)
-        grid.addWidget(ring_unique_btn, 17, 16)
-        grid.addWidget(ring_customize_btn, 17, 17)
+        grid.addWidget(ring_lbl, 18, 26)
+        grid.addWidget(ring_name_box, 18, 27, 1, 3)
+        grid.addWidget(ring_unique_btn, 18, 30)
+        grid.addWidget(ring_customize_btn, 18, 31)
     
     def add_ring_two_widgets(self, grid):
         # Create helmet widgets
@@ -433,10 +433,10 @@ class PoEGUI(QtGui.QWidget):
         ring_customize_btn = QtGui.QPushButton("Create custom ring")
         
         # Add the helmet widgets to the grid
-        grid.addWidget(ring_lbl, 18, 8)
-        grid.addWidget(ring_name_box, 18, 10, 1, 5)
-        grid.addWidget(ring_unique_btn, 18, 16)
-        grid.addWidget(ring_customize_btn, 18, 17)
+        grid.addWidget(ring_lbl, 19, 26)
+        grid.addWidget(ring_name_box, 19, 27, 1, 3)
+        grid.addWidget(ring_unique_btn, 19, 30)
+        grid.addWidget(ring_customize_btn, 19, 31)
         
     def add_belt_widgets(self, grid):
         # Create helmet widgets
@@ -448,10 +448,10 @@ class PoEGUI(QtGui.QWidget):
         belt_customize_btn = QtGui.QPushButton("Create custom belt")
         
         # Add the helmet widgets to the grid
-        grid.addWidget(belt_lbl, 19, 8)
-        grid.addWidget(belt_name_box, 19, 10, 1, 5)
-        grid.addWidget(belt_unique_btn, 19, 16)
-        grid.addWidget(belt_customize_btn, 19, 17)
+        grid.addWidget(belt_lbl, 20, 26)
+        grid.addWidget(belt_name_box, 20, 27, 1, 3)
+        grid.addWidget(belt_unique_btn, 20, 30)
+        grid.addWidget(belt_customize_btn, 20, 31)
         
     def add_boots_widgets(self, grid):
         # Create helmet widgets
@@ -463,10 +463,10 @@ class PoEGUI(QtGui.QWidget):
         boots_customize_btn = QtGui.QPushButton("Create custom boots")
         
         # Add the helmet widgets to the grid
-        grid.addWidget(boots_lbl, 20, 8)
-        grid.addWidget(boots_name_box, 20, 10, 1, 5)
-        grid.addWidget(boots_unique_btn, 20, 16)
-        grid.addWidget(boots_customize_btn, 20, 17)
+        grid.addWidget(boots_lbl, 21, 26)
+        grid.addWidget(boots_name_box, 21, 27, 1, 3)
+        grid.addWidget(boots_unique_btn, 21, 30)
+        grid.addWidget(boots_customize_btn, 21, 31)
     
 def main():
     
