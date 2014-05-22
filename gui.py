@@ -1,4 +1,5 @@
 import sys
+import passives
 from PyQt4 import QtGui, QtCore
 
 class PoEGUI(QtGui.QWidget):
@@ -16,6 +17,8 @@ class PoEGUI(QtGui.QWidget):
         
     def handle_load_build_url(self):
         build_url = self.build_url_box.text()
+        passive_parser = passives.PassiveCalculator(build_url)
+        passive_parser.get_bonus_for_selected_nodes()
         self.statbox.setText(build_url)
         
     def initUI(self):
