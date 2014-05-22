@@ -14,13 +14,16 @@ class PoEGUI(QtGui.QWidget):
         
         self.initUI()
         
+    def handle_load_build_url(self, build_url_box):
+        build_url = build_url_box.text()
+        self.statbox.setText(build_url)
         
     def initUI(self):
         
         # Box to show stats from gear and passives
-        statbox = QtGui.QTextEdit()
-        statbox.setReadOnly(True)
-        statbox.setText("sadasdasd\nasdsadsadsaads")
+        self.statbox = QtGui.QTextEdit()
+        self.statbox.setReadOnly(True)
+        self.statbox.setText("sadasdasd\nasdsadsadsaads")
         
         # Create a grid layout
         grid = QtGui.QGridLayout()
@@ -31,7 +34,7 @@ class PoEGUI(QtGui.QWidget):
         self.add_build_url_widgets(grid)
         
         # Add the passive data box below the build URL box and make it span 20 lines
-        grid.addWidget(statbox, 9, 0, 13, 23)
+        grid.addWidget(self.statbox, 9, 0, 13, 23)
         
         # Add active skill gem widget
         self.create_active_skill_combo_box(grid)
@@ -61,49 +64,51 @@ class PoEGUI(QtGui.QWidget):
     
     def add_build_url_widgets(self, grid):
         # Build URL label
-        build_url_lbl = QtGui.QLabel("Build URL")
+        self.build_url_lbl = QtGui.QLabel("Build URL")
         
         # QLineEdit to enter build URL
-        build_url_box = QtGui.QLineEdit()
+        self.build_url_box = QtGui.QLineEdit()
         
         # Create the build URL load button
-        build_url_load_btn = QtGui.QPushButton("Load build")
+        self.build_url_load_btn = QtGui.QPushButton("Load build")
+        self.build_url_load_btn.clicked.connect(self.handle_load_build_url)
         
         # Add the label above the build url box
-        grid.addWidget(build_url_lbl, 0, 0, 1, 6)
-        grid.addWidget(build_url_box, 1, 0, 1, 22)
+        grid.addWidget(self.build_url_lbl, 0, 0, 1, 6)
+        grid.addWidget(self.build_url_box, 1, 0, 1, 22)
         # Add spacer label
         #spacerlbl = QtGui.QLabel(" ")
         #grid.addWidget(spacerlbl, 0, 25, 1, 20)
-        grid.addWidget(build_url_load_btn, 1, 22)
+        grid.addWidget(self.build_url_load_btn, 1, 22)
         
         
     def create_active_skill_combo_box(self, grid):
         # Create label for active skill
-        active_skill_lbl = QtGui.QLabel("Active skill")
+        self.active_skill_lbl = QtGui.QLabel("Active skill")
         
         # Create a dropdown
-        active_skill = QtGui.QComboBox()
+        self.active_skill = QtGui.QComboBox()
         active_skills = ["Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw"]
         
         # Fill dropdown with active skills
         for skill in active_skills:
-            active_skill.addItem(skill)
+            self.active_skill.addItem(skill)
             
         # Add active skill label to grid
-        grid.addWidget(active_skill_lbl, 2, 19)
+        grid.addWidget(self.active_skill_lbl, 2, 19)
         
         # Add active skill dropdown to grid
-        grid.addWidget(active_skill, 2, 20)
+        grid.addWidget(self.active_skill, 2, 20)
         
         # Retrieve level label and level selection dropdown
-        level_lbl, level_box = self.add_gem_level_selection_widget()
+        level_lbl, self.active_level_box = self.add_gem_level_selection_widget()
         
         # Add the level label and level selection dropdown to the grid
         grid.addWidget(level_lbl, 2, 21)
-        grid.addWidget(level_box, 2, 22)
+        grid.addWidget(self.active_level_box, 2, 22)
         
     def create_passive_skill_combo_boxes(self, grid):
+        self.support_skill_boxes = []
         # Add 5 widgets, starting with support skill 1
         for i in range(1, 6, 1):
             # Create the label
@@ -127,6 +132,7 @@ class PoEGUI(QtGui.QWidget):
             # ..and add them to the grid
             grid.addWidget(level_lbl, 2+i, 21)
             grid.addWidget(level_box, 2+i, 22)
+            self.support_skill_boxes.append([support_skill_combobox, level_box])
             
     def add_gem_level_selection_widget(self):
         # Create the level label
@@ -155,53 +161,53 @@ class PoEGUI(QtGui.QWidget):
         # Create a label and textbox for each offensive stat and add them to the grid
         # The textboxes should be set to read-only mode so that the user can't alter the value
         dps_lbl = QtGui.QLabel("DPS")
-        dps_box = QtGui.QLineEdit()
-        dps_box.setReadOnly(True)
+        self.dps_box = QtGui.QLineEdit()
+        self.dps_box.setReadOnly(True)
         
         grid.addWidget(dps_lbl, 1, 26)
-        grid.addWidget(dps_box, 1, 27)
+        grid.addWidget(self.dps_box, 1, 27)
         
         aps_lbl = QtGui.QLabel("APS")
-        aps_box = QtGui.QLineEdit()
-        aps_box.setReadOnly(True)
+        self.aps_box = QtGui.QLineEdit()
+        self.aps_box.setReadOnly(True)
         
         grid.addWidget(aps_lbl, 1, 28)
-        grid.addWidget(aps_box, 1, 29)
+        grid.addWidget(self.aps_box, 1, 29)
         
         dmg_per_hit_lbl = QtGui.QLabel("Damage per hit")
-        dmg_per_hit_box = QtGui.QLineEdit()
-        dmg_per_hit_box.setReadOnly(True)
+        self.dmg_per_hit_box = QtGui.QLineEdit()
+        self.dmg_per_hit_box.setReadOnly(True)
         
         grid.addWidget(dmg_per_hit_lbl, 1, 30)
-        grid.addWidget(dmg_per_hit_box, 1, 31)
+        grid.addWidget(self.dmg_per_hit_box, 1, 31)
         
         crit_chance_lbl = QtGui.QLabel("Crit chance")
-        crit_chance_box = QtGui.QLineEdit()
-        crit_chance_box.setReadOnly(True)
+        self.crit_chance_box = QtGui.QLineEdit()
+        self.crit_chance_box.setReadOnly(True)
         
         grid.addWidget(crit_chance_lbl, 2, 26)
-        grid.addWidget(crit_chance_box, 2, 27)
+        grid.addWidget(self.crit_chance_box, 2, 27)
         
         crit_multi_lbl = QtGui.QLabel("Crit multiplier")
-        crit_multi_box = QtGui.QLineEdit()
-        crit_multi_box.setReadOnly(True)
+        self.crit_multi_box = QtGui.QLineEdit()
+        self.crit_multi_box.setReadOnly(True)
         
         grid.addWidget(crit_multi_lbl, 2, 28)
-        grid.addWidget(crit_multi_box, 2, 29)
+        grid.addWidget(self.crit_multi_box, 2, 29)
         
         life_leech_lbl = QtGui.QLabel("Life leech")
-        life_leech_box = QtGui.QLineEdit()
-        life_leech_box.setReadOnly(True)
+        self.life_leech_box = QtGui.QLineEdit()
+        self.life_leech_box.setReadOnly(True)
         
         grid.addWidget(life_leech_lbl, 3, 26)
-        grid.addWidget(life_leech_box, 3, 27)
+        grid.addWidget(self.life_leech_box, 3, 27)
         
         mana_leech_lbl = QtGui.QLabel("Mana Leech")
-        mana_leech_box = QtGui.QLineEdit()
-        mana_leech_box.setReadOnly(True)
+        self.mana_leech_box = QtGui.QLineEdit()
+        self.mana_leech_box.setReadOnly(True)
         
         grid.addWidget(mana_leech_lbl, 3, 28)
-        grid.addWidget(mana_leech_box, 3, 29)
+        grid.addWidget(self.mana_leech_box, 3, 29)
         
     def add_defensive_stats(self, grid):
         # Create header label and add it to the grid
@@ -211,75 +217,75 @@ class PoEGUI(QtGui.QWidget):
         # Create a label and textbox for each defensive stat. The textboxes should be put into read-only mode
         # so that the user can't alter the value of the box. Add all the widgets to the grid.
         life_lbl = QtGui.QLabel("Life")
-        life_box = QtGui.QLineEdit()
-        life_box.setReadOnly(True)
+        self.life_box = QtGui.QLineEdit()
+        self.life_box.setReadOnly(True)
         
         grid.addWidget(life_lbl, 5, 26)
-        grid.addWidget(life_box, 5, 27)
+        grid.addWidget(self.life_box, 5, 27)
         
         es_lbl = QtGui.QLabel("Energy Shield")
-        es_box = QtGui.QLineEdit()
-        es_box.setReadOnly(True)
+        self.es_box = QtGui.QLineEdit()
+        self.es_box.setReadOnly(True)
         
         grid.addWidget(es_lbl, 5, 28)
-        grid.addWidget(es_box, 5, 29)
+        grid.addWidget(self.es_box, 5, 29)
         
         mana_lbl = QtGui.QLabel("Mana")
         #mana_lbl.setAlignment(QtCore.Qt.AlignRight)
-        mana_box = QtGui.QLineEdit()
-        mana_box.setReadOnly(True)
+        self.mana_box = QtGui.QLineEdit()
+        self.mana_box.setReadOnly(True)
         
         grid.addWidget(mana_lbl, 5, 30)
-        grid.addWidget(mana_box, 5, 31)
+        grid.addWidget(self.mana_box, 5, 31)
         
         life_regen_lbl = QtGui.QLabel("Life regen")
-        life_regen_box = QtGui.QLineEdit()
-        life_regen_box.setReadOnly(True)
+        self.life_regen_box = QtGui.QLineEdit()
+        self.life_regen_box.setReadOnly(True)
         
         grid.addWidget(life_regen_lbl, 6, 26)
-        grid.addWidget(life_regen_box, 6, 27)
+        grid.addWidget(self.life_regen_box, 6, 27)
         
         mana_regen_lbl = QtGui.QLabel("Mana regen")
-        mana_regen_box = QtGui.QLineEdit()
-        mana_regen_box.setReadOnly(True)
+        self.mana_regen_box = QtGui.QLineEdit()
+        self.mana_regen_box.setReadOnly(True)
         
         grid.addWidget(mana_regen_lbl, 6, 28)
-        grid.addWidget(mana_regen_box, 6, 29)
+        grid.addWidget(self.mana_regen_box, 6, 29)
         
         block_chance_lbl = QtGui.QLabel("Chance to block")
-        block_chance_box = QtGui.QLineEdit()
-        block_chance_box.setReadOnly(True)
+        self.block_chance_box = QtGui.QLineEdit()
+        self.block_chance_box.setReadOnly(True)
         
         grid.addWidget(block_chance_lbl, 6, 30)
-        grid.addWidget(block_chance_box, 6, 31)
+        grid.addWidget(self.block_chance_box, 6, 31)
         
         fire_res_lbl = QtGui.QLabel("Fire resistance")
-        fire_res_box = QtGui.QLineEdit()
-        fire_res_box.setReadOnly(True)
+        self.fire_res_box = QtGui.QLineEdit()
+        self.fire_res_box.setReadOnly(True)
         
         grid.addWidget(fire_res_lbl, 7, 26)
-        grid.addWidget(fire_res_box, 7, 27)
+        grid.addWidget(self.fire_res_box, 7, 27)
         
         cold_res_lbl = QtGui.QLabel("Cold resistance")
-        cold_res_box = QtGui.QLineEdit()
-        cold_res_box.setReadOnly(True)
+        self.cold_res_box = QtGui.QLineEdit()
+        self.cold_res_box.setReadOnly(True)
         
         grid.addWidget(cold_res_lbl, 7, 28)
-        grid.addWidget(cold_res_box, 7, 29)
+        grid.addWidget(self.cold_res_box, 7, 29)
         
         lightning_res_lbl = QtGui.QLabel("Lightning resistance")
-        lightning_res_box = QtGui.QLineEdit()
-        lightning_res_box.setReadOnly(True)
+        self.lightning_res_box = QtGui.QLineEdit()
+        self.lightning_res_box.setReadOnly(True)
         
         grid.addWidget(lightning_res_lbl, 7, 30)
-        grid.addWidget(lightning_res_box, 7, 31)
+        grid.addWidget(self.lightning_res_box, 7, 31)
         
         chaos_res_lbl = QtGui.QLabel("Chaos resistance")
-        chaos_res_box = QtGui.QLineEdit()
-        chaos_res_box.setReadOnly(True)
+        self.chaos_res_box = QtGui.QLineEdit()
+        self.chaos_res_box.setReadOnly(True)
         
         grid.addWidget(chaos_res_lbl, 8, 26)
-        grid.addWidget(chaos_res_box, 8, 27)
+        grid.addWidget(self.chaos_res_box, 8, 27)
     
     def add_item_customization(self, grid):
         # Starts on row 10
@@ -322,14 +328,14 @@ class PoEGUI(QtGui.QWidget):
         # Create helmet widgets
         helm_lbl = QtGui.QLabel("Helmet")
         helm_lbl.setAlignment(QtCore.Qt.AlignRight)
-        helm_name_box = QtGui.QLineEdit()
-        helm_name_box.setReadOnly(True)
+        self.helm_name_box = QtGui.QLineEdit()
+        self.helm_name_box.setReadOnly(True)
         helm_unique_btn = QtGui.QPushButton("Select unique helmet")
         helm_customize_btn = QtGui.QPushButton("Create custom helmet")
         
         # Add the helmet widgets to the grid
         grid.addWidget(helm_lbl, 12, 26)
-        grid.addWidget(helm_name_box, 12, 27, 1, 3)
+        grid.addWidget(self.helm_name_box, 12, 27, 1, 3)
         grid.addWidget(helm_unique_btn, 12, 30)
         grid.addWidget(helm_customize_btn, 12, 31)
      
@@ -337,14 +343,14 @@ class PoEGUI(QtGui.QWidget):
         # Create amulet widgets
         amulet_lbl = QtGui.QLabel("Amulet")
         amulet_lbl.setAlignment(QtCore.Qt.AlignRight)
-        amulet_name_box = QtGui.QLineEdit()
-        amulet_name_box.setReadOnly(True)
+        self.amulet_name_box = QtGui.QLineEdit()
+        self.amulet_name_box.setReadOnly(True)
         amulet_unique_btn = QtGui.QPushButton("Select unique amulet")
         amulet_customize_btn = QtGui.QPushButton("Create custom amulet")
         
         # Add the amulet widgets to the grid
         grid.addWidget(amulet_lbl, 13, 26)
-        grid.addWidget(amulet_name_box, 13, 27, 1, 3)
+        grid.addWidget(self.amulet_name_box, 13, 27, 1, 3)
         grid.addWidget(amulet_unique_btn, 13, 30)
         grid.addWidget(amulet_customize_btn, 13, 31)
         
@@ -352,14 +358,14 @@ class PoEGUI(QtGui.QWidget):
         # Create main hand widgets
         mh_lbl = QtGui.QLabel("Main-hand")
         mh_lbl.setAlignment(QtCore.Qt.AlignRight)
-        mh_name_box = QtGui.QLineEdit()
-        mh_name_box.setReadOnly(True)
+        self.mh_name_box = QtGui.QLineEdit()
+        self.mh_name_box.setReadOnly(True)
         mh_unique_btn = QtGui.QPushButton("Select unique main-hand")
         mh_customize_btn = QtGui.QPushButton("Create custom main-hand")
         
         # Add the main hand widgets to the grid
         grid.addWidget(mh_lbl, 14, 26)
-        grid.addWidget(mh_name_box, 14, 27, 1, 3)
+        grid.addWidget(self.mh_name_box, 14, 27, 1, 3)
         grid.addWidget(mh_unique_btn, 14, 30)
         grid.addWidget(mh_customize_btn, 14, 31)
     
@@ -367,14 +373,14 @@ class PoEGUI(QtGui.QWidget):
         # Create main hand widgets
         oh_lbl = QtGui.QLabel("Off-hand")
         oh_lbl.setAlignment(QtCore.Qt.AlignRight)
-        oh_name_box = QtGui.QLineEdit()
-        oh_name_box.setReadOnly(True)
+        self.oh_name_box = QtGui.QLineEdit()
+        self.oh_name_box.setReadOnly(True)
         oh_unique_btn = QtGui.QPushButton("Select unique off-hand")
         oh_customize_btn = QtGui.QPushButton("Create custom off-hand")
         
         # Add the main hand widgets to the grid
         grid.addWidget(oh_lbl, 15, 26)
-        grid.addWidget(oh_name_box, 15, 27, 1, 3)
+        grid.addWidget(self.oh_name_box, 15, 27, 1, 3)
         grid.addWidget(oh_unique_btn, 15, 30)
         grid.addWidget(oh_customize_btn, 15, 31)
     
@@ -382,14 +388,14 @@ class PoEGUI(QtGui.QWidget):
         # Create helmet widgets
         chest_lbl = QtGui.QLabel("Chest")
         chest_lbl.setAlignment(QtCore.Qt.AlignRight)
-        chest_name_box = QtGui.QLineEdit()
-        chest_name_box.setReadOnly(True)
+        self.chest_name_box = QtGui.QLineEdit()
+        self.chest_name_box.setReadOnly(True)
         chest_unique_btn = QtGui.QPushButton("Select unique chest")
         chest_customize_btn = QtGui.QPushButton("Create custom chest")
         
         # Add the helmet widgets to the grid
         grid.addWidget(chest_lbl, 16, 26)
-        grid.addWidget(chest_name_box, 16, 27, 1, 3)
+        grid.addWidget(self.chest_name_box, 16, 27, 1, 3)
         grid.addWidget(chest_unique_btn, 16, 30)
         grid.addWidget(chest_customize_btn, 16, 31)
     
@@ -397,14 +403,14 @@ class PoEGUI(QtGui.QWidget):
         # Create helmet widgets
         gloves_lbl = QtGui.QLabel("Gloves")
         gloves_lbl.setAlignment(QtCore.Qt.AlignRight)
-        gloves_name_box = QtGui.QLineEdit()
-        gloves_name_box.setReadOnly(True)
+        self.gloves_name_box = QtGui.QLineEdit()
+        self.gloves_name_box.setReadOnly(True)
         gloves_unique_btn = QtGui.QPushButton("Select unique gloves")
         gloves_customize_btn = QtGui.QPushButton("Create custom gloves")
         
         # Add the helmet widgets to the grid
         grid.addWidget(gloves_lbl, 17, 26)
-        grid.addWidget(gloves_name_box, 17, 27, 1, 3)
+        grid.addWidget(self.gloves_name_box, 17, 27, 1, 3)
         grid.addWidget(gloves_unique_btn, 17, 30)
         grid.addWidget(gloves_customize_btn, 17, 31)
         
@@ -412,14 +418,14 @@ class PoEGUI(QtGui.QWidget):
         # Create helmet widgets
         ring_lbl = QtGui.QLabel("Ring 1")
         ring_lbl.setAlignment(QtCore.Qt.AlignRight)
-        ring_name_box = QtGui.QLineEdit()
-        ring_name_box.setReadOnly(True)
+        self.ring_name_box = QtGui.QLineEdit()
+        self.ring_name_box.setReadOnly(True)
         ring_unique_btn = QtGui.QPushButton("Select unique ring")
         ring_customize_btn = QtGui.QPushButton("Create custom ring")
         
         # Add the helmet widgets to the grid
         grid.addWidget(ring_lbl, 18, 26)
-        grid.addWidget(ring_name_box, 18, 27, 1, 3)
+        grid.addWidget(self.ring_name_box, 18, 27, 1, 3)
         grid.addWidget(ring_unique_btn, 18, 30)
         grid.addWidget(ring_customize_btn, 18, 31)
     
@@ -427,14 +433,14 @@ class PoEGUI(QtGui.QWidget):
         # Create helmet widgets
         ring_lbl = QtGui.QLabel("Ring 2")
         ring_lbl.setAlignment(QtCore.Qt.AlignRight)
-        ring_name_box = QtGui.QLineEdit()
-        ring_name_box.setReadOnly(True)
+        self.ring_name_box = QtGui.QLineEdit()
+        self.ring_name_box.setReadOnly(True)
         ring_unique_btn = QtGui.QPushButton("Select unique ring")
         ring_customize_btn = QtGui.QPushButton("Create custom ring")
         
         # Add the helmet widgets to the grid
         grid.addWidget(ring_lbl, 19, 26)
-        grid.addWidget(ring_name_box, 19, 27, 1, 3)
+        grid.addWidget(self.ring_name_box, 19, 27, 1, 3)
         grid.addWidget(ring_unique_btn, 19, 30)
         grid.addWidget(ring_customize_btn, 19, 31)
         
@@ -442,14 +448,14 @@ class PoEGUI(QtGui.QWidget):
         # Create helmet widgets
         belt_lbl = QtGui.QLabel("Belt")
         belt_lbl.setAlignment(QtCore.Qt.AlignRight)
-        belt_name_box = QtGui.QLineEdit()
-        belt_name_box.setReadOnly(True)
+        self.belt_name_box = QtGui.QLineEdit()
+        self.belt_name_box.setReadOnly(True)
         belt_unique_btn = QtGui.QPushButton("Select unique belt")
         belt_customize_btn = QtGui.QPushButton("Create custom belt")
         
         # Add the helmet widgets to the grid
         grid.addWidget(belt_lbl, 20, 26)
-        grid.addWidget(belt_name_box, 20, 27, 1, 3)
+        grid.addWidget(self.belt_name_box, 20, 27, 1, 3)
         grid.addWidget(belt_unique_btn, 20, 30)
         grid.addWidget(belt_customize_btn, 20, 31)
         
@@ -457,17 +463,18 @@ class PoEGUI(QtGui.QWidget):
         # Create helmet widgets
         boots_lbl = QtGui.QLabel("Boots")
         boots_lbl.setAlignment(QtCore.Qt.AlignRight)
-        boots_name_box = QtGui.QLineEdit()
-        boots_name_box.setReadOnly(True)
+        self.boots_name_box = QtGui.QLineEdit()
+        self.boots_name_box.setReadOnly(True)
         boots_unique_btn = QtGui.QPushButton("Select unique boots")
         boots_customize_btn = QtGui.QPushButton("Create custom boots")
         
         # Add the helmet widgets to the grid
         grid.addWidget(boots_lbl, 21, 26)
-        grid.addWidget(boots_name_box, 21, 27, 1, 3)
+        grid.addWidget(self.boots_name_box, 21, 27, 1, 3)
         grid.addWidget(boots_unique_btn, 21, 30)
         grid.addWidget(boots_customize_btn, 21, 31)
-    
+        
+
 def main():
     
     app = QtGui.QApplication(sys.argv)
