@@ -14,8 +14,8 @@ class PoEGUI(QtGui.QWidget):
         
         self.initUI()
         
-    def handle_load_build_url(self, build_url_box):
-        build_url = build_url_box.text()
+    def handle_load_build_url(self):
+        build_url = self.build_url_box.text()
         self.statbox.setText(build_url)
         
     def initUI(self):
