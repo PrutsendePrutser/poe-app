@@ -88,5 +88,3 @@ class PassiveCalculator(object):
             # Print the index and data
             print idx, node_name, node_desc
             
-calc = PassiveCalculator('http://www.pathofexile.com/passive-skill-tree/AAAAAgEAxthYYz38jM_2SF8_8wbBBOOfoLRBdCcv-6p2K-8O5FH3TbyfgIqkrCSb8i8B51RJqBinMDboah4UcRQgZKOvoliv0iEOPN-_UEcaVRDwRmn3vlcNn8sYkWEhkc6E77vtm4N07fcyU99673KpWNusr2BLfNmE2QUtbmllTUCgvqdHfiFgnrnSTavFdPHBB8APGNvUUtd-W68G7jQ1TirdDZdwKaWQCvzFYxdW-megzme3F-4Oh3YPODiWGtsj9kp918vv8LfTWkg94kjuG61yu7nNoW0=')
-calc.get_bonus_for_selected_nodes()
