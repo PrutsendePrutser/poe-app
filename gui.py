@@ -31,7 +31,7 @@ class PoEGUI(QtGui.QWidget):
         self.add_build_url_widgets(grid)
         
         # Add the passive data box below the build URL box and make it span 20 lines
-        grid.addWidget(statbox, 2, 0, 18, 18)
+        grid.addWidget(statbox, 9, 0, 13, 23)
         
         # Add active skill gem widget
         self.create_active_skill_combo_box(grid)
