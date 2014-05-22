@@ -31,7 +31,7 @@ class PoEGUI(QtGui.QWidget):
         self.add_build_url_widgets(grid)
         
         # Add the passive data box below the build URL box and make it span 20 lines
-        grid.addWidget(statbox, 2, 0, 18, 6)
+        grid.addWidget(statbox, 2, 0, 18, 18)
         
         # Add active skill gem widget
         self.create_active_skill_combo_box(grid)
@@ -71,11 +71,11 @@ class PoEGUI(QtGui.QWidget):
         
         # Add the label above the build url box
         grid.addWidget(build_url_lbl, 0, 0, 1, 6)
-        grid.addWidget(build_url_box, 1, 0, 1, 18)
+        grid.addWidget(build_url_box, 1, 0, 1, 22)
         # Add spacer label
-        spacerlbl = QtGui.QLabel(" ")
-        grid.addWidget(spacerlbl, 0, 25, 1, 20)
-        grid.addWidget(build_url_load_btn, 1, 18)
+        #spacerlbl = QtGui.QLabel(" ")
+        #grid.addWidget(spacerlbl, 0, 25, 1, 20)
+        grid.addWidget(build_url_load_btn, 1, 22)
         
         
     def create_active_skill_combo_box(self, grid):
@@ -91,17 +91,17 @@ class PoEGUI(QtGui.QWidget):
             active_skill.addItem(skill)
             
         # Add active skill label to grid
-        grid.addWidget(active_skill_lbl, 2, 8)
+        grid.addWidget(active_skill_lbl, 2, 19)
         
         # Add active skill dropdown to grid
-        grid.addWidget(active_skill, 2, 10)
+        grid.addWidget(active_skill, 2, 20)
         
         # Retrieve level label and level selection dropdown
         level_lbl, level_box = self.add_gem_level_selection_widget()
         
         # Add the level label and level selection dropdown to the grid
-        grid.addWidget(level_lbl, 2, 14)
-        grid.addWidget(level_box, 2, 16)
+        grid.addWidget(level_lbl, 2, 21)
+        grid.addWidget(level_box, 2, 22)
         
     def create_passive_skill_combo_boxes(self, grid):
         # Add 5 widgets, starting with support skill 1
@@ -110,7 +110,7 @@ class PoEGUI(QtGui.QWidget):
             support_skill_lbl = QtGui.QLabel("Support skill %d" % i)
             
             # Add the widget to the next row, 3rd column
-            grid.addWidget(support_skill_lbl, 2+i, 8)
+            grid.addWidget(support_skill_lbl, 2+i, 19)
             
             # Create a combobox widget
             support_skill_combobox = QtGui.QComboBox()
@@ -119,14 +119,14 @@ class PoEGUI(QtGui.QWidget):
             for s in self.passive_skills:
                 support_skill_combobox.addItem(s)
             # Add the combo box widget to the grid
-            grid.addWidget(support_skill_combobox, 2+i, 10)
+            grid.addWidget(support_skill_combobox, 2+i, 20)
             
             # Get the level label and level selection box
             level_lbl, level_box = self.add_gem_level_selection_widget()
             
             # ..and add them to the grid
-            grid.addWidget(level_lbl, 2+i, 14)
-            grid.addWidget(level_box, 2+i, 16)
+            grid.addWidget(level_lbl, 2+i, 21)
+            grid.addWidget(level_box, 2+i, 22)
             
     def add_gem_level_selection_widget(self):
         # Create the level label
@@ -225,7 +225,7 @@ class PoEGUI(QtGui.QWidget):
         grid.addWidget(es_box, 5, 29)
         
         mana_lbl = QtGui.QLabel("Mana")
-        mana_lbl.setAlignment(QtCore.Qt.AlignRight)
+        #mana_lbl.setAlignment(QtCore.Qt.AlignRight)
         mana_box = QtGui.QLineEdit()
         mana_box.setReadOnly(True)
         
