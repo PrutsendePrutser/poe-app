@@ -1,4 +1,5 @@
 import base64
+import re
 
 class PassiveCalculator(object):
     
@@ -54,7 +55,7 @@ class PassiveCalculator(object):
     
     def load_nodes_data(self):
         # Open the skillnodes file
-        with open("skillnodes.csv", "r") as sfile:
+        with open("files/skillnodes.csv", "r") as sfile:
             
             # Read the contents
             lines = sfile.readlines()
@@ -78,13 +79,42 @@ class PassiveCalculator(object):
             # Return the nodes dictionary
             return node_dict
 
+    def is_numeric(self, val):
+        try:
+            float(val)
+            return True
+        except ValueError:
+            return False
+
     def get_bonus_for_selected_nodes(self):
         # Loop over the selected node ids
+        # Dictionary to store all the node bonuses with the total value
+        self.node_bonus_dict = {}
+        
+        # Regexp to find non-numeric characters
+        non_decimal = re.compile(r'[^\d.]+')
         for idx, n in enumerate(sorted(self.selected_node_ids)):
             # Retrieve the name
             node_name = self.node_data[str(n)]['name']
             # Retrieve the descriptions
             node_desc = self.node_data[str(n)]['desc']
             # Print the index and data
-            print idx, node_name, node_desc
+            for desc in node_desc:
+                splitted_description = desc.split(' ')
+                stringvalue = non_decimal.sub('', splitted_description[0])
+                if self.is_numeric(stringvalue):
+                    value = float(stringvalue)
+                    description = ' '.join(splitted_description[1:])
+                else:
+                    description = ' '.join(splitted_description)
+                    value = "Keystone"
+
+                if description not in self.node_bonus_dict.keys():
+                    self.node_bonus_dict[description] = value
+                else:
+                    self.node_bonus_dict[description] += value
+                    
+        for bonus in self.node_bonus_dict:
+            print bonus + '\t' + str(self.node_bonus_dict[bonus])
+        #print self.node_bonus_dict
             
