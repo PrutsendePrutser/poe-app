@@ -111,31 +111,161 @@ class PoEGUI(QtGui.QWidget):
         grid.addWidget(self.active_level_box, 2, 22)
         
     def create_passive_skill_combo_boxes(self, grid):
-        self.support_skill_boxes = []
+        #self.support_skill_boxes = []
+        
+        # Dictionary to store the support skill gems with their available state (True for available, False for in use
+        self.support_skill_dict = {}
+        
+        # Loop over all the passive skills
+        for s in self.passive_skills:
+            # Add them to the dictionary and set them to available by default
+            self.support_skill_dict[s] = True
+        
+        # Sorted list of the support skills
+        support_skills = sorted(self.support_skill_dict.keys())
+        
         # Add 5 widgets, starting with support skill 1
-        for i in range(1, 6, 1):
-            # Create the label
-            support_skill_lbl = QtGui.QLabel("Support skill %d" % i)
-            
-            # Add the widget to the next row, 3rd column
-            grid.addWidget(support_skill_lbl, 2+i, 19)
-            
-            # Create a combobox widget
-            support_skill_combobox = QtGui.QComboBox()
-            
-            # Loop over the passive skills and add them to the combo box
-            for s in self.passive_skills:
-                support_skill_combobox.addItem(s)
-            # Add the combo box widget to the grid
-            grid.addWidget(support_skill_combobox, 2+i, 20)
-            
-            # Get the level label and level selection box
-            level_lbl, level_box = self.add_gem_level_selection_widget()
-            
-            # ..and add them to the grid
-            grid.addWidget(level_lbl, 2+i, 21)
-            grid.addWidget(level_box, 2+i, 22)
-            self.support_skill_boxes.append([support_skill_combobox, level_box])
+        
+        # Create the label
+        support_skill_lbl_one = QtGui.QLabel("Support skill 1")
+        
+        # Add the widget to the next row, 3rd column
+        grid.addWidget(support_skill_lbl_one, 3, 19)
+        
+        # Create a combobox widget
+        self.support_skill_combobox_one = QtGui.QComboBox()
+        
+        # Loop over the passive skills and add them to the combo box
+        for s in self.get_available_support_skills(support_skills):
+            self.support_skill_combobox_one.addItem(s)
+        
+        # Add the combo box widget to the grid
+        grid.addWidget(self.support_skill_combobox_one, 3, 20)
+        
+        # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
+        # it is not shown in other dropdowns when it's already selected.
+        selected_skill = str(self.support_skill_combobox_one.currentText())
+        self.support_skill_dict[selected_skill] = False
+        
+        # Get the level label and level selection box
+        level_lbl, self.support_level_box_one = self.add_gem_level_selection_widget()
+        
+        # ..and add them to the grid
+        grid.addWidget(level_lbl, 3, 21)
+        grid.addWidget(self.support_level_box_one, 3, 22)
+        #self.support_skill_boxes.append([support_skill_combobox, level_box])
+        
+        # Create the label
+        support_skill_lbl_two = QtGui.QLabel("Support skill 2")
+        
+        # Add the widget to the next row, 3rd column
+        grid.addWidget(support_skill_lbl_two, 4, 19)
+        
+        # Create a combobox widget
+        self.support_skill_combobox_two = QtGui.QComboBox()
+        
+        # Loop over the passive skills and add them to the combo box
+        for s in self.get_available_support_skills(support_skills):
+            self.support_skill_combobox_two.addItem(s)
+        
+        # Add the combo box widget to the grid
+        grid.addWidget(self.support_skill_combobox_two, 4, 20)
+        
+        # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
+        # it is not shown in other dropdowns when it's already selected.
+        selected_skill = str(self.support_skill_combobox_two.currentText())
+        self.support_skill_dict[selected_skill] = False
+        
+        # Get the level label and level selection box
+        level_lbl, self.support_level_box_two = self.add_gem_level_selection_widget()
+        
+        # ..and add them to the grid
+        grid.addWidget(level_lbl, 4, 21)
+        grid.addWidget(self.support_level_box_two, 4, 22)
+        
+        # Create the label
+        support_skill_lbl_three = QtGui.QLabel("Support skill 3")
+        
+        # Add the widget to the next row, 3rd column
+        grid.addWidget(support_skill_lbl_three, 5, 19)
+        
+        # Create a combobox widget
+        self.support_skill_combobox_three = QtGui.QComboBox()
+        
+        # Loop over the passive skills and add them to the combo box
+        for s in self.get_available_support_skills(support_skills):
+            self.support_skill_combobox_three.addItem(s)
+        
+        # Add the combo box widget to the grid
+        grid.addWidget(self.support_skill_combobox_three, 5, 20)
+        
+        # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
+        # it is not shown in other dropdowns when it's already selected.
+        selected_skill = str(self.support_skill_combobox_three.currentText())
+        self.support_skill_dict[selected_skill] = False
+        
+        # Get the level label and level selection box
+        level_lbl, self.support_level_box_three = self.add_gem_level_selection_widget()
+        
+        # ..and add them to the grid
+        grid.addWidget(level_lbl, 5, 21)
+        grid.addWidget(self.support_level_box_three, 5, 22)
+        
+        # Create the label
+        support_skill_lbl_four = QtGui.QLabel("Support skill 4")
+        
+        # Add the widget to the next row, 3rd column
+        grid.addWidget(support_skill_lbl_four, 6, 19)
+        
+        # Create a combobox widget
+        self.support_skill_combobox_four = QtGui.QComboBox()
+        
+        # Loop over the passive skills and add them to the combo box
+        for s in self.get_available_support_skills(support_skills):
+            self.support_skill_combobox_four.addItem(s)
+        
+        # Add the combo box widget to the grid
+        grid.addWidget(self.support_skill_combobox_four, 6, 20)
+        
+        # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
+        # it is not shown in other dropdowns when it's already selected.
+        selected_skill = str(self.support_skill_combobox_four.currentText())
+        self.support_skill_dict[selected_skill] = False
+        
+        # Get the level label and level selection box
+        level_lbl, self.support_level_box_four = self.add_gem_level_selection_widget()
+        
+        # ..and add them to the grid
+        grid.addWidget(level_lbl, 6, 21)
+        grid.addWidget(self.support_level_box_four, 6, 22)
+        
+        # Create the label
+        support_skill_lbl_five = QtGui.QLabel("Support skill 5")
+        
+        # Add the widget to the next row, 3rd column
+        grid.addWidget(support_skill_lbl_five, 7, 19)
+        
+        # Create a combobox widget
+        self.support_skill_combobox_five = QtGui.QComboBox()
+        
+        # Loop over the passive skills and add them to the combo box
+        for s in self.get_available_support_skills(support_skills):
+            self.support_skill_combobox_five.addItem(s)
+        
+        # Add the combo box widget to the grid
+        grid.addWidget(self.support_skill_combobox_five, 7, 20)
+        
+        # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
+        # it is not shown in other dropdowns when it's already selected.
+        selected_skill = str(self.support_skill_combobox_five.currentText())
+        self.support_skill_dict[selected_skill] = False
+        
+        # Get the level label and level selection box
+        level_lbl, self.support_level_box_five = self.add_gem_level_selection_widget()
+        
+        # ..and add them to the grid
+        grid.addWidget(level_lbl, 7, 21)
+        grid.addWidget(self.support_level_box_five, 7, 22)
             
     def add_gem_level_selection_widget(self):
         # Create the level label
@@ -476,7 +606,10 @@ class PoEGUI(QtGui.QWidget):
         grid.addWidget(self.boots_name_box, 21, 27, 1, 3)
         grid.addWidget(boots_unique_btn, 21, 30)
         grid.addWidget(boots_customize_btn, 21, 31)
-        
+
+    def get_available_support_skills(self, support_skills):
+        return [skill for skill in self.support_skill_dict.keys() if self.support_skill_dict[skill]]
+
 
 def main():
     
