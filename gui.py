@@ -8,7 +8,7 @@ class PoEGUI(QtGui.QWidget):
         super(PoEGUI, self).__init__()
         
         # Var to store all the support skills
-        self.passive_skills = ['Multistrike', 'Faster Casting', 'Elemental Proliferation', 'Melee Physical Damage', 'Chain']
+        self.passive_skills = ['Multistrike', 'Faster Casting', 'Elemental Proliferation', 'Melee Physical Damage', 'Chain', "Faster Attacks"]
         
         # Var to store all the active skills
         self.active_skills = ["Arc", "Spectral Throw", "Flameblast"]
@@ -20,6 +20,78 @@ class PoEGUI(QtGui.QWidget):
         passive_parser = passives.PassiveCalculator(build_url)
         passive_parser.get_bonus_for_selected_nodes()
         self.statbox.setText(build_url)
+    
+    def make_support_skills_available(self, *support_skill_slots):
+        # Create a set that contains all of the support skills that we have
+        all_supports = set(self.support_skill_dict.keys())
+        
+        # Create a set that contains the support skills that are selected in the dropdown menus
+        support_skill_slots = set(support_skill_slots)
+        
+        # Create a set that contains elements that are not selected yet
+        difference = all_supports.difference(support_skill_slots)
+        
+        # Loop over these skills
+        for skill in difference:
+            
+            # Set the skill to available
+            self.support_skill_dict[skill] = True
+        
+        # Update the available support skills for each dropdown menu
+        self.set_available_support_skills()
+    
+    def set_available_support_skills(self):
+        # Retrieve the values that are selected in the dropdown menus
+        support_skill_one = self.support_skill_combobox_one.currentText()
+        support_skill_two = self.support_skill_combobox_two.currentText()
+        support_skill_three = self.support_skill_combobox_three.currentText()
+        support_skill_four = self.support_skill_combobox_four.currentText()
+        support_skill_five = self.support_skill_combobox_five.currentText()
+        
+        # Get the list of available support skills
+        available_skills = self.get_available_support_skills(self.support_skill_dict)
+        
+        # Update skill list for box one
+        self.support_skill_combobox_one.clear()
+        self.support_skill_combobox_one.addItems(available_skills + [support_skill_one])
+        self.support_skill_combobox_one.setCurrentIndex(self.support_skill_combobox_one.findText(support_skill_one))
+        
+        # Update skill list for box two
+        self.support_skill_combobox_two.clear()
+        self.support_skill_combobox_two.addItems(available_skills + [support_skill_two])
+        self.support_skill_combobox_two.setCurrentIndex(self.support_skill_combobox_two.findText(support_skill_two))
+        
+        # Update skill list for box three
+        self.support_skill_combobox_three.clear()
+        self.support_skill_combobox_three.addItems(available_skills + [support_skill_three])
+        self.support_skill_combobox_three.setCurrentIndex(self.support_skill_combobox_three.findText(support_skill_three))
+        
+        # Update skill list for box four
+        self.support_skill_combobox_four.clear()
+        self.support_skill_combobox_four.addItems(available_skills + [support_skill_four])
+        self.support_skill_combobox_four.setCurrentIndex(self.support_skill_combobox_four.findText(support_skill_four))
+        
+        # Update the skill list for box five
+        self.support_skill_combobox_five.clear()
+        self.support_skill_combobox_five.addItems(available_skills + [support_skill_five])
+        self.support_skill_combobox_five.setCurrentIndex(self.support_skill_combobox_five.findText(support_skill_five))
+    
+    def update_available_support_skills(self, val):
+        # Retrieve the combobox that was triggered
+        sender = self.sender()
+        
+        # Retrieve the value of the triggered dropdown
+        self.support_skill_dict[str(sender.currentText())] = False
+        
+        # Get the values of each of the dropdowns
+        support_val_one = str(self.support_skill_combobox_one.currentText())
+        support_val_two = str(self.support_skill_combobox_two.currentText())
+        support_val_three = str(self.support_skill_combobox_three.currentText())
+        support_val_four = str(self.support_skill_combobox_four.currentText())
+        support_val_five = str(self.support_skill_combobox_five.currentText())
+        
+        # Make the support skills that aren't selected available
+        self.make_support_skills_available(support_val_one, support_val_two, support_val_three, support_val_four, support_val_five)
         
     def initUI(self):
         
@@ -79,9 +151,8 @@ class PoEGUI(QtGui.QWidget):
         # Add the label above the build url box
         grid.addWidget(self.build_url_lbl, 0, 0, 1, 6)
         grid.addWidget(self.build_url_box, 1, 0, 1, 22)
+        
         # Add spacer label
-        #spacerlbl = QtGui.QLabel(" ")
-        #grid.addWidget(spacerlbl, 0, 25, 1, 20)
         grid.addWidget(self.build_url_load_btn, 1, 22)
         
         
@@ -134,6 +205,7 @@ class PoEGUI(QtGui.QWidget):
         
         # Create a combobox widget
         self.support_skill_combobox_one = QtGui.QComboBox()
+        self.support_skill_combobox_one.activated[str].connect(self.update_available_support_skills)
         
         # Loop over the passive skills and add them to the combo box
         for s in self.get_available_support_skills(support_skills):
@@ -163,6 +235,7 @@ class PoEGUI(QtGui.QWidget):
         
         # Create a combobox widget
         self.support_skill_combobox_two = QtGui.QComboBox()
+        self.support_skill_combobox_two.activated[str].connect(self.update_available_support_skills)
         
         # Loop over the passive skills and add them to the combo box
         for s in self.get_available_support_skills(support_skills):
@@ -191,6 +264,7 @@ class PoEGUI(QtGui.QWidget):
         
         # Create a combobox widget
         self.support_skill_combobox_three = QtGui.QComboBox()
+        self.support_skill_combobox_three.activated[str].connect(self.update_available_support_skills)
         
         # Loop over the passive skills and add them to the combo box
         for s in self.get_available_support_skills(support_skills):
@@ -219,9 +293,11 @@ class PoEGUI(QtGui.QWidget):
         
         # Create a combobox widget
         self.support_skill_combobox_four = QtGui.QComboBox()
+        self.support_skill_combobox_four.activated[str].connect(self.update_available_support_skills)
         
         # Loop over the passive skills and add them to the combo box
         for s in self.get_available_support_skills(support_skills):
+            print s
             self.support_skill_combobox_four.addItem(s)
         
         # Add the combo box widget to the grid
@@ -247,6 +323,7 @@ class PoEGUI(QtGui.QWidget):
         
         # Create a combobox widget
         self.support_skill_combobox_five = QtGui.QComboBox()
+        self.support_skill_combobox_five.activated[str].connect(self.update_available_support_skills)
         
         # Loop over the passive skills and add them to the combo box
         for s in self.get_available_support_skills(support_skills):
@@ -266,6 +343,10 @@ class PoEGUI(QtGui.QWidget):
         # ..and add them to the grid
         grid.addWidget(level_lbl, 7, 21)
         grid.addWidget(self.support_level_box_five, 7, 22)
+        
+        # Update the available support skill gems for all the slots
+        # TODO: Create something nicer than this, for example selecting the values for the support skill boxes beforehand and adding the items to each box afterwards
+        self.set_available_support_skills()
             
     def add_gem_level_selection_widget(self):
         # Create the level label
@@ -608,6 +689,7 @@ class PoEGUI(QtGui.QWidget):
         grid.addWidget(boots_customize_btn, 21, 31)
 
     def get_available_support_skills(self, support_skills):
+        # Return a list of the support skill gems that are not selected in the dropdown menus
         return [skill for skill in self.support_skill_dict.keys() if self.support_skill_dict[skill]]
 
 
