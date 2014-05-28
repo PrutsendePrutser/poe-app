@@ -16,9 +16,16 @@ class PoEGUI(QtGui.QWidget):
         self.initUI()
         
     def handle_load_build_url(self):
+        # Get the build URL
         build_url = self.build_url_box.text()
+        
+        # Create an instance of the passives parser
         passive_parser = passives.PassiveCalculator(build_url)
+        
+        # Retrieve the passive bonuses of the given tree URL
         statsblob = passive_parser.get_bonus_for_selected_nodes()
+        
+        # Display the stats in the statbox
         self.statbox.setText(statsblob)
     
     def make_support_skills_available(self, *support_skill_slots):

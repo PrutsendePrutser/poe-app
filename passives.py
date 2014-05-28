@@ -8,11 +8,17 @@ class PassiveCalculator(object):
         """Initialize class instance"""
         # Set the build url that the user entered
         self.build_url = build_url.split("passive-skill-tree/")[1]
+        
+        # Get the ID's of the selected nodes
         self.selected_node_ids = self.convert_to_node_ids(self.load_from_url())
+        
+        # Load the nodes data
         self.node_data = self.load_nodes_data()
     
     def set_build_url(self, url):
+        # Format the URL and set the new URL
         self.build_url = url.split("passive-skill-tree/")[1]
+        # Get the IDs of the selected nodes
         self.selected_node_ids = self.convert_to_node_ids(self.load_from_url())
         
     def load_from_url(self):
@@ -82,8 +88,11 @@ class PassiveCalculator(object):
 
     def is_numeric(self, val):
         try:
+            # Check if we can convert to a float
             float(val)
+            # If so, return True
             return True
+        # If an error occurs..
         except ValueError:
             return False
 
@@ -99,33 +108,50 @@ class PassiveCalculator(object):
             node_name = self.node_data[str(n)]['name']
             # Retrieve the descriptions
             node_desc = self.node_data[str(n)]['desc']
-            # Print the index and data
+            # Loop over the node descriptions
             for desc in node_desc:
+                # Variable to store the string part of the description
                 description = ""
+                # Variable to store the value
                 value = ""
+                # Variable to store the indexes of the value
                 valindex = []
+                # Loop over the characters in the description
                 for idx, c in enumerate(desc):
+                    # If it's a numeric character
                     if c.isdigit():
+                        # Add it to the value
                         value += c
+                        # Update the value index
                         valindex.append(idx)
+                    # If it's either a letter or a printable character
                     elif c.isalpha() or c in string.printable:
+                        # Add it to the description
                         description += c
+                        
+                # If there are numeric characters in the description string
                 if valindex:
-                    print valindex, len(description), description
+                    # Format the description
                     description = description[:valindex[0]] + '..' + description[valindex[-1]:]
                 #stringvalue = non_decimal.sub('', splitted_description[0])
                 
+                # If there's a value, add the description as key and the value as value
                 if value:
                     if description not in self.node_bonus_dict.keys():
                         self.node_bonus_dict[description] = int(value)
                     else:
                         self.node_bonus_dict[description] += int(value)
+                # If there's no value, add the description, using Keystone as value
                 else:
                     if description not in self.node_bonus_dict.keys():
                         self.node_bonus_dict[description] = "Keystone"
         
+        # Variable to store all the stat bonuses
         statsblob = ""
+        # Loop over the bonuses
         for bonus in self.node_bonus_dict:
+            # Add the formatted bonus line
             statsblob += bonus.replace('..', str(self.node_bonus_dict[bonus])) + '\n'
+        # Return all the statbonuses
         return statsblob
             
