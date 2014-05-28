@@ -1,5 +1,6 @@
 import base64
 import re
+import string
 
 class PassiveCalculator(object):
     
@@ -100,21 +101,31 @@ class PassiveCalculator(object):
             node_desc = self.node_data[str(n)]['desc']
             # Print the index and data
             for desc in node_desc:
-                splitted_description = desc.split(' ')
-                stringvalue = non_decimal.sub('', splitted_description[0])
-                if self.is_numeric(stringvalue):
-                    value = float(stringvalue)
-                    description = ' '.join(splitted_description[1:])
+                description = ""
+                value = ""
+                valindex = []
+                for idx, c in enumerate(desc):
+                    if c.isdigit():
+                        value += c
+                        valindex.append(idx)
+                    elif c.isalpha() or c in string.printable:
+                        description += c
+                if valindex:
+                    print valindex, len(description), description
+                    description = description[:valindex[0]] + '..' + description[valindex[-1]:]
+                #stringvalue = non_decimal.sub('', splitted_description[0])
+                
+                if value:
+                    if description not in self.node_bonus_dict.keys():
+                        self.node_bonus_dict[description] = int(value)
+                    else:
+                        self.node_bonus_dict[description] += int(value)
                 else:
-                    description = ' '.join(splitted_description)
-                    value = "Keystone"
-
-                if description not in self.node_bonus_dict.keys():
-                    self.node_bonus_dict[description] = value
-                else:
-                    self.node_bonus_dict[description] += value
-                    
+                    if description not in self.node_bonus_dict.keys():
+                        self.node_bonus_dict[description] = "Keystone"
+        
+        statsblob = ""
         for bonus in self.node_bonus_dict:
-            print bonus + '\t' + str(self.node_bonus_dict[bonus])
-        #print self.node_bonus_dict
+            statsblob += bonus.replace('..', str(self.node_bonus_dict[bonus])) + '\n'
+        return statsblob
             
