@@ -9,6 +9,10 @@ class ItemStats(object):
         # Retrieve a dictionary that contains all the items that are on the character
         self.items_dict = self.load_items_file(path)
         
+        for i in self.items_dict['items']:
+            if i['inventoryId'] in self.item_slots:
+                print i
+        
     def load_items_file(self, path):
         # Open the file in the given path, read the file and convert the JSON to a dictionary.
         with open(path, 'r') as itemsfile:
