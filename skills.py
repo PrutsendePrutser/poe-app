@@ -23,20 +23,22 @@ class Skillgems(object):
         # Counter
         self.counter = 0
         
+        self.retrieve_skill_info()
+        
+    def retrieve_skill_info(self):
+        skill_links = self.get_active_skill_gems_from_wiki()
+        with open('files/active_skill_levels.csv', 'a') as activeskillfile:
+            for link in skill_links:
+                self.readskillpage(link, activeskillfile)
+        
     def readskillpage(self, skillname, activeskillfile):
         # Create HTML parser object
         parser = MyHTMLParser()
         # Unescape dashes
         parser.unescape('&ndash; &#8211;')
         
-        # Format skillname for retrieval from website, replace spaces
-        skillname = "/{}".format(skillname.replace(" ", "_"))
-        
         # Create a connection to the wiki
         conn = httplib.HTTPConnection("pathofexile.gamepedia.com")
-        
-        # Print the URL
-        print "http://pathofexile.gamepedia.com%s" % skillname
         
         # Make a get request to the skillpage
         conn.request("GET", skillname)
@@ -76,15 +78,77 @@ class Skillgems(object):
     
     def writeskillfile(self, skill, activeskillfile):
         # Write the skillname + headers to the skillfile
-        activeskillfile.write(skill.replace('/', '').replace('_', ' ') + '\t' + self.skilldata[skill][0] + '\n')
+        if skill == "/Portal":
+            return
+        try:
+            activeskillfile.write(skill.replace('/', '').replace('_', ' ') + '\t' + self.skilldata[skill][0] + '\n')
+        except IndexError:
+            print skill, self.skilldata[skill]
         # Loop over the leveldata
         for level in self.skilldata[skill][1:]:
             # Ensure we only go to lvl 20
-            if int(level.split('\t')[0]) > 20:
-                break
+            try:
+                if int(level.split('\t')[0]) > 20:
+                    break
+            except ValueError:
+                try: 
+                    int(level.split('\t')[0].split()[0])
+                except:
+                    print 'Error', level
+                    continue
+                    
             # Add the level data for the current skillgems to the file
             activeskillfile.write('\t' + str(level) + '\n')
+
+    def get_active_skill_gems_from_wiki(self):
+    
+        # Make an instance of the skillpage parser
+        skillpage_parser = SkillpageParser()
+        # Setup a http connection object
+        conn = httplib.HTTPConnection("pathofexile.gamepedia.com")
         
+        # Make a get request to the skillpage
+        conn.request("GET", '/Skills')
+        
+        # Get the response
+        response = conn.getresponse()
+        
+        # Get the data
+        data = response.read()
+        
+        # If we get an OK response
+        if response.status == 200:
+            # Feed the data to the parser
+            skillpage_parser.feed(data)
+        return skillpage_parser.link_list
+
+
+class SkillpageParser(HTMLParser.HTMLParser):
+    
+    handle_table_tag = False
+    handle_td = False
+    handle_links = False
+    link_list = []
+    
+    def handle_starttag(self, tag, attrs):
+        if tag == 'span' and ('id', "Active_Skills") in attrs:
+            self.handle_table_tag = True
+        elif tag == 'table' and ('class', 'wikitable sortable') and self.handle_table_tag:
+            self.handle_td = True
+        elif tag == 'td' and self.handle_td:
+            self.handle_links = True
+        elif tag == 'a' and self.handle_links:
+            for at in attrs:
+                if at[0] == 'href' and at[1]:
+                    self.link_list.append(at[1])
+    
+    def handle_end_tag(self, tag):
+        # If a closing table tag is encountered, reset all the values to False
+        if tag == 'table' and self.handle_table_tag:
+            self.handle_table_tag = False
+            self.handle_td = False
+            self.handle_links = False
+
 class MyHTMLParser(HTMLParser.HTMLParser):
     # Boolean to determine if we are in the table that contains the skillgem level data
     inskilltable = False
@@ -149,20 +213,10 @@ class MyHTMLParser(HTMLParser.HTMLParser):
         # Only handle data if we are in the skilltable
         if self.inskilltable:
             # Replace whitespace with empty string, replace break tags, and replace the dash character
-            val = data.replace('\n','').replace('\r','').replace('\t','').replace('<br />','').replace('&#8211;', '-').strip()
+            val = data.replace('\n','').replace('\r','').replace('\t','').replace('<br />','').strip()
             # If there is still a val left after removing whitespace, add the value to the data and add a trailing tab
             if val:
                 self.d += val.strip() + '\t'
+        
 
 gems = Skillgems()
-skillist = []
-skillfiles = ['skills.txt', 'skills2.txt', 'skills3.txt', 'skills4.txt', 'skills5.txt', 'skills6.txt']
-for f in skillfiles:
-    with open(f, 'r') as skillfile:
-        skilllist = skillfile.readlines()
-    skilllist = [skill.replace('\r', '').strip() for skill in skilllist]
-    with open('active_skill_levels.csv', 'a') as activeskillfile:
-        for skill in skilllist:
-            gems.readskillpage(skill, activeskillfile)
-#gems.readskillpage("Arc", "f")
-print gems.skilldata['notfound']
