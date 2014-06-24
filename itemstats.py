@@ -12,14 +12,33 @@ class ItemStats(object):
         
         # Retrieve a dictionary that contains all the items that are on the character
         self.items_dict = self.load_items_file(path)
-        
-        self.get_item_info()
+    
+    def handle_properties(self, properties):
+        propdict = {}
+        for prop in properties:
+            if not prop['values']:
+                propdict[prop['name']] = None
+            else:
+                propdict[prop['name']] = prop['values'][0][0]
+        return propdict
+    
+    def handle_explicitmods(self, explicit_mods):
+        explicit_moddict = {}
+        for idx, mod in enumerate(explicit_mods):
+            explicit_moddict[str(idx)] = mod
+        return explicit_moddict
+    
+    def handle_implicitmods(self, implicit_mods):
+        implicit_moddict = {}
+        for idx, mod in enumerate(implicit_mods):
+            implicit_moddict[str(idx)] = mod
+        return implicit_moddict
     
     def get_item_info(self):
         
         # Loop over the items in the inventory
         for i in self.items_dict['items']:
-            
+            print i.keys()
             # Retrieve the inventory ID so we can filter only for equipped gear
             inv_id = i['inventoryId']
             
@@ -43,6 +62,13 @@ class ItemStats(object):
                 
                 # Create a dictionary entry for the current equipment slot
                 self.item_info[inv_id] = {}
+                if 'properties' in i.keys():
+                    self.item_info[inv_id]['properties'] = self.handle_properties(i['properties'])
+                if 'explicitMods' in i.keys():
+                    self.item_info[inv_id]['explicitMods'] = self.handle_explicitmods(i['explicitMods'])
+                if 'implicitMods' in i.keys():
+                    self.item_info[inv_id]['implicitMods'] = self.handle_implicitmods(i['implicitMods'])
+                self.item_info[inv_id]['name'] = i['name']
                 
                 # Counter to put the correct skillgems in the correct link group
                 counter = 0
@@ -62,11 +88,12 @@ class ItemStats(object):
                     counter += link_counter
                     
         # Loop over the equipped items
-        for item in self.item_info:
+        #for item in self.item_info:
             # Loop over the socket groups
-            for socket_group in self.item_info[item]:
+        #    for socket_group in self.item_info[item]:
                 # Print the socketed gems for each socket group of each item
-                print item, socket_group, self.item_info[item][socket_group]
+        #        print item, socket_group, self.item_info[item][socket_group]
+        return self.item_info
     
     def load_items_file(self, path):
         # Open the file in the given path, read the file and convert the JSON to a dictionary.
@@ -113,5 +140,3 @@ class ItemStats(object):
             equipped_skills.append(skill_list)
         return equipped_skills
     
-    
-ItemStats('files/items.txt', 'PrutsMarauder')
