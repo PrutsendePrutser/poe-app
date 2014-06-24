@@ -23,13 +23,21 @@ class Skillgems(object):
         # Counter
         self.counter = 0
         
-        self.retrieve_skill_info()
+        #self.retrieve_skill_info()
+        self.retrieve_support_skill_info()
         
     def retrieve_skill_info(self):
         skill_links = self.get_active_skill_gems_from_wiki()
         with open('files/active_skill_levels.csv', 'a') as activeskillfile:
             for link in skill_links:
                 self.readskillpage(link, activeskillfile)
+                
+    def retrieve_support_skill_info(self):
+        skill_links = self.get_support_skill_gems_from_wiki()
+        print skill_links
+        with open('files/support_skill_levels.csv', 'a') as supportskillfile:
+            for link in skill_links:
+                self.readskillpage(link, supportskillfile)
         
     def readskillpage(self, skillname, activeskillfile):
         # Create HTML parser object
@@ -42,6 +50,7 @@ class Skillgems(object):
         
         # Make a get request to the skillpage
         conn.request("GET", skillname)
+        print skillname
         
         # Get the response
         response = conn.getresponse()
@@ -121,6 +130,28 @@ class Skillgems(object):
             # Feed the data to the parser
             skillpage_parser.feed(data)
         return skillpage_parser.link_list
+    
+    def get_support_skill_gems_from_wiki(self):
+    
+        # Make an instance of the skillpage parser
+        skillpage_parser = SupportSkillpageParser()
+        # Setup a http connection object
+        conn = httplib.HTTPConnection("pathofexile.gamepedia.com")
+        
+        # Make a get request to the skillpage
+        conn.request("GET", '/Skills')
+        
+        # Get the response
+        response = conn.getresponse()
+        
+        # Get the data
+        data = response.read()
+        
+        # If we get an OK response
+        if response.status == 200:
+            # Feed the data to the parser
+            skillpage_parser.feed(data)
+        return skillpage_parser.link_list
 
 
 class SkillpageParser(HTMLParser.HTMLParser):
@@ -138,6 +169,32 @@ class SkillpageParser(HTMLParser.HTMLParser):
         elif tag == 'td' and self.handle_td:
             self.handle_links = True
         elif tag == 'a' and self.handle_links:
+            for at in attrs:
+                if at[0] == 'href' and at[1]:
+                    self.link_list.append(at[1])
+    
+    def handle_end_tag(self, tag):
+        # If a closing table tag is encountered, reset all the values to False
+        if tag == 'table' and self.handle_table_tag:
+            self.handle_table_tag = False
+            self.handle_td = False
+            self.handle_links = False\
+    
+class SupportSkillpageParser(HTMLParser.HTMLParser):
+    
+    handle_table_tag = False
+    handle_td = False
+    handle_links = False
+    link_list = []
+    
+    def handle_starttag(self, tag, attrs):
+        if tag == 'span' and ('id', "Support_Gems_2") in attrs:
+            self.handle_table_tag = True
+        elif tag == 'table' and ('class', 'wikitable sortable') and self.handle_table_tag:
+            self.handle_td = True
+        elif tag == 'td' and self.handle_td and self.handle_table_tag:
+            self.handle_links = True
+        elif tag == 'a' and self.handle_links and self.handle_td and self.handle_table_tag:
             for at in attrs:
                 if at[0] == 'href' and at[1]:
                     self.link_list.append(at[1])
