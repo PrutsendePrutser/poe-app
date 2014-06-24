@@ -1,5 +1,6 @@
 import sys
 import passives
+import itemstats
 from PyQt4 import QtGui, QtCore
 
 class PoEGUI(QtGui.QWidget):
@@ -14,6 +15,33 @@ class PoEGUI(QtGui.QWidget):
         self.active_skills = ["Arc", "Spectral Throw", "Flameblast"]
         
         self.initUI()
+        
+        self.add_gear_to_UI()
+        
+    def add_gear_to_UI(self):
+        
+        # Dictionary that contains the mapping from inventory ID to GUI element
+        gearslot_mapping = {'Helm': self.helm_name_box,
+                            'BodyArmour': self.chest_name_box,
+                            'Weapon': self.mh_name_box,
+                            'Offhand': self.oh_name_box,
+                            'Gloves': self.gloves_name_box,
+                            'Boots': self.boots_name_box,
+                            'Amulet': self.amulet_name_box,
+                            'Ring': self.ring_one_name_box,
+                            'Ring2': self.ring_two_name_box,
+                            'Belt': self.belt_name_box}
+
+        # Retrieve the items from the items file that was selected by the user
+        self.equipped_items = itemstats.ItemStats('files/items.txt', 'PrutsMarauder').get_item_info()
+        # Loop over the item slots
+        for item in self.equipped_items:
+            # Skip secondary weapon for now, since we don't have a box for that
+            # TODO: Implement weapon swap option for secondary mainhand/offhand/2H
+            if item != 'Weapon2':
+                # Update the text of the item name box with the name of the item
+                # TODO: Add base item type to the name, separated by a comma
+                gearslot_mapping[item].setText(str(self.equipped_items[item]['name']))
         
     def handle_load_build_url(self):
         # Get the build URL
@@ -645,14 +673,14 @@ class PoEGUI(QtGui.QWidget):
         # Create helmet widgets
         ring_lbl = QtGui.QLabel("Ring 1")
         ring_lbl.setAlignment(QtCore.Qt.AlignRight)
-        self.ring_name_box = QtGui.QLineEdit()
-        self.ring_name_box.setReadOnly(True)
+        self.ring_one_name_box = QtGui.QLineEdit()
+        self.ring_one_name_box.setReadOnly(True)
         ring_unique_btn = QtGui.QPushButton("Select unique ring")
         ring_customize_btn = QtGui.QPushButton("Create custom ring")
         
         # Add the helmet widgets to the grid
         grid.addWidget(ring_lbl, 19, 26)
-        grid.addWidget(self.ring_name_box, 19, 27, 1, 3)
+        grid.addWidget(self.ring_one_name_box, 19, 27, 1, 3)
         grid.addWidget(ring_unique_btn, 19, 30)
         grid.addWidget(ring_customize_btn, 19, 31)
     
@@ -660,14 +688,14 @@ class PoEGUI(QtGui.QWidget):
         # Create helmet widgets
         ring_lbl = QtGui.QLabel("Ring 2")
         ring_lbl.setAlignment(QtCore.Qt.AlignRight)
-        self.ring_name_box = QtGui.QLineEdit()
-        self.ring_name_box.setReadOnly(True)
+        self.ring_two_name_box = QtGui.QLineEdit()
+        self.ring_two_name_box.setReadOnly(True)
         ring_unique_btn = QtGui.QPushButton("Select unique ring")
         ring_customize_btn = QtGui.QPushButton("Create custom ring")
         
         # Add the helmet widgets to the grid
         grid.addWidget(ring_lbl, 20, 26)
-        grid.addWidget(self.ring_name_box, 20, 27, 1, 3)
+        grid.addWidget(self.ring_two_name_box, 20, 27, 1, 3)
         grid.addWidget(ring_unique_btn, 20, 30)
         grid.addWidget(ring_customize_btn, 20, 31)
         
