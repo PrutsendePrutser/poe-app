@@ -23,7 +23,7 @@ class Skillgems(object):
         # Counter
         self.counter = 0
         
-        #self.retrieve_skill_info()
+        self.retrieve_skill_info()
         self.retrieve_support_skill_info()
         
     def retrieve_skill_info(self):
@@ -34,7 +34,6 @@ class Skillgems(object):
                 
     def retrieve_support_skill_info(self):
         skill_links = self.get_support_skill_gems_from_wiki()
-        print skill_links
         with open('files/support_skill_levels.csv', 'a') as supportskillfile:
             for link in skill_links:
                 self.readskillpage(link, supportskillfile)
@@ -50,7 +49,6 @@ class Skillgems(object):
         
         # Make a get request to the skillpage
         conn.request("GET", skillname)
-        print skillname
         
         # Get the response
         response = conn.getresponse()
@@ -68,6 +66,8 @@ class Skillgems(object):
             
             # Add the skilldata to the dictionary
             self.skilldata[skilln] = [l for l in parser.d.split('\n') if l.strip()]
+            print dict(zip(parser.infodescription, parser.infodescvalue))
+           # print dict(zip(parser.infodescription, parser.infodescvalue))
         # In case we get some sort of error
         else:
             # Add the skillname to the notfound entry, so we know that this one needs to be retrieved manually
@@ -92,7 +92,7 @@ class Skillgems(object):
         try:
             activeskillfile.write(skill.replace('/', '').replace('_', ' ') + '\t' + self.skilldata[skill][0] + '\n')
         except IndexError:
-            print skill, self.skilldata[skill]
+            pass
         # Loop over the leveldata
         for level in self.skilldata[skill][1:]:
             # Ensure we only go to lvl 20
@@ -209,9 +209,16 @@ class SupportSkillpageParser(HTMLParser.HTMLParser):
 class MyHTMLParser(HTMLParser.HTMLParser):
     # Boolean to determine if we are in the table that contains the skillgem level data
     inskilltable = False
+    write_tr = False
     
     # Var to store the data
     d = ""
+    
+    trdata = {}
+    trstring = ""
+    infodescription = []
+    infodescvalue = []
+    val = ""
     
     # previous tag, used to handle <br /> tags within a <td></td> tag pair
     prev_tag = ""
@@ -223,9 +230,18 @@ class MyHTMLParser(HTMLParser.HTMLParser):
         if tag == "table" and ("class", "wikitable GemLevelTable") in attrs:
             # Set the inskilltable boolean to true
             self.inskilltable = True
+        if tag == "table" and ("class", "GemInfoboxInfo") in attrs:
+            self.infodescription = []
+            self.infodescvalue = []
+            self.write_tr = True
         # If we meet a tr tag in the skilltable, add a newline to the data
         if tag == "tr" and self.inskilltable:
-            self.d += '\n'
+            if not self.write_tr:
+                self.d += '\n'
+        if tag == "tr" and self.write_tr:
+            self.trstring = ""
+            self.val = ""
+            
         # If we hit a td tag
         if tag == 'td':
             # Set the previous tag var to td
@@ -239,9 +255,12 @@ class MyHTMLParser(HTMLParser.HTMLParser):
             self.inskilltable = False
             # Add a newline character to the data
             self.d +='\n'
+        if tag == "table" and self.write_tr:
+            self.write_tr = False
         if tag == "tr" and self.d:
             pass
-
+        if tag == "tr" and self.write_tr:
+            self.infodescvalue.append(self.val)
 
     def handle_startendtag(self, tag, attrs):
         # If we are in a skilltable
@@ -274,6 +293,17 @@ class MyHTMLParser(HTMLParser.HTMLParser):
             # If there is still a val left after removing whitespace, add the value to the data and add a trailing tab
             if val:
                 self.d += val.strip() + '\t'
+        if self.write_tr:
+            data = data.replace('\n','').replace('\r','').replace('\t','').replace('<br />','').strip()
+            if data:
+                if self.trstring:
+                    #print "Value: ", data
+                    self.val += data
+                    self.trstring += data
+                else:
+                    #print "Description: ", data
+                    self.infodescription.append(data)
+                    self.trstring += data
         
 
 gems = Skillgems()
