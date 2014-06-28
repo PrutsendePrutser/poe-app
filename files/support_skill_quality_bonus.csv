@@ -1,0 +1,68 @@
+Added Fire Damage	Attribute(s):Strength	Keywords:Fire,Support	Mana Multiplier:130%	Per 1% Quality:+0.75% increased Fire Damage
+Blood Magic (support gem)	Attribute(s):Strength	Keywords:Support	Required Level:24	Mana Multiplier:245%	Per 1% Quality:+0.75% increased Attack Speed when on Low Life
+Cast on Melee Kill	Attribute(s):Strength,Intelligence	Keywords:Support,Melee,Attack,Spell	Required Level:19	Mana Multiplier:140%	Per 1% Quality:0.5% Increased Damage
+Cast when Damage Taken	Attribute(s):Strength,Intelligence	Keywords:Support,Spell	Required Level:31	Cooldown Time:250ms	Per 1% Quality:0.5% increased Damage
+Cold to Fire	Attribute(s):Strength,Intelligence	Keywords:Cold,Fire,Support	Per 1% Quality:+0.5% increased Fire Damage+0.5% increased Cold Damage
+Empower	Attribute(s):Strength	Keywords:Support	Mana Multiplier:125%	Per 1% Quality:This Gem gains +5% increased Experience
+Endurance Charge on Melee Stun	Attribute(s):Strength	Keywords:Attack,Melee,Support	Mana Multiplier:110%	Per 1% Quality:1% increased Stun Duration on enemies
+Fire Penetration	Attribute(s):Strength	Keywords:Fire,Support	Mana Multiplier:140%	Per 1% Quality:+0.5% increased Fire Damage
+Increased Burning Damage	Attribute(s):Strength,Intelligence	Keywords:Fire,Support	Required Level:31	Mana Multiplier:120%	Per 1% Quality:+0.5% chance to Ignite the enemy on hit with Fire Damage
+Increased Duration	Attribute(s):Strength	Keywords:Support,Duration	Mana Multiplier:150%	Per 1% Quality:+0.5% increased Skill Effect Duration
+Iron Grip (support gem)	Attribute(s):Strength	Keywords:Projectile,Support	Per 1% Quality:+0.75% increased Projectile Damage
+Iron Will	Attribute(s):Strength	Keywords:Spell,Support	Per 1% Quality:+0.75% increased Spell damage
+Item Quantity	Attribute(s):Strength	Keywords:Support	Per 1% Quality:+0.35% increased Quantity of Items Dropped by Slain enemies
+Knockback (support gem)	Attribute(s):Strength	Keywords:Support	Per 1% Quality:+0.5% chance to Knock enemies Back on hit
+Life Gain on Hit	Attribute(s):Strength	Keywords:Attack,Support	Required Level:12 to 68	Mana Multiplier:150%	Per 1% Quality:+0.5 Life gained for each enemy hit by your Attacks
+Life Leech (support gem)	Attribute(s):Strength	Keywords:Support	Mana Multiplier:130%	Per 1% Quality:+1% increased Life Leech rate
+Melee Damage on Full Life	Attribute(s):Strength	Keywords:Melee,Support	Mana Multiplier:130%	Per 1% Quality:+0.5% increased Melee Physical Damage
+Melee Physical Damage	Attribute(s):Strength	Keywords:Melee,Support	Mana Multiplier:140%	Per 1% Quality:+0.5% increased Melee Physical Damage
+Melee Splash	Attribute(s):Strength	Keywords:Support,Melee,Attack,AoE	Required Level:19 to 68	Mana Multiplier:160%	Per 1% Quality:+1% increased Area of Effect radius
+Multistrike	Attribute(s):Strength,Dexterity	Keywords:Attack,Melee,Support	Required Level:19	Mana Multiplier:180%	Per 1% Quality:+0.5% increased Melee Physical Damage
+Ranged Attack Totem	Attribute(s):Strength,Dexterity	Keywords:Bow,Projectile,Support,Totem,Duration	Required Level:31	Mana Multiplier:250%	Per 1% Quality:+1.5% increased Totem Duration
+Reduced Duration	Attribute(s):Strength	Keywords:Support,Duration	Required Level:24	Mana Multiplier:120%	Per 1% Quality:+0.5% Reduced Skill Effect Duration
+Reduced Mana	Attribute(s):Strength	Keywords:Support	Mana Multiplier:Depends on gem level	Per 1% Quality:+0.5% reduced Mana Cost
+Spell Totem	Attribute(s):Strength,Intelligence	Keywords:Support,Totem,Duration	Required Level:31	Mana Multiplier:250%	Per 1% Quality:+1.5% increased Totem Duration
+Stun (support gem)	Attribute(s):Strength	Keywords:Support	Per 1% Quality:+1.5% increased Stun Duration on enemies[1]
+Weapon Elemental Damage	Attribute(s):Strength,Intelligence	Keywords:Support	Mana Multiplier:150%	Per 1% Quality:+0.5% increased Elemental Damage with Weapons
+Added Cold Damage	Attribute(s):Dexterity	Keywords:Cold,Support	Mana Multiplier:140%	Per 1% Quality:+0.5% Chance to Freeze
+Additional Accuracy	Attribute(s):Dexterity,Strength	Keywords:Attack,Support	Per 1% Quality:+2% increased Critical Strike Chance
+Blind (support gem)	Attribute(s):Dexterity	Keywords:Support	Per 1% Quality:+0.75% increased Blinding duration
+Cast On Critical Strike	Attribute(s):Dexterity,Intelligence	Keywords:Support,Spell	Mana Multiplier:140%	Cooldown Time:10ms	Per 1% Quality:1% increased Critical Strike Chance
+Cast on Death	Attribute(s):Dexterity,Intelligence	Keywords:Support,Spell	Required Level:19	Per 1% Quality:3% increased Area of Effect radius
+Chain	Attribute(s):Dexterity	Keywords:Support,Projectile,Chaining	Mana Multiplier:200%	Per 1% Quality:+1% increased Projectile Speed
+Chance to Flee	Attribute(s):Dexterity,Intelligence	Keywords:Support	Required Level:12	Per 1% Quality:+0.75% Chance to Cause Monsters to Flee
+Cold Penetration	Attribute(s):Dexterity	Keywords:Cold,Support	Mana Multiplier:150%	Per 1% Quality:+0.5% increased Cold Damage
+Culling Strike	Attribute(s):Dexterity	Keywords:Support	Mana Multiplier:110%	Per 1% Quality:+0.5% increased Attack Speed+0.5% increased Cast Speed
+Enhance	Attribute(s):Dexterity	Keywords:Support	Required Level:1	Mana Multiplier:125%	Per 1% Quality:This gem gains 5% increased experience
+Faster Attacks	Attribute(s):Dexterity	Keywords:Attack,Support	Mana Multiplier:115%	Per 1% Quality:+0.5% increased Attack Speed
+Faster Projectiles	Attribute(s):Dexterity	Keywords:Support,Projectile	Mana Multiplier:110%	Per 1% Quality:+0.5% increased Attack Speed+0.5% increased Cast Speed
+Fork	Attribute(s):Dexterity	Keywords:Support,Projectile	Mana Multiplier:125%	Per 1% Quality:+0.5% increased Projectile damage
+Greater Multiple Projectiles	Attribute(s):Dexterity	Keywords:Support,Projectile	Required Level:31	Mana Multiplier:200%	Per 1% Quality:+0.5% increased Attack Speed+0.5% increased Cast Speed
+Lesser Multiple Projectiles	Attribute(s):Dexterity	Keywords:Support,Projectile	Required Level:19	Mana Multiplier:150%	Per 1% Quality:+0.5% increased Attack Speed+0.5% increased Cast Speed
+Mana Leech (support gem)	Attribute(s):Dexterity	Keywords:Support	Per 1% Quality:+1% increased Mana Leech rate
+Multiple Traps	Attribute(s):Dexterity,Intelligence	Keywords:Support,Trap	Required Level:24	Mana Multiplier:160%	Per 1% Quality:1% increased Trap Trigger Radius
+Physical Projectile Attack Damage	Attribute(s):Dexterity	Keywords:Projectile,Support	Mana Multiplier:120%	Per 1% Quality:0.5% increased physical damage
+Pierce	Attribute(s):Dexterity	Keywords:Support,Projectile	Mana Multiplier:110%	Per 1% Quality:+0.75% chance of Projectiles Piercing
+Point Blank (support gem)	Attribute(s):Dexterity	Keywords:Projectile,Attack,Support	Mana Multiplier:120%	Per 1% Quality:+0.75% increased Projectile Damage
+Slower Projectiles	Attribute(s):Dexterity	Keywords:Support,Projectile	Mana Multiplier:140%	Per 1% Quality:+0.5% increased Projectile Damage
+Trap (support gem)	Attribute(s):Dexterity,Intelligence	Keywords:Support,Trap,Duration	Mana Multiplier:140%	Cooldown Time:4 sec (3 Uses)	Per 1% Quality:+0.75% increased Trap and Mine Laying Speed
+Added Chaos Damage	Attribute(s):Intelligence	Keywords:Chaos,Support	Mana Multiplier:150%	Per 1% Quality:+0.5% increased Chaos Damage
+Added Lightning Damage	Attribute(s):Intelligence	Keywords:Lightning,Support	Mana Multiplier:140%	Per 1% Quality:+1% increased Shock Duration on enemies+0.5% Chance to Shock
+Cast when Stunned	Attribute(s):Intelligence,Dexterity	Keywords:Support,Spell	Required Level:24	Cooldown Time:250ms	Per 1% Quality:0.5% increased Damage
+Chance to Ignite	Attribute(s):Intelligence	Keywords:Fire,Support	Mana Multiplier:110%	Per 1% Quality:+1.5% increased Burn Duration on enemies
+Concentrated Effect	Attribute(s):Intelligence	Keywords:Support,AoE	Mana Multiplier:160%	Per 1% Quality:+0.75% reduced Mana Cost
+Curse on Hit	Attribute(s):Intelligence	Keywords:Curse,Support	Required Level:24	Mana Multiplier:100%	Per 1% Quality:+0.5% Increased Effect of Supported Curses
+Elemental Proliferation	Attribute(s):Intelligence	Keywords:Cold,Fire,Lightning,Support,AoE	Mana Multiplier:140%	Per 1% Quality:+0.5% increased Chill and Freeze duration+0.75% increased Shock and Burn duration
+Enlighten	Attribute(s):Intelligence	Keywords:Support	Mana Multiplier:125%	Per 1% Quality:This Gem gains +5% increased Experience
+Faster Casting	Attribute(s):Intelligence	Keywords:Support,Spell	Mana Multiplier:120%	Per 1% Quality:+0.5% increased Cast Speed
+Increased Area of Effect	Attribute(s):Intelligence	Keywords:Support,AoE	Mana Multiplier:150%	Per 1% Quality:+0.5% increased Area of Effect radius
+Increased Critical Damage	Attribute(s):Intelligence	Keywords:Support	Mana Multiplier:130%	Per 1% Quality:+2% increased Critical Strike Multiplier
+Increased Critical Strikes	Attribute(s):Intelligence	Keywords:Support	Mana Multiplier:115%	Per 1% Quality:+1% increased Critical Strike Chance
+Item Rarity	Attribute(s):Intelligence	Keywords:Support	Per 1% Quality:+0.5% increased Rarity of Items Dropped by Slain enemies
+Lightning Penetration	Attribute(s):Intelligence	Keywords:Lightning,Support	Mana Multiplier:150%	Per 1% Quality:+0.5% increased Lightning Damage
+Minion and Totem Elemental Resistance	Attribute(s):Intelligence,Strength	Keywords:Support,Minion	Required Level:19	Mana Multiplier:140%	Per 1% Quality:Totems and Minions summoned by Supported Skills have +0.35% Fire, Cold and Lightning Resistance
+Minion Damage	Attribute(s):Intelligence	Keywords:Support,Minion	Mana Multiplier:150%	Per 1% Quality:+0.75% increased Minion Damage
+Minion Life	Attribute(s):Intelligence	Keywords:Support,Minion	Mana Multiplier:140%	Per 1% Quality:+0.75% increased Minion Life
+Minion Speed	Attribute(s):Intelligence	Keywords:Movement,Support,Minion	Mana Multiplier:150%	Per 1% Quality:Minions have +0.75% increased Movement Speed
+Power Charge On Critical	Attribute(s):Intelligence	Keywords:Support	Required Level:19	Mana Multiplier:110%	Per 1% Quality:+1% Chance to Gain aPower Chargeon Crit
+Remote Mine	Attribute(s):Intelligence,Dexterity	Keywords:Support,Mine,Duration	Mana Multiplier:150%	Per 1% Quality:+0.5% increased Trap and Mine Laying Speed

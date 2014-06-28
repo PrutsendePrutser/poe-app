@@ -1,0 +1,105 @@
+Anger	Attribute(s):Strength,Intelligence	Keywords:Aura,Fire,Spell,AoE	Required Level:10	Mana Reserved:60%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1% increased Area of Effect radius
+Animate Guardian	Attribute(s):Strength,Intelligence	Keywords:Spell,Minion	Required Level:10	Per 1% Quality:Minions have 2% increased Movement Speed
+Cleave	Attribute(s):Strength,Dexterity	Keywords:Attack,AoE,Melee	Radius:20	Per 1% Quality:+0.5% increased Attack Speed
+Decoy Totem	Attribute(s):Strength	Keywords:Totem,Spell,Duration,AoE	Required Level:4	Cast time:1 sec	Per 1% Quality:+1.5% increased Totem Life
+Determination	Attribute(s):Strength	Keywords:Aura,Spell,AoE	Required Level:31	Mana Reserved:60%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1% increased Area of Effect radius
+Devouring Totem	Attribute(s):Strength	Keywords:Totem,Spell,Duration	Required Level:31	Cast time:1.0 sec	Per 1% Quality:+1.5% increased Totem Life
+Dominating Blow	Attribute(s):Strength,Intelligence	Keywords:Attack,Minion,Duration,Melee	Required Level:24	Per 1% Quality:+0.3 seconds increased Duration
+Enduring Cry	Attribute(s):Strength	Keywords:Spell,AoE	Required Level:19	Cooldown Time:4 sec	Cast time:0.5 secs	Radius:60	Per 1% Quality:+1% increased Area of Effect radius
+Flame Totem	Attribute(s):Strength,Intelligence	Keywords:Fire,Projectile,Totem,Spell,Duration	Required Level:31	Cast time:0.2 secs	Critical Strike Chance:4%	Damage effectiveness:20%	Per 1% Quality:+1.5% increased totem life
+Glacial Hammer	Attribute(s):Strength	Keywords:Cold,Attack,Melee	Required Level:1	Damage effectiveness:125%	Per 1% Quality:+1% increased Freeze Duration+2% increased Chill Duration
+Ground Slam	Attribute(s):Strength	Keywords:Attack,AoE,Melee	Required Level:1	Radius:35	Per 1% Quality:+1.5% increased Stun Duration on enemies
+Heavy Strike	Attribute(s):Strength	Keywords:Attack,Melee	Required Level:1	Damage effectiveness:150%	Per 1% Quality:+0.75% increased Attack Speed
+Immortal Call	Attribute(s):Strength	Keywords:Spell,Duration	Required Level:24	Cast time:0.85 secs	Per 1% Quality:Additional +0.01 seconds Base Duration per Endurance Charge
+Infernal Blow	Attribute(s):Strength	Keywords:Fire,Attack,AoE,Melee	Required Level:4	Radius:15	Critical Strike Chance:7%	Damage effectiveness:125%	Per 1% Quality:+1% increased Area of Effect radius
+Leap Slam	Attribute(s):Strength	Keywords:Movement,Attack,AoE,Melee	Required Level:10	Radius:15	Per 1% Quality:+1.5% increased Stun Duration
+Lightning Strike	Attribute(s):Strength	Keywords:Lightning,Projectile,Attack,Melee	Required Level:10	Per 1% Quality:+3% chance of Projectiles Piercing
+Molten Shell	Attribute(s):Strength	Keywords:Fire,Spell,Duration,AoE	Required Level:10	Cast time:1 sec	Radius:15	Critical Strike Chance:5%	Per 1% Quality:+1.5% Chance to Ignite enemies on hit with Fire Damage
+Molten Strike	Attribute(s):Strength	Keywords:Fire,Projectile,Attack,AoE,Melee	Required Level:1	Mana Cost:7	Radius:20 for main area, 8(?) for magma balls	Per 1% Quality:0.75% increased Fire Damage
+Punishment	Attribute(s):Strength,Intelligence	Keywords:Curse,Spell,AoE,Duration	Required Level:19	Cast time:0.5 secs	Radius:16	Per 1% Quality:Reflects 0.5% of Physical Damage dealt by Cursed Normal EnemiesReflects 0.35% of Physical Damage dealt by Cursed Magic EnemiesReflects 0.2% of Physical Damage dealt by Cursed Rare EnemiesReflects 0.1% of Physical Damage dealt by Cursed Unique Enemies
+Purity of Fire	Attribute(s):Strength	Keywords:Aura,Spell,AoE,Fire	Required Level:10	Mana Reserved:40%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1% increased Area of Effect radius
+Rejuvenation Totem	Attribute(s):Strength	Keywords:Totem,Aura,Spell,AoE,Duration	Required Level:19	Cast time:0.6 secs	Per 1% Quality:+1.5% increased totem life
+Searing Bond	Attribute(s):Strength,Intelligence	Keywords:Totem,Fire,Spell,Duration	Required Level:24	Mana Cost:52	Cast time:1 sec	Per 1% Quality:1.5% increased Totem Life
+Shield Charge	Attribute(s):Strength	Keywords:Movement,Attack,Melee	Required Level:4 to?	Mana Cost:8 to?	Per 1% Quality:0.75% increased Damage
+Shockwave Totem	Attribute(s):Strength	Keywords:Totem,Spell,AoE,Duration	Required Level:10	Cast time:0.60 secs	Radius:20	Critical Strike Chance:4%	Damage effectiveness:50%	Per 1% Quality:+1.5% increased totem life
+Sweep	Attribute(s):Strength	Keywords:Attack,AoE,Melee	Required Level:2 to 68	Mana Cost:8 to 17	Radius:20	Damage effectiveness:75%	Per 1% Quality:0.5% increased Attack Speed
+Vitality	Attribute(s):Strength	Keywords:Aura,Spell,AoE	Required Level:24	Mana Reserved:40%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1% increased Area of Effect radius
+Warlord%27s Mark	Attribute(s):Strength	Keywords:Curse,Spell,AoE,Duration	Required Level:19 to 68	Mana Cost:30 to 70	Cast time:0.5 secs	Radius:16	Per 1% Quality:Cursed enemies have an additional 1.5% chance to grant an Endurance Charge when slain
+Animate Weapon	Attribute(s):Dexterity,Intelligence	Keywords:Minion,Spell,Duration	Required Level:4	Per 1% Quality:Minions have 2% increased Movement Speed
+Arctic Armour	Attribute(s):Dexterity,Intelligence	Keywords:Cold,Spell,Duration	Mana Reserved:0	Cooldown Time:0.5 sec	Cast time:0.5 sec	Per 1% Quality:+0.35% increased Movement Speed
+Barrage	Attribute(s):Dexterity	Keywords:Attack,Bow	Required Level:10	Per 1% Quality:0.5% increased Projectile Damage
+Bear Trap	Attribute(s):Dexterity	Keywords:Trap,Duration,Cast	Required Level:4	Cooldown Time:3 sec (3 Uses)	Cast time:1 sec	Critical Strike Chance:5%	Damage effectiveness:150%	Per 1% Quality:+0.75% increased Physical Damage
+Blood Rage	Attribute(s):Dexterity	Keywords:Chaos,Spell,Duration	Required Level:19	Cast time:1 sec	Per 1% Quality:+0.2% of Physical Damage from Attacks Leeched back as Life+0.75 increased Attack Speed when onLow Life
+Burning Arrow	Attribute(s):Dexterity	Keywords:Fire,Attack,Bow	Required Level:1	Per 1% Quality:+3% increased Burn Duration on enemies
+Cyclone	Attribute(s):Dexterity,Strength	Keywords:Movement,Attack,AoE,Melee	Required Level:24	Radius:Special	Per 1% Quality:+1% increased Area of Effect Radius
+Desecrate	Attribute(s):Dexterity,Intelligence	Keywords:Chaos,Spell,AoE,Duration	Cooldown Time:5 sec (3 Uses)	Per 1% Quality:+1% increased Cast Speed
+Detonate Dead	Attribute(s):Dexterity,Intelligence	Keywords:Fire,Cast,AoE	Required Level:2 to 68	Mana Cost:6 to 38	Cast time:0.85 secs	Critical Strike Chance:4.5%	Per 1% Quality:3% increased Cast Speed
+Double Strike	Attribute(s):Dexterity	Keywords:Attack,Melee	Required Level:1 to 68	Mana Cost:8 to 11	Per 1% Quality:0.5% increasedAttack Speed
+Dual Strike	Attribute(s):Dexterity,Strength	Keywords:Attack,Melee	Required Level:1 to 68	Mana Cost:8 to?	Per 1% Quality:4% increasedCritical Strike Chance
+Elemental Hit	Attribute(s):Dexterity	Keywords:Fire,Cold,Lightning,Attack,Melee,Bow	Required Level:19	Per 1% Quality:+4% increased Critical Strike chance
+Ethereal Knives	Attribute(s):Dexterity,Intelligence	Keywords:Projectile,Spell	Required Level:4 to 68	Mana Cost:9 to 45	Cast time:1 second	Critical Strike Chance:5%	Per 1% Quality:0.75% increased Projectile Damage
+Explosive Arrow	Attribute(s):Dexterity	Keywords:Fire,Attack,AoE,Duration,Bow	Required Level:19	Radius:15	Critical Strike Chance:6%	Per 1% Quality:+1% Chance to Ignite enemies on hit with Fire Damage
+Fire Trap	Attribute(s):Dexterity,Intelligence	Keywords:Fire,Trap,Spell,Duration,AoE	Required Level:1 to 68	Mana Cost:8 to 58	Cooldown Time:3 sec (3 uses)	Cast time:1 sec	Radius:15	Critical Strike Chance:5%	Per 1% Quality:1.5% increased Burning Damage
+Flicker Strike	Attribute(s):Dexterity	Keywords:Movement,Attack,Melee	Required Level:10	Cooldown Time:2 sec	Per 1% Quality:+4% increased Critical Strike Chance
+Freeze Mine	Attribute(s):Dexterity,Intelligence	Keywords:Cold,Mine,Spell,Duration,AoE	Required Level:10	Cast time:0.5 secs	Damage effectiveness:50%	Per 1% Quality:+0.5% increased Area of Effect radius
+Frenzy	Attribute(s):Dexterity	Keywords:Attack,Melee,Bow	Required Level:19	Per 1% Quality:+0.35% increased Attack Speed per Frenzy Charge
+Grace	Attribute(s):Dexterity	Keywords:Aura,Spell,AoE	Required Level:31	Mana Reserved:60%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1% increased Area of Effect radius
+Haste	Attribute(s):Dexterity	Keywords:Aura,Spell,AoE	Mana Reserved:60%	Cooldown Time:0.5 sec	Cast time:1.3 secs	Radius:36	Per 1% Quality:+1% increasedArea of Effectradius.
+Hatred	Attribute(s):Dexterity,Intelligence	Keywords:Aura,Cold,Spell,AoE	Required Level:10	Mana Reserved:60%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1% increased Area of Effect radius
+Ice Shot	Attribute(s):Dexterity	Keywords:Cold,Attack,AoE,Duration,Bow	Required Level:4 to 68	Mana Cost:10 to 16	Per 1% Quality:0.75% increased Skill Effect Duration
+Lightning Arrow	Attribute(s):Dexterity	Keywords:Lightning,Attack,AoE,Bow	Damage effectiveness:70%	Per 1% Quality:+1.5%Shockduration
+Poison Arrow	Attribute(s):Dexterity	Keywords:Chaos,Attack,AoE,Duration,Bow	Required Level:2	Radius:20	Per 1% Quality:+1% increased Area of Effect radius
+Projectile Weakness	Attribute(s):Dexterity	Keywords:Curse,Spell,AoE,Duration	Required Level:19	Cast time:0.5 secs	Radius:16	Per 1% Quality:+0.75% Chance to Pierce Cursed enemies
+Puncture	Attribute(s):Dexterity,Intelligence	Keywords:Attack,Duration,Melee,Bow	Required Level:10	Per 1% Quality:+1.5% increased Skill Effect Duration
+Purity of Ice	Attribute(s):Dexterity,Intelligence	Keywords:Aura,Spell,AoE,Cold	Required Level:10	Mana Reserved:40%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1% increased Area of Effect radius
+Rain of Arrows	Attribute(s):Dexterity	Keywords:Attack,AoE,Bow	Required Level:4	Radius:18	Damage effectiveness:75%	Per 1% Quality:+0.5% increased Attack Speed
+Reave	Attribute(s):Dexterity,Intelligence	Keywords:Attack,AoE,Melee	Required Level:1	Mana Cost:6	Radius:12	Per 1% Quality:+0.5% increased Attack Speed
+Smoke Mine	Attribute(s):Dexterity,Intelligence	Keywords:Mine,Movement,Spell,AoE,Duration	Required Level:19	Mana Cost:10	Cast time:0.5 secs	Per 1% Quality:1% increased Area of Effect radius
+Spectral Throw	Attribute(s):Dexterity,Strength	Keywords:Projectile,Attack	Required Level:1	Per 1% Quality:0.5% increased Attack Speed
+Split Arrow	Attribute(s):Dexterity	Keywords:Attack,Bow	Required Level:1	Damage effectiveness:80%	Per 1% Quality:+0.5% increased Attack Speed
+Temporal Chains	Attribute(s):Dexterity,Intelligence	Keywords:Curse,Spell,AoE,Duration	Required Level:19	Cast time:0.5 secs	Radius:16	Per 1% Quality:Cursed enemies are +0.5% slower
+Viper Strike	Attribute(s):Dexterity	Keywords:Chaos,Attack,Duration,Melee	Required Level:4	Per 1% Quality:+1.5% increased Skill Effect Duration+0.5% increased Attack Speed
+Whirling Blades	Attribute(s):Dexterity,Intelligence	Keywords:Movement,Attack,Melee	Required Level:4	Per 1% Quality:+0.5% increased Attack Speed
+Arc	Attribute(s):Intelligence	Keywords:Lightning,Spell,Chaining	Required Level:19	Cast time:0.8 secs	Radius:45	Critical Strike Chance:4%	Damage effectiveness:50%	Per 1% Quality:+0.5% chance toShockenemy on hit with Lightning Damage
+Arctic Breath	Attribute(s):Dexterity,Intelligence	Keywords:Cold,Projectile,Spell,Duration,AoE	Required Level:31	Cast time:1 sec	Critical Strike Chance:5%	Per 1% Quality:+0.75% increased Skill Effect Duration
+Bone Offering	Attribute(s):Intelligence	Keywords:Minion,Spell,Duration	Per 1% Quality:0.5% increased Skill Effect Duration
+Clarity	Attribute(s):Intelligence	Keywords:Aura,Spell,AoE	Required Level:10 to 68	Cooldown Time:0.5 sec	Cast time:1 sec	Radius:36	Per 1% Quality:1% increased Area of Effect radius
+Cold Snap	Attribute(s):Intelligence	Keywords:Cold,Spell,AoE	Required Level:4	Cooldown Time:4 sec	Cast time:0.85 secs	Radius:16	Critical Strike Chance:4%	Per 1% Quality:+0.5% increased Freeze Duration on enemies+1% increased Chill Duration on enemies
+Conductivity	Attribute(s):Intelligence	Keywords:Lightning,Curse,Spell,AoE,Duration	Required Level:19	Cast time:0.5 secs	Radius:16	Per 1% Quality:Shocks on Cursed Enemies have 1% increased Duration
+Conversion Trap	Attribute(s):Intelligence,Dexterity	Keywords:Trap,Spell,Duration	Required Level:24	Cooldown Time:8 sec (3 Uses)	Cast time:1 sec	Per 1% Quality:+0.75% increased Skill Effect Duration
+Convocation	Attribute(s):Intelligence	Keywords:Minion,Spell,Duration	Required Level:19	Cooldown Time:8	Cast time:0.8	Per 1% Quality:1% increased Skill Effect Duration0.5% increased Cast Speed
+Critical Weakness	Attribute(s):Intelligence,Dexterity	Keywords:Curse,Spell,AoE,Duration	Required Level:19	Cast time:0.5 secs	Radius:16	Per 1% Quality:Cursed enemies take +1.5% more extra damage from Critical Strikes
+Discharge	Attribute(s):Intelligence	Keywords:Fire,Cold,Lightning,Spell,AoE	Required Level:24	Cast time:1 sec	Radius:30	Critical Strike Chance:8%	Per 1% Quality:+1% increased Area of Effect radius
+Discipline	Attribute(s):Intelligence	Keywords:Aura,Spell,AoE	Required Level:31	Mana Reserved:60%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1% increased Area of Effect radius
+Elemental Weakness	Attribute(s):Intelligence	Keywords:Curse,Spell,AoE,Duration	Required Level:19	Cast time:0.5 secs	Radius:16	Per 1% Quality:Cursed Enemies lose 0.5% Elemental Resistance
+Enfeeble	Attribute(s):Intelligence	Keywords:Curse,Spell,AoE,Duration	Required Level:19	Cast time:0.5 secs	Radius:16	Per 1% Quality:Cursed enemies have 0.75% reduced Accuracy Rating
+Fireball	Attribute(s):Intelligence	Keywords:Fire,Projectile,Spell,AoE	Required Level:1	Cast time:0.85 secs	Radius:8	Critical Strike Chance:6%	Per 1% Quality:+1.5% chance to Ignite enemies on hit with Fire Damage
+Firestorm	Attribute(s):Intelligence	Keywords:Fire,Spell,AoE,Duration	Cast time:1 sec	Radius:25 for storm, 9 for individual fireballs	Critical Strike Chance:5%	Damage effectiveness:20%	Per 1% Quality:Reduces the time between each fireball by 0.001s
+Flameblast	Attribute(s):Intelligence	Keywords:Fire,Spell,AoE	Required Level:10	Cast time:0.3	Critical Strike Chance:6%	Damage effectiveness:50%	Per 1% Quality:1.5% chance to Ignite enemies
+Flame Surge	Attribute(s):Intelligence	Keywords:Fire,Spell,AoE	Required Level:19	Cast time:0.8 secs	Radius:30	Critical Strike Chance:6%	Per 1% Quality:0.5% increased Cast Speed
+Flammability	Attribute(s):Intelligence,Strength	Keywords:Fire,Curse,Spell,AoE,Duration	Required Level:19	Cast time:0.5 secs	Radius:16	Per 1% Quality:Burns on Cursed Enemies have +1% increased Duration
+Flesh Offering	Attribute(s):Intelligence	Keywords:Minion,Spell,Duration	Per 1% Quality:0.5% increased Skill Effect Duration
+Freezing Pulse	Attribute(s):Intelligence	Keywords:Cold,Projectile,Spell	Required Level:1	Cast time:0.65 secs	Critical Strike Chance:6%	Per 1% Quality:+3% increased Projectile Speed
+Frost Wall	Attribute(s):Intelligence	Keywords:Cold,Spell,Duration	Required Level:19	Cast time:0.85 secs	Critical Strike Chance:5%	Per 1% Quality:+0.75 units Wall length
+Frostbite	Attribute(s):Intelligence,Dexterity	Keywords:Cold,Curse,Spell,AoE,Duration	Required Level:19	Cast time:0.5 secs	Radius:16	Per 1% Quality:Freezes on Cursed Enemies have +1% increased Duration
+Glacial Cascade	Attribute(s):Intelligence	Keywords:Cold,Spell,AoE	Required Level:10	Cast time:0.85 secs	Critical Strike Chance:6%	Damage effectiveness:80%	Per 1% Quality:+0.5% increased Area Damage
+Ice Nova	Attribute(s):Intelligence	Keywords:Cold,Spell,AoE	Required Level:1	Cast time:0.935 secs	Radius:30	Critical Strike Chance:5%	Per 1% Quality:+1% increased Area of Effect radius
+Ice Spear	Attribute(s):Intelligence	Keywords:Cold,Projectile,Spell	Required Level:4	Cast time:0.85 secs	Critical Strike Chance:7%	Per 1% Quality:+3% increased Projectile Speed
+Incinerate	Attribute(s):Intelligence	Keywords:Fire,Projectile,Spell	Required Level:10	Cast time:0.24 secs	Damage effectiveness:30%	Per 1% Quality:2% increased Projectile Speed
+Lightning Trap	Attribute(s):Intelligence,Dexterity	Keywords:Lightning,Projectile,Trap,Spell,Duration	Required Level:10	Cooldown Time:2 sec (3 Uses)	Cast time:1 sec	Critical Strike Chance:4%	Damage effectiveness:90%	Per 1% Quality:+1% increased Trap Throwing Speed
+Lightning Warp	Attribute(s):Intelligence	Keywords:Lightning,Spell,AoE,Duration,Movement	Cast time:1 sec	Radius:16	Critical Strike Chance:5%	Per 1% Quality:+1.5% increased Cast Speed
+Power Siphon	Attribute(s):Intelligence	Keywords:Attack,Projectile	Damage effectiveness:125%	Per 1% Quality:+0.75% increased Damage
+Purity of Elements	Attribute(s):Intelligence,Strength	Keywords:Aura,Spell,AoE	Required Level:31	Mana Reserved:40%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1% increased Area of Effect radius
+Purity of Lightning	Attribute(s):Intelligence	Keywords:Aura,Spell,AoE,Lightning	Required Level:10	Mana Reserved:40%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1% increased Area of Effect radius
+Raise Spectre	Attribute(s):Intelligence	Keywords:Spell,Minion	Required Level:19	Cast time:0.85 secs	Per 1% Quality:+1,5% increased Minion Movement Speed
+Raise Zombie	Attribute(s):Intelligence	Keywords:Spell,Minion	Required Level:1	Cast time:0.85 secs	Per 1% Quality:+1% increased Minion Movement Speed+1% increased Minion Maximum Life
+Righteous Fire	Attribute(s):Intelligence,Strength	Keywords:Fire,Spell,AoE	Required Level:19	Mana Cost:0	Radius:10	Per 1% Quality:0.75% increased Spell Damage
+Shock Nova	Attribute(s):Intelligence	Keywords:Lightning,Spell,AoE	Required Level:10	Cast time:0.75 secs	Radius:14 to 26	Critical Strike Chance:4%	Per 1% Quality:+1.5% Chance to shock enemies on hit with Lightning Damage+3% increased Shock Duration on enemies
+Spark	Attribute(s):Intelligence	Keywords:Lightning,Projectile,Spell,Duration	Cast time:0.65 sec	Critical Strike Chance:4%	Damage effectiveness:50%	Per 1% Quality:+3% increased Projectile Speed
+Storm Call	Attribute(s):Intelligence	Keywords:Lightning,Spell,AoE,Duration	Required Level:4	Cast time:0.5 sec.	Critical Strike Chance:4%	Per 1% Quality:4% increased Critical Strike Chance
+Summon Raging Spirit	Attribute(s):Intelligence	Keywords:Fire,Spell,Minion,Duration	Cast time:0.8 seconds	Damage effectiveness:70%	Per 1% Quality:+1% increased Minion Movement Speed
+Summon Skeletons	Attribute(s):Intelligence	Keywords:Spell,Minion,Duration	Required Level:10	Cast time:1 sec	Per 1% Quality:Minions deal +0.75% increased Damage
+Tempest Shield	Attribute(s):Intelligence,Strength	Keywords:Lightning,Spell	Required Level:10	Mana Reserved:25%	Cooldown Time:0.5 sec	Cast time:1 sec	Critical Strike Chance:6%	Per 1% Quality:+0.75% increased Lightning damage
+Vulnerability	Attribute(s):Intelligence	Keywords:Curse,Spell,AoE,Duration	Cast time:0.5 secs	Radius:16	Per 1% Quality:Cursed enemies take +0.5% increased Physical damage
+Wrath	Attribute(s):Intelligence	Keywords:Aura,Lightning,Spell,AoE	Required Level:10	Mana Reserved:60%	Cooldown Time:0.5 sec	Cast time:1.2 secs	Radius:36	Per 1% Quality:+1.0% increased Area of Effect radius
+Portal	Attribute(s):None	Keywords:Spell	Required Level:10	Mana Cost:0	Cast time:2.5 secs	Per 1% Quality:+3% increased Cast Speed

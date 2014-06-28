@@ -38,7 +38,7 @@ class ItemStats(object):
         
         # Loop over the items in the inventory
         for i in self.items_dict['items']:
-            print i.keys()
+
             # Retrieve the inventory ID so we can filter only for equipped gear
             inv_id = i['inventoryId']
             
