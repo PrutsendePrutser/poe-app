@@ -25,6 +25,21 @@ class PoEGUI(QtGui.QWidget):
         
         self.add_gear_to_UI()
         
+        self.filter_support_skills(self.active_skill.currentText())
+        
+    def filter_support_skills(self, active_skill):
+        active_skill_info = self.active_skill_dict[str(active_skill)]
+        keywords = active_skill_info['Keywords'].split(',')
+        
+        effecting_support_skills = []
+        
+        for support in self.support_skill_dict.keys():
+            support_keywords = self.support_skill_dict[support]['Keywords'].split(',')
+            match = set(support_keywords).intersection(keywords)
+            if match:
+                effecting_support_skills.append(support)
+        print effecting_support_skills
+        
     def load_skillgems(self, gemtype):
         levelfilename = 'files' + os.sep + gemtype + '_skill_levels.csv'
         qualityfilename = 'files' + os.sep + gemtype + '_skill_quality_bonus.csv'
@@ -112,7 +127,7 @@ class PoEGUI(QtGui.QWidget):
         for skill in difference:
             
             # Set the skill to available
-            self.support_skill_dict[skill] = True
+            self.available_supports[skill] = True
         
         # Update the available support skills for each dropdown menu
         self.set_available_support_skills()
@@ -126,7 +141,7 @@ class PoEGUI(QtGui.QWidget):
         support_skill_five = self.support_skill_combobox_five.currentText()
         
         # Get the list of available support skills
-        available_skills = self.get_available_support_skills(self.support_skill_dict)
+        available_skills = self.get_available_support_skills(self.available_supports)
         
         # Update skill list for box one
         self.support_skill_combobox_one.clear()
@@ -158,7 +173,7 @@ class PoEGUI(QtGui.QWidget):
         sender = self.sender()
         
         # Retrieve the value of the triggered dropdown
-        self.support_skill_dict[str(sender.currentText())] = False
+        self.available_supports[str(sender.currentText())] = False
         
         # Get the values of each of the dropdowns
         support_val_one = str(self.support_skill_combobox_one.currentText())
@@ -289,7 +304,7 @@ class PoEGUI(QtGui.QWidget):
         # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
         # it is not shown in other dropdowns when it's already selected.
         selected_skill = str(self.support_skill_combobox_one.currentText())
-        self.support_skill_dict[selected_skill] = False
+        self.available_supports[selected_skill] = False
         
         # Get the level label and level selection box
         level_lbl, self.support_level_box_one = self.add_gem_level_selection_widget()
@@ -319,7 +334,7 @@ class PoEGUI(QtGui.QWidget):
         # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
         # it is not shown in other dropdowns when it's already selected.
         selected_skill = str(self.support_skill_combobox_two.currentText())
-        self.support_skill_dict[selected_skill] = False
+        self.available_supports[selected_skill] = False
         
         # Get the level label and level selection box
         level_lbl, self.support_level_box_two = self.add_gem_level_selection_widget()
@@ -348,7 +363,7 @@ class PoEGUI(QtGui.QWidget):
         # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
         # it is not shown in other dropdowns when it's already selected.
         selected_skill = str(self.support_skill_combobox_three.currentText())
-        self.support_skill_dict[selected_skill] = False
+        self.available_supports[selected_skill] = False
         
         # Get the level label and level selection box
         level_lbl, self.support_level_box_three = self.add_gem_level_selection_widget()
@@ -378,7 +393,7 @@ class PoEGUI(QtGui.QWidget):
         # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
         # it is not shown in other dropdowns when it's already selected.
         selected_skill = str(self.support_skill_combobox_four.currentText())
-        self.support_skill_dict[selected_skill] = False
+        self.available_supports[selected_skill] = False
         
         # Get the level label and level selection box
         level_lbl, self.support_level_box_four = self.add_gem_level_selection_widget()
@@ -407,7 +422,7 @@ class PoEGUI(QtGui.QWidget):
         # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
         # it is not shown in other dropdowns when it's already selected.
         selected_skill = str(self.support_skill_combobox_five.currentText())
-        self.support_skill_dict[selected_skill] = False
+        self.available_supports[selected_skill] = False
         
         # Get the level label and level selection box
         level_lbl, self.support_level_box_five = self.add_gem_level_selection_widget()
@@ -768,7 +783,7 @@ class PoEGUI(QtGui.QWidget):
 
     def get_available_support_skills(self, support_skills):
         # Return a list of the support skill gems that are not selected in the dropdown menus
-        return [skill for skill in self.support_skill_dict.keys() if self.support_skill_dict[skill]]
+        return [skill for skill in self.available_supports.keys() if self.available_supports[skill]]
     
     def load_items(self):
         pass
