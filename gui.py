@@ -1,6 +1,7 @@
 import sys
 import passives
 import itemstats
+import os
 from PyQt4 import QtGui, QtCore
 
 class PoEGUI(QtGui.QWidget):
@@ -11,12 +12,53 @@ class PoEGUI(QtGui.QWidget):
         # Var to store all the support skills
         self.passive_skills = ['Multistrike', 'Faster Casting', 'Elemental Proliferation', 'Melee Physical Damage', 'Chain', "Faster Attacks"]
         
+        self.active_skill_dict = self.load_skillgems('active')
+        
         # Var to store all the active skills
-        self.active_skills = ["Arc", "Spectral Throw", "Flameblast"]
+        self.active_skills = sorted(self.active_skill_dict.keys())
+        
+        self.support_skill_dict = self.load_skillgems('support')
+        
+        self.support_skills = sorted(self.support_skill_dict.keys())
         
         self.initUI()
         
         self.add_gear_to_UI()
+        
+    def load_skillgems(self, gemtype):
+        levelfilename = 'files' + os.sep + gemtype + '_skill_levels.csv'
+        qualityfilename = 'files' + os.sep + gemtype + '_skill_quality_bonus.csv'
+        
+        skilldict = {}
+        with open(qualityfilename, 'r') as qfile:
+            for line in qfile.readlines():
+                print line
+                split_line = line.split('\t')
+                skillname = split_line[0]
+                skilldict[skillname] = {}
+                for item in split_line[1:]:
+                    split_item = item.split(':')
+                    skilldict[skillname][split_item[0]] = split_item[1]
+        
+        with open(levelfilename, 'r') as levelfile:
+            skillname = None
+            for line in levelfile.readlines():
+                split_line = line.split('\t')
+                if len(split_line) >= 3:
+                    if split_line[0] != "":
+                        skillname = split_line[0]
+                        header = split_line[2:]
+                    if skillname in skilldict.keys() and 'levels' not in skilldict[skillname].keys():
+                        skilldict[skillname]['levels'] = {split_line[1]:{}}
+                    else:
+                        skilldict[skillname]['levels'][split_line[1]] = {}
+                    for idx, item in enumerate(split_line[2:]):
+                        try:
+                            skilldict[skillname]['levels'][split_line[1]][header[idx]] = item
+                        except:
+                            print skillname, idx, header, item
+        return skilldict
+                
         
     def add_gear_to_UI(self):
         
@@ -88,27 +130,27 @@ class PoEGUI(QtGui.QWidget):
         
         # Update skill list for box one
         self.support_skill_combobox_one.clear()
-        self.support_skill_combobox_one.addItems(available_skills + [support_skill_one])
+        self.support_skill_combobox_one.addItems(sorted(available_skills + [support_skill_one]))
         self.support_skill_combobox_one.setCurrentIndex(self.support_skill_combobox_one.findText(support_skill_one))
         
         # Update skill list for box two
         self.support_skill_combobox_two.clear()
-        self.support_skill_combobox_two.addItems(available_skills + [support_skill_two])
+        self.support_skill_combobox_two.addItems(sorted(available_skills + [support_skill_two]))
         self.support_skill_combobox_two.setCurrentIndex(self.support_skill_combobox_two.findText(support_skill_two))
         
         # Update skill list for box three
         self.support_skill_combobox_three.clear()
-        self.support_skill_combobox_three.addItems(available_skills + [support_skill_three])
+        self.support_skill_combobox_three.addItems(sorted(available_skills + [support_skill_three]))
         self.support_skill_combobox_three.setCurrentIndex(self.support_skill_combobox_three.findText(support_skill_three))
         
         # Update skill list for box four
         self.support_skill_combobox_four.clear()
-        self.support_skill_combobox_four.addItems(available_skills + [support_skill_four])
+        self.support_skill_combobox_four.addItems(sorted(available_skills + [support_skill_four]))
         self.support_skill_combobox_four.setCurrentIndex(self.support_skill_combobox_four.findText(support_skill_four))
         
         # Update the skill list for box five
         self.support_skill_combobox_five.clear()
-        self.support_skill_combobox_five.addItems(available_skills + [support_skill_five])
+        self.support_skill_combobox_five.addItems(sorted(available_skills + [support_skill_five]))
         self.support_skill_combobox_five.setCurrentIndex(self.support_skill_combobox_five.findText(support_skill_five))
     
     def update_available_support_skills(self, val):
@@ -197,10 +239,9 @@ class PoEGUI(QtGui.QWidget):
         
         # Create a dropdown
         self.active_skill = QtGui.QComboBox()
-        active_skills = ["Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw", "Arc", "Double Strike", "Lightning Arrow", "Spectral Throw"]
         
         # Fill dropdown with active skills
-        for skill in active_skills:
+        for skill in self.active_skills:
             self.active_skill.addItem(skill)
             
         # Add active skill label to grid
@@ -218,19 +259,15 @@ class PoEGUI(QtGui.QWidget):
         
     def create_passive_skill_combo_boxes(self, grid):
         #self.support_skill_boxes = []
-        
-        # Dictionary to store the support skill gems with their available state (True for available, False for in use
-        self.support_skill_dict = {}
-        
+    
+        self.available_supports = {}
+    
         # Loop over all the passive skills
-        for s in self.passive_skills:
+        for s in self.support_skills:
             # Add them to the dictionary and set them to available by default
-            self.support_skill_dict[s] = True
+            self.available_supports[s] = True
         
-        # Sorted list of the support skills
-        support_skills = sorted(self.support_skill_dict.keys())
-        
-        # Add 5 widgets, starting with support skill 1
+                # Add 5 widgets, starting with support skill 1
         
         # Create the label
         support_skill_lbl_one = QtGui.QLabel("Support skill 1")
@@ -243,7 +280,7 @@ class PoEGUI(QtGui.QWidget):
         self.support_skill_combobox_one.activated[str].connect(self.update_available_support_skills)
         
         # Loop over the passive skills and add them to the combo box
-        for s in self.get_available_support_skills(support_skills):
+        for s in sorted(self.get_available_support_skills(sorted(self.available_supports.keys()))):
             self.support_skill_combobox_one.addItem(s)
         
         # Add the combo box widget to the grid
@@ -273,7 +310,7 @@ class PoEGUI(QtGui.QWidget):
         self.support_skill_combobox_two.activated[str].connect(self.update_available_support_skills)
         
         # Loop over the passive skills and add them to the combo box
-        for s in self.get_available_support_skills(support_skills):
+        for s in sorted(self.get_available_support_skills(sorted(self.available_supports.keys()))):
             self.support_skill_combobox_two.addItem(s)
         
         # Add the combo box widget to the grid
@@ -302,7 +339,7 @@ class PoEGUI(QtGui.QWidget):
         self.support_skill_combobox_three.activated[str].connect(self.update_available_support_skills)
         
         # Loop over the passive skills and add them to the combo box
-        for s in self.get_available_support_skills(support_skills):
+        for s in sorted(self.get_available_support_skills(sorted(self.available_supports.keys()))):
             self.support_skill_combobox_three.addItem(s)
         
         # Add the combo box widget to the grid
@@ -331,7 +368,7 @@ class PoEGUI(QtGui.QWidget):
         self.support_skill_combobox_four.activated[str].connect(self.update_available_support_skills)
         
         # Loop over the passive skills and add them to the combo box
-        for s in self.get_available_support_skills(support_skills):
+        for s in sorted(self.get_available_support_skills(sorted(self.available_supports.keys()))):
             print s
             self.support_skill_combobox_four.addItem(s)
         
@@ -361,7 +398,7 @@ class PoEGUI(QtGui.QWidget):
         self.support_skill_combobox_five.activated[str].connect(self.update_available_support_skills)
         
         # Loop over the passive skills and add them to the combo box
-        for s in self.get_available_support_skills(support_skills):
+        for s in sorted(self.get_available_support_skills(sorted(self.available_supports.keys()))):
             self.support_skill_combobox_five.addItem(s)
         
         # Add the combo box widget to the grid

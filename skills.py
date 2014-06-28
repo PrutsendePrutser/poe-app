@@ -28,17 +28,17 @@ class Skillgems(object):
         
     def retrieve_skill_info(self):
         skill_links = self.get_active_skill_gems_from_wiki()
-        with open('files/active_skill_levels.csv', 'a') as activeskillfile:
+        with open('files/active_skill_levels.csv', 'w') as activeskillfile, open('files/active_skill_quality_bonus.csv', 'w') as activequalityfile:
             for link in skill_links:
-                self.readskillpage(link, activeskillfile)
+                self.readskillpage(link, activeskillfile, activequalityfile)
                 
     def retrieve_support_skill_info(self):
         skill_links = self.get_support_skill_gems_from_wiki()
-        with open('files/support_skill_levels.csv', 'a') as supportskillfile:
+        with open('files/support_skill_levels.csv', 'w') as supportskillfile, open('files/support_skill_quality_bonus.csv', 'w') as supportqualityfile:
             for link in skill_links:
-                self.readskillpage(link, supportskillfile)
+                self.readskillpage(link, supportskillfile, supportqualityfile)
         
-    def readskillpage(self, skillname, activeskillfile):
+    def readskillpage(self, skillname, skillfile, qualityfile):
         # Create HTML parser object
         parser = MyHTMLParser()
         # Unescape dashes
@@ -66,7 +66,12 @@ class Skillgems(object):
             
             # Add the skilldata to the dictionary
             self.skilldata[skilln] = [l for l in parser.d.split('\n') if l.strip()]
-            print dict(zip(parser.infodescription, parser.infodescvalue))
+            line = skilln + '\t'
+            for idx, item in enumerate(parser.infodescription):
+                line += item+':'+parser.infodescvalue[idx]+'\t'
+            line = line.strip() + '\n'
+            qualityfile.write(line)
+            
            # print dict(zip(parser.infodescription, parser.infodescvalue))
         # In case we get some sort of error
         else:
@@ -83,7 +88,7 @@ class Skillgems(object):
         time.sleep(1)
         
         # Write the data of the current skill to the active skillfile
-        self.writeskillfile(skilln, activeskillfile)
+        self.writeskillfile(skilln, skillfile)
     
     def writeskillfile(self, skill, activeskillfile):
         # Write the skillname + headers to the skillfile
@@ -95,16 +100,6 @@ class Skillgems(object):
             pass
         # Loop over the leveldata
         for level in self.skilldata[skill][1:]:
-            # Ensure we only go to lvl 20
-            try:
-                if int(level.split('\t')[0]) > 20:
-                    break
-            except ValueError:
-                try: 
-                    int(level.split('\t')[0].split()[0])
-                except:
-                    print 'Error', level
-                    continue
                     
             # Add the level data for the current skillgems to the file
             activeskillfile.write('\t' + str(level) + '\n')
@@ -129,6 +124,7 @@ class Skillgems(object):
         if response.status == 200:
             # Feed the data to the parser
             skillpage_parser.feed(data)
+        print skillpage_parser.link_list
         return skillpage_parser.link_list
     
     def get_support_skill_gems_from_wiki(self):
@@ -157,6 +153,7 @@ class Skillgems(object):
 class SkillpageParser(HTMLParser.HTMLParser):
     
     handle_table_tag = False
+    stop_handle_table_tag = False
     handle_td = False
     handle_links = False
     link_list = []
@@ -166,22 +163,31 @@ class SkillpageParser(HTMLParser.HTMLParser):
             self.handle_table_tag = True
         elif tag == 'table' and ('class', 'wikitable sortable') and self.handle_table_tag:
             self.handle_td = True
-        elif tag == 'td' and self.handle_td:
+        elif tag == 'td' and self.handle_td and self.handle_table_tag:
             self.handle_links = True
-        elif tag == 'a' and self.handle_links:
+        elif tag == 'a' and self.handle_links and self.handle_td and self.handle_table_tag:
             for at in attrs:
                 if at[0] == 'href' and at[1]:
+                    #print self.handle_table_tag, self.handle_td, self.handle_links, tag, at
                     self.link_list.append(at[1])
     
-    def handle_end_tag(self, tag):
+    def handle_endtag(self, tag):
         # If a closing table tag is encountered, reset all the values to False
-        if tag == 'table' and self.handle_table_tag:
+        if tag == 'table' and self.stop_handle_table_tag:
             self.handle_table_tag = False
             self.handle_td = False
-            self.handle_links = False\
+            self.handle_links = False
+            
+    def handle_data(self, data):
+        #if self.handle_table_tag:
+            #print data
+        data = data.strip()
+        if data == "Other Skills":
+            self.stop_handle_table_tag = True
+            print self.stop_handle_table_tag
     
 class SupportSkillpageParser(HTMLParser.HTMLParser):
-    
+    stop_handle_table_tag = False
     handle_table_tag = False
     handle_td = False
     handle_links = False
@@ -199,12 +205,21 @@ class SupportSkillpageParser(HTMLParser.HTMLParser):
                 if at[0] == 'href' and at[1]:
                     self.link_list.append(at[1])
     
-    def handle_end_tag(self, tag):
+    def handle_endtag(self, tag):
         # If a closing table tag is encountered, reset all the values to False
-        if tag == 'table' and self.handle_table_tag:
+        if tag == 'table' and self.stop_handle_table_tag:
             self.handle_table_tag = False
             self.handle_td = False
             self.handle_links = False
+            
+    def handle_data(self, data):
+        #if self.handle_table_tag:
+            #print data
+        data = data.strip()
+        if data == "Remote Mine":
+            print data
+            self.stop_handle_table_tag = True
+            print self.stop_handle_table_tag
 
 class MyHTMLParser(HTMLParser.HTMLParser):
     # Boolean to determine if we are in the table that contains the skillgem level data

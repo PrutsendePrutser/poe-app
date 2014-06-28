@@ -40,6 +40,7 @@ Blood Magic (support gem)	Level	Required level	Strength	Cost Mult.	Exp.
 	18	64	102	200%	89,834,713	
 	19	66	105	197%	146,782,704	
 	20	68	108	196%	N/A	
+	21	70	111	193%	N/A	
 Cast on Melee Kill	Level	Required level	Strength	Intelligence	Chance to cast on Kill	Exp.	
 	1	19	21	15	50%	81,983	
 	2	23	25	18	52%	63,765	
@@ -103,6 +104,9 @@ Cold to Fire	Level	Required level	Strength	Intelligence	% of Cold Converted to F
 	18	64	64	44	70%	89,968,595	
 	19	66	66	45	71%	146,938,899	
 	20	68	68	47	72%	N/A	
+	21	68	68	47	73%	N/A	
+	22	68	68	47	74%	N/A	
+	23	68	68	47	75%	N/A	
 Empower	Level	Required level	Strength	+X Level	Exp.	
 	1	1	N/A	N/A	226,854,909	
 	2	10	21	1	1,439,190,228	
@@ -173,6 +177,9 @@ Increased Burning Damage	Level	Required level	Strength	Intelligence	Burning Dama
 	18	65	65	45	57%	89,391,985	
 	19	67	67	46	58%	146,266,188	
 	20	69	69	48	59%	N/A	
+	21	N/A	
+	22	N/A	
+	23	N/A	
 Increased Duration	Level	Required level	Strength	Duration	Exp.	
 	1	24	42	45%	118,383	
 	2	27	46	46%	175,816	
@@ -194,6 +201,9 @@ Increased Duration	Level	Required level	Strength	Duration	Exp.
 	18	64	102	62%	89,834,713	
 	19	66	105	63%	146,782,704	
 	20	68	108	64%	N/A	
+	21	68	108	65%	N/A	
+	22	68	108	66%	N/A	
+	23	68	108	67%	N/A	
 Iron Grip (support gem)	Level	Required level	Strength	Reduced Attack Speed	Exp.	
 	1	24	42	19%	118,383	
 	2	27	46	18%	175,816	
@@ -236,6 +246,7 @@ Iron Will	Level	Required level	Strength	Reduced Cast Speed	Exp.
 	18	64	102	2%	90,036,713	
 	19	66	105	1%	147,018,372	
 	20	68	108	0%	N/A	
+	30	-10%?	N/A	
 Item Quantity	Level	Required level	Strength	Item Quantity	Exp.	
 	1	24	42	17%	118,383	
 	2	27	46	18%	175,816	
@@ -257,6 +268,7 @@ Item Quantity	Level	Required level	Strength	Item Quantity	Exp.
 	18	64	102	34%	89,834,713	
 	19	66	105	35%	146,782,704	
 	20	68	108	36%	N/A	
+	21	70	111	37%	N/A	
 Knockback (support gem)	Level	Required level	Strength	Knockback Chance	Exp.	
 	1	31	52	25%	179,320	
 	2	33	55	26%	225,766	
@@ -362,6 +374,9 @@ Melee Physical Damage	Level	Required level	Strength	Damage	Exp.
 	18	65	103	47%	89,391,985	
 	19	67	106	48%	146,266,188	
 	20	69	109	49%	N/A	
+	21	50%	N/A	
+	22	51%	N/A	
+	23	N/A	
 Melee Splash	Level	Required level	Strength	Melee Damage	Less Damage to Other Targets	Exp.	
 	1	19	34	N/A	50%	81,983	
 	2	23	40	3%	49%	63,765	
@@ -383,6 +398,9 @@ Melee Splash	Level	Required level	Strength	Melee Damage	Less Damage to Other Tar
 	18	64	102	51%	33%	89,968,595	
 	19	66	105	54%	32%	146,938,899	
 	20	68	108	57%	31%	N/A	
+	21	68	108	60%	30%	N/A	
+	22	68	108	63%	29%	N/A	
+	23	68	108	66%	28%	N/A	
 Multistrike	Level	Required level	Strength	Dexterity	Inc. Melee Damage	Attack Speed	Exp.	
 	1	19	21	15	N/A	88%	81,983	
 	2	23	25	18	3%	89%	63,765	
@@ -404,6 +422,9 @@ Multistrike	Level	Required level	Strength	Dexterity	Inc. Melee Damage	Attack Spe
 	18	64	64	44	51%	105%	89,968,595	
 	19	66	66	46	54%	106%	146,938,899	
 	20	68	68	47	57%	107%	N/A	
+	21	68	68	47	60%	108%	N/A	
+	22	68	68	47	63%	109%	N/A	
+	23	68	68	47	66%	110%	N/A	
 Ranged Attack Totem	Level	Required level	Strength	Dexterity	Totem Duration	Exp.	
 	1	31	33	23	15s	179,320	
 	2	33	35	24	16s	225,766	
@@ -446,6 +467,16 @@ Reduced Duration	Level	Required level	Strength	Duration	Exp.
 	18	64	102	42%	89,834,713	
 	19	66	105	43%	146,782,704	
 	20	68	108	44%	N/A	
+	21	68	108	45%	N/A	
+	22	68	108	46%	N/A	
+	23	68	108	47%	N/A	
+	24	68	108	48%	N/A	
+	25	68	108	49%	N/A	
+	26	68	108	50%	N/A	
+	27	68	108	51%	N/A	
+	28	68	108	52%	N/A	
+	29	68	108	53%	N/A	
+	30	68	108	54%	N/A	
 Reduced Mana	Level	Required level	Strength	Mana Mult.	Exp.	
 	1	31	52	90%	179,320	
 	2	33	55	89%	225,766	
@@ -467,6 +498,8 @@ Reduced Mana	Level	Required level	Strength	Mana Mult.	Exp.
 	18	65	103	73%	89,391,985	
 	19	67	106	72%	146,266,188	
 	20	69	109	71%	N/A	
+	21	71	112	70%	N/A	
+	22	-	-	69%	N/A	
 Spell Totem	Level	Required level	Strength	Intelligence	Totem Duration	Exp.	
 	1	31	33	23	15.0	179,320	
 	2	33	35	24	16.0	225,766	
@@ -530,6 +563,16 @@ Weapon Elemental Damage	Level	Required level	Strength	Intelligence	Elemental Dam
 	18	64	64	44	57%	90,036,713	
 	19	66	66	46	58%	147,018,372	
 	20	68	68	47	59%	N/A	
+	21	68	68	47	60%	N/A	
+	22	68	68	47	61%	N/A	
+	23	68	68	47	62%	N/A	
+	24	68	68	47	63%	N/A	
+	25	68	68	47	64%	N/A	
+	26	68	68	47	65%	N/A	
+	27	68	68	47	66%	N/A	
+	28	68	68	47	67%	N/A	
+	29	68	68	47	68%	N/A	
+	30	68	68	47	69%	N/A	
 Added Cold Damage	Level	Required level	Dexterity	Cold Damage	Chill Duration	Exp.	
 	1	12	24	4	6	25%	15,249	
 	2	15	28	5	8	26%	28,130	
@@ -551,6 +594,16 @@ Added Cold Damage	Level	Required level	Dexterity	Cold Damage	Chill Duration	Exp.
 	18	64	102	73	110	42%	90,036,713	
 	19	66	105	80	121	43%	147,018,372	
 	20	68	108	88	132	44%	N/A	
+	21	68	108	96	144	45%	N/A	
+	22	68	108	105	158	46%	N/A	
+	23	68	108	115	172	47%	N/A	
+	24	68	108	126	188	48%	N/A	
+	25	68	108	137	205	49%	N/A	
+	26	68	108	149	224	50%	N/A	
+	27	68	108	163	244	51%	N/A	
+	28	68	108	178	266	52%	N/A	
+	29	68	108	193	290	53%	N/A	
+	30	68	108	211	316	54%	N/A	
 Additional Accuracy	Level	Required level	Strength	Dexterity	Accuracy	Exp.	
 	1	12	N/A	15	82	15,249	
 	2	15	N/A	18	109	28,130	
@@ -572,6 +625,9 @@ Additional Accuracy	Level	Required level	Strength	Dexterity	Accuracy	Exp.
 	18	64	44	64	934	90,036,713	
 	19	66	46	66	983	147,018,372	
 	20	68	47	68	1034	N/A	
+	21	70	48	70	1085	N/A	
+	22	N/A	
+	23	N/A	
 Blind (support gem)	Level	Required level	Dexterity	Blind Chance	Increased Duration	Exp.	
 	1	24	42	8%	N/A	118,383	
 	2	27	46	8%	2%	175,816	
@@ -593,6 +649,7 @@ Blind (support gem)	Level	Required level	Dexterity	Blind Chance	Increased Durati
 	18	64	102	12%	26%	89,834,713	
 	19	66	105	12%	28%	146,782,704	
 	20	68	108	12%	30%	N/A	
+	21	70	111	13%	32%	N/A	
 Cast On Critical Strike	Level	Required level	Dexterity	Intelligence	Chance to Cast	Exp.	
 	1	31	33	23	50%	179,320	
 	2	33	35	24	52%	225,766	
@@ -656,6 +713,7 @@ Chain	Level	Required level	Dexterity	Increased Damage	Exp.
 	18	65	103	34%	89,391,985	
 	19	67	106	36%	146,266,188	
 	20	69	109	38%	N/A	
+	21	71	112	40%	N/A	
 Chance to Flee	Level	Required level	Dexterity	Intelligence	Chance	Exp.	
 	1	12	15	N/A	25%	15,249	
 	2	15	18	N/A	26%	28,130	
@@ -831,6 +889,7 @@ Lesser Multiple Projectiles	Level	Required level	Dexterity	Damage	Exp.
 	18	64	102	34%	89,968,595	
 	19	66	105	36%	146,938,899	
 	20	68	108	38%	N/A	
+	21	70	111	40%	N/A	
 Mana Leech (support gem)	Level	Required level	Dexterity	Damage Leeched back as Mana	Exp.	
 	1	31	52	2.0%	179,320	
 	2	33	55	2.1%	225,766	
@@ -999,6 +1058,9 @@ Added Chaos Damage	Level	Required level	Intelligence	Additional Chaos Damage	Exp
 	18	65	103	130–195	89,391,985	
 	19	67	106	145–217	146,266,188	
 	20	69	109	161–242	N/A	
+	21	N/A	N/A	N/A	N/A	
+	22	N/A	N/A	200-300	N/A	
+	23	N/A	N/A	222-334	N/A	
 Added Lightning Damage	Level	Required level	Intelligence	Lightning Damage	Exp.	
 	1	12	24	1–9	15,249	
 	2	15	28	1–11	28,130	
@@ -1020,6 +1082,9 @@ Added Lightning Damage	Level	Required level	Intelligence	Lightning Damage	Exp.
 	18	64	102	10-195	90,036,713	
 	19	66	105	11–216	147,018,372	
 	20	68	108	13–238	N/A	
+	21	N/A	N/A	14–263	N/A	
+	22	N/A	N/A	15-291	N/A	
+	23	N/A	N/A	17–320	N/A	
 Cast when Stunned	Level	Required level	Dexterity	Intelligence	Chance to Cast	Exp.	
 	1	24	18	26	32%	118,383	
 	2	27	20	29	33%	175,816	
@@ -1125,6 +1190,9 @@ Elemental Proliferation	Level	Required level	Intelligence	Radius	Exp.
 	18	64	102	29	89,834,713	
 	19	66	105	30	146,782,704	
 	20	68	108	31	N/A	
+	21	32	N/A	
+	22	33	N/A	
+	23	34	N/A	
 Enlighten	Level	Required level	Intelligence	Increased XP	Exp.	
 	1	1	N/A	N/A	226,854,909	
 	2	10	21	6%	1,439,190,228	
@@ -1363,6 +1431,9 @@ Power Charge On Critical	Level	Required level	Intelligence	Chance	Exp.
 	18	64	102	47%	89,968,595	
 	19	66	105	48%	146,938,899	
 	20	68	108	49%	N/A	
+	21	N/A	
+	22	N/A	
+	23	N/A	
 Remote Mine	Level	Required level	Dexterity	Intelligence	More Damage	Exp.	
 	1	31	23	33	30%	179,320	
 	2	33	24	35	31%	225,766	
