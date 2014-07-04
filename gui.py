@@ -1,6 +1,7 @@
 import sys
 import passives
 import itemstats
+from calculate import Calculations
 import os
 from PyQt4 import QtGui, QtCore
 
@@ -23,9 +24,13 @@ class PoEGUI(QtGui.QWidget):
         
         self.initUI()
         
-        self.add_gear_to_UI()
-        
         self.filter_support_skills(self.active_skill.currentText())
+        
+    def load_items(self):
+        print "Load items clicked!"
+        filename = QtGui.QFileDialog(self).getOpenFileName()
+        
+        self.add_gear_to_UI(filename)
         
     def filter_support_skills(self, active_skill):
         active_skill_info = self.active_skill_dict[str(active_skill)]
@@ -75,7 +80,7 @@ class PoEGUI(QtGui.QWidget):
         return skilldict
                 
         
-    def add_gear_to_UI(self):
+    def add_gear_to_UI(self, filename):
         
         # Dictionary that contains the mapping from inventory ID to GUI element
         gearslot_mapping = {'Helm': self.helm_name_box,
@@ -90,7 +95,7 @@ class PoEGUI(QtGui.QWidget):
                             'Belt': self.belt_name_box}
 
         # Retrieve the items from the items file that was selected by the user
-        self.equipped_items = itemstats.ItemStats('files/items.txt', 'PrutsMarauder').get_item_info()
+        self.equipped_items = itemstats.ItemStats(filename).get_item_info()
         # Loop over the item slots
         for item in self.equipped_items:
             # Skip secondary weapon for now, since we don't have a box for that
@@ -139,6 +144,7 @@ class PoEGUI(QtGui.QWidget):
         support_skill_three = self.support_skill_combobox_three.currentText()
         support_skill_four = self.support_skill_combobox_four.currentText()
         support_skill_five = self.support_skill_combobox_five.currentText()
+        print support_skill_one, support_skill_two, support_skill_three, support_skill_four
         
         # Get the list of available support skills
         available_skills = self.get_available_support_skills(self.available_supports)
@@ -229,6 +235,74 @@ class PoEGUI(QtGui.QWidget):
         # Show the window
         self.show()
     
+    def update_skill_links(self, slotname):
+        sender = self.sender()
+        
+        selected_slot = self.gearslot_to_inv_id_mapping[str(sender.currentText())]
+        gems = self.equipped_items[selected_slot]['0']['slotted_gems']
+        
+        linkcount = len(gems)
+        if linkcount == 6:
+            self.support_skill_combobox_five.show()
+            self.support_skill_combobox_four.show()
+            self.support_skill_combobox_three.show()
+            self.support_skill_combobox_two.show()
+            self.support_skill_combobox_one.show()
+        elif linkcount == 5:
+            self.support_skill_combobox_five.hide()
+            self.support_skill_combobox_four.show()
+            self.support_skill_combobox_three.show()
+            self.support_skill_combobox_two.show()
+            self.support_skill_combobox_one.show()
+        elif linkcount == 4:
+            self.support_skill_combobox_five.hide()
+            self.support_skill_combobox_four.hide()
+            self.support_skill_combobox_three.show()
+            self.support_skill_combobox_two.show()
+            self.support_skill_combobox_one.show()
+        elif linkcount == 3:
+            self.support_skill_combobox_five.hide()
+            self.support_skill_combobox_four.hide()
+            self.support_skill_combobox_three.hide()
+            self.support_skill_combobox_two.show()
+            self.support_skill_combobox_one.show()
+        elif linkcount == 2:
+            self.support_skill_combobox_five.hide()
+            self.support_skill_combobox_four.hide()
+            self.support_skill_combobox_three.hide()
+            self.support_skill_combobox_two.hide()
+            self.support_skill_combobox_one.show()
+        elif linkcount == 1:
+            self.support_skill_combobox_five.hide()
+            self.support_skill_combobox_four.hide()
+            self.support_skill_combobox_three.hide()
+            self.support_skill_combobox_two.hide()
+            self.support_skill_combobox_one.hide()
+        
+        support_skill_count = 0
+        print self.support_skills
+        for gem in gems:
+            gemname = gem[0]
+            print gemname
+            if gemname in self.active_skills:
+#                self.support_skill_combobox_one.setCurrentIndex(self.support_skill_combobox_one.findText(support_skill_one))
+
+                self.active_skill.setCurrentIndex(self.active_skill.findText(gemname))
+            elif gemname in self.support_skills:
+                support_skill_count += 1
+                if support_skill_count == 1:
+                    self.support_skill_combobox_one.setCurrentIndex(self.support_skill_combobox_one.findText(gemname))
+                elif support_skill_count == 2:
+                    self.support_skill_combobox_two.setCurrentIndex(self.support_skill_combobox_two.findText(gemname))
+                elif support_skill_count == 3:
+                    self.support_skill_combobox_three.setCurrentIndex(self.support_skill_combobox_three.findText(gemname))
+                elif support_skill_count == 4:
+                    self.support_skill_combobox_four.setCurrentIndex(self.support_skill_combobox_four.findText(gemname))
+                elif support_skill_count == 5:
+                    self.support_skill_combobox_five.setCurrentIndex(self.support_skill_combobox_five.findText(gemname))
+            self.available_supports[gemname] = False
+        self.set_available_support_skills()
+    
     def add_build_url_widgets(self, grid):
         # Build URL label
         self.build_url_lbl = QtGui.QLabel("Build URL")
@@ -249,6 +323,25 @@ class PoEGUI(QtGui.QWidget):
         
         
     def create_active_skill_combo_box(self, grid):
+        self.gearslot_to_inv_id_mapping = {'Helmet': 'Helm',
+                                           'Main Hand': 'Weapon',
+                                           'Chest': 'BodyArmour',
+                                           'Off Hand': 'Offhand',
+                                           'Boots': 'Boots',
+                                           'Gloves': 'Gloves'}
+        
+        self.gear_slot_selector_lbl = QtGui.QLabel("Select slot:")
+        
+        self.gear_slot_selector_box = QtGui.QComboBox()
+        
+        self.gear_slot_selector_box.addItems(['Helmet', '`Main Hand', 'Off Hand', 'Chest', 'Boots', 'Gloves'])
+        
+        self.gear_slot_selector_box.activated[str].connect(self.update_skill_links)
+        
+        grid.addWidget(self.gear_slot_selector_lbl, 2, 19)
+        
+        grid.addWidget(self.gear_slot_selector_box, 2, 20)
+        
         # Create label for active skill
         self.active_skill_lbl = QtGui.QLabel("Active skill")
         
@@ -260,17 +353,17 @@ class PoEGUI(QtGui.QWidget):
             self.active_skill.addItem(skill)
             
         # Add active skill label to grid
-        grid.addWidget(self.active_skill_lbl, 2, 19)
+        grid.addWidget(self.active_skill_lbl, 3, 19)
         
         # Add active skill dropdown to grid
-        grid.addWidget(self.active_skill, 2, 20)
+        grid.addWidget(self.active_skill, 3, 20)
         
         # Retrieve level label and level selection dropdown
         level_lbl, self.active_level_box = self.add_gem_level_selection_widget()
         
         # Add the level label and level selection dropdown to the grid
-        grid.addWidget(level_lbl, 2, 21)
-        grid.addWidget(self.active_level_box, 2, 22)
+        grid.addWidget(level_lbl, 3, 21)
+        grid.addWidget(self.active_level_box, 3, 22)
         
     def create_passive_skill_combo_boxes(self, grid):
         #self.support_skill_boxes = []
@@ -288,7 +381,7 @@ class PoEGUI(QtGui.QWidget):
         support_skill_lbl_one = QtGui.QLabel("Support skill 1")
         
         # Add the widget to the next row, 3rd column
-        grid.addWidget(support_skill_lbl_one, 3, 19)
+        grid.addWidget(support_skill_lbl_one, 4, 19)
         
         # Create a combobox widget
         self.support_skill_combobox_one = QtGui.QComboBox()
@@ -299,7 +392,7 @@ class PoEGUI(QtGui.QWidget):
             self.support_skill_combobox_one.addItem(s)
         
         # Add the combo box widget to the grid
-        grid.addWidget(self.support_skill_combobox_one, 3, 20)
+        grid.addWidget(self.support_skill_combobox_one, 4, 20)
         
         # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
         # it is not shown in other dropdowns when it's already selected.
@@ -310,15 +403,15 @@ class PoEGUI(QtGui.QWidget):
         level_lbl, self.support_level_box_one = self.add_gem_level_selection_widget()
         
         # ..and add them to the grid
-        grid.addWidget(level_lbl, 3, 21)
-        grid.addWidget(self.support_level_box_one, 3, 22)
+        grid.addWidget(level_lbl, 4, 21)
+        grid.addWidget(self.support_level_box_one, 4, 22)
         #self.support_skill_boxes.append([support_skill_combobox, level_box])
         
         # Create the label
         support_skill_lbl_two = QtGui.QLabel("Support skill 2")
         
         # Add the widget to the next row, 3rd column
-        grid.addWidget(support_skill_lbl_two, 4, 19)
+        grid.addWidget(support_skill_lbl_two, 5, 19)
         
         # Create a combobox widget
         self.support_skill_combobox_two = QtGui.QComboBox()
@@ -329,7 +422,7 @@ class PoEGUI(QtGui.QWidget):
             self.support_skill_combobox_two.addItem(s)
         
         # Add the combo box widget to the grid
-        grid.addWidget(self.support_skill_combobox_two, 4, 20)
+        grid.addWidget(self.support_skill_combobox_two, 5, 20)
         
         # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
         # it is not shown in other dropdowns when it's already selected.
@@ -340,14 +433,14 @@ class PoEGUI(QtGui.QWidget):
         level_lbl, self.support_level_box_two = self.add_gem_level_selection_widget()
         
         # ..and add them to the grid
-        grid.addWidget(level_lbl, 4, 21)
-        grid.addWidget(self.support_level_box_two, 4, 22)
+        grid.addWidget(level_lbl, 5, 21)
+        grid.addWidget(self.support_level_box_two, 5, 22)
         
         # Create the label
         support_skill_lbl_three = QtGui.QLabel("Support skill 3")
         
         # Add the widget to the next row, 3rd column
-        grid.addWidget(support_skill_lbl_three, 5, 19)
+        grid.addWidget(support_skill_lbl_three, 6, 19)
         
         # Create a combobox widget
         self.support_skill_combobox_three = QtGui.QComboBox()
@@ -358,7 +451,7 @@ class PoEGUI(QtGui.QWidget):
             self.support_skill_combobox_three.addItem(s)
         
         # Add the combo box widget to the grid
-        grid.addWidget(self.support_skill_combobox_three, 5, 20)
+        grid.addWidget(self.support_skill_combobox_three, 6, 20)
         
         # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
         # it is not shown in other dropdowns when it's already selected.
@@ -369,14 +462,14 @@ class PoEGUI(QtGui.QWidget):
         level_lbl, self.support_level_box_three = self.add_gem_level_selection_widget()
         
         # ..and add them to the grid
-        grid.addWidget(level_lbl, 5, 21)
-        grid.addWidget(self.support_level_box_three, 5, 22)
+        grid.addWidget(level_lbl, 6, 21)
+        grid.addWidget(self.support_level_box_three, 6, 22)
         
         # Create the label
         support_skill_lbl_four = QtGui.QLabel("Support skill 4")
         
         # Add the widget to the next row, 3rd column
-        grid.addWidget(support_skill_lbl_four, 6, 19)
+        grid.addWidget(support_skill_lbl_four, 7, 19)
         
         # Create a combobox widget
         self.support_skill_combobox_four = QtGui.QComboBox()
@@ -388,7 +481,7 @@ class PoEGUI(QtGui.QWidget):
             self.support_skill_combobox_four.addItem(s)
         
         # Add the combo box widget to the grid
-        grid.addWidget(self.support_skill_combobox_four, 6, 20)
+        grid.addWidget(self.support_skill_combobox_four, 7, 20)
         
         # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
         # it is not shown in other dropdowns when it's already selected.
@@ -399,14 +492,14 @@ class PoEGUI(QtGui.QWidget):
         level_lbl, self.support_level_box_four = self.add_gem_level_selection_widget()
         
         # ..and add them to the grid
-        grid.addWidget(level_lbl, 6, 21)
-        grid.addWidget(self.support_level_box_four, 6, 22)
+        grid.addWidget(level_lbl, 7, 21)
+        grid.addWidget(self.support_level_box_four, 7, 22)
         
         # Create the label
         support_skill_lbl_five = QtGui.QLabel("Support skill 5")
         
         # Add the widget to the next row, 3rd column
-        grid.addWidget(support_skill_lbl_five, 7, 19)
+        grid.addWidget(support_skill_lbl_five, 8, 19)
         
         # Create a combobox widget
         self.support_skill_combobox_five = QtGui.QComboBox()
@@ -417,7 +510,7 @@ class PoEGUI(QtGui.QWidget):
             self.support_skill_combobox_five.addItem(s)
         
         # Add the combo box widget to the grid
-        grid.addWidget(self.support_skill_combobox_five, 7, 20)
+        grid.addWidget(self.support_skill_combobox_five, 8, 20)
         
         # Retrieve the skill that's displayed in the current dropdown and set it to False, so that
         # it is not shown in other dropdowns when it's already selected.
@@ -428,8 +521,8 @@ class PoEGUI(QtGui.QWidget):
         level_lbl, self.support_level_box_five = self.add_gem_level_selection_widget()
         
         # ..and add them to the grid
-        grid.addWidget(level_lbl, 7, 21)
-        grid.addWidget(self.support_level_box_five, 7, 22)
+        grid.addWidget(level_lbl, 8, 21)
+        grid.addWidget(self.support_level_box_five, 8, 22)
         
         # Update the available support skill gems for all the slots
         # TODO: Create something nicer than this, for example selecting the values for the support skill boxes beforehand and adding the items to each box afterwards
@@ -598,7 +691,7 @@ class PoEGUI(QtGui.QWidget):
         grid.addWidget(items_lbl, 11, 26)
         
         self.load_items_btn = QtGui.QPushButton("Load items")
-        #self.load_items_btn.clicked.connect(self.load_items)
+        self.load_items_btn.clicked.connect(self.load_items)
         
         # Add the load items button to the grid
         grid.addWidget(self.load_items_btn, 12, 26)
@@ -630,7 +723,7 @@ class PoEGUI(QtGui.QWidget):
         
         # Add the boots
         self.add_boots_widgets(grid)
-    
+        
     def add_helmet_widgets(self, grid):
         # Create helmet widgets
         helm_lbl = QtGui.QLabel("Helmet")
@@ -784,10 +877,6 @@ class PoEGUI(QtGui.QWidget):
     def get_available_support_skills(self, support_skills):
         # Return a list of the support skill gems that are not selected in the dropdown menus
         return [skill for skill in self.available_supports.keys() if self.available_supports[skill]]
-    
-    def load_items(self):
-        pass
-
 
 def main():
     

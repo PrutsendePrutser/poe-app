@@ -2,8 +2,7 @@ import json
 
 class ItemStats(object):
     
-    def __init__(self, path, charname):
-        self.items_url = 'http://www.pathofexile.com/character-window/get-items?character='+charname
+    def __init__(self, path):
         
         self.item_info = {}
         
@@ -86,13 +85,7 @@ class ItemStats(object):
                     
                     # Update the counter so we know which skill gem in the list to take next.
                     counter += link_counter
-                    
-        # Loop over the equipped items
-        #for item in self.item_info:
-            # Loop over the socket groups
-        #    for socket_group in self.item_info[item]:
-                # Print the socketed gems for each socket group of each item
-        #        print item, socket_group, self.item_info[item][socket_group]
+
         return self.item_info
     
     def load_items_file(self, path):
